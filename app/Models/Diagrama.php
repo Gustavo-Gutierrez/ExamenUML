@@ -13,5 +13,7 @@ class Diagrama extends Model
     protected $fillable = ['nombre','descripcion', 'contenido', 'tipo', 'terminado', 'proyecto_id', 'user_id'];
     /* tipo => 1:contexto 2:contendedor 3:componentes 4:codigo */
 
-
+    public function proyecto(){
+        return $this->belongsTo(Proyecto::class);
+    }
 }

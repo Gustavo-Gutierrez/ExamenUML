@@ -14,58 +14,93 @@
                 <a href="#" class="nav-link px-0 text-reset" data-bs-toggle="dropdown" tabindex="-1"
                     aria-label="Mostrar menus">
                     <!-- Download SVG icon from http://tabler-icons.io/i/bell -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-windows" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M17.8 20l-12 -1.5c-1 -.1 -1.8 -.9 -1.8 -1.9v-9.2c0 -1 .8 -1.8 1.8 -1.9l12 -1.5c1.2 -.1 2.2 .8 2.2 1.9v12.1c0 1.2 -1.1 2.1 -2.2 1.9z" />
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="4" y1="12" x2="20" y2="12" />
-                      </svg>
-                    
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid"
+                        width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff"
+                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <rect x="4" y="4" width="6" height="6" rx="1" />
+                        <rect x="14" y="4" width="6" height="6" rx="1" />
+                        <rect x="4" y="14" width="6" height="6" rx="1" />
+                        <rect x="14" y="14" width="6" height="6" rx="1" />
+                    </svg>
+
                 </a>
-                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-start dropdown-menu-card"
-                    style="z-index: 50;  background-color: rgba(23,67,122,255);">
+                <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-start dropdown-menu-card" style="">
                     <div class="card" style="z-index: 50">
                         <div class="card-header">
                             <h3 class="card-title">Menu</h3>
                         </div>
                         <div class="list-group list-group-flush list-group-hoverable">
-                            
+
                             <div class="list-group-item">
-                                <div class="row align-items-center">
-                                    <div class="col-auto"><span class="status-dot d-block"></span></div>
-                                    <div class="col text-truncate">
-                                        <a href="{{ route('dashboard') }}" class="text-body d-block">Inicio</a>
+                                <a href="{{ route('dashboard') }}" class="btn border-0 shadow-none p-0">
+                                    <div
+                                        class="row align-items-center {{ request()->routeIs('dashboard') ? 'text-success' : '' }}">
+                                        <div class="col-auto pe-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-copyright" width="44"
+                                                height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#597e8d"
+                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <circle cx="12" cy="12" r="9" />
+                                                <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+                                            </svg>
+                                        </div>
+                                        <div class="col text-truncate">
+                                            Inicio
+                                        </div>
                                     </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="list-group-item-actions show">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div><div class="list-group-item">
-                                <div class="row align-items-center">
-                                    <div class="col-auto"><span
-                                            class="status-dot status-dot-animated bg-red d-block"></span></div>
-                                    <div class="col text-truncate">
-                                        <a href="{{route('proyectos.index')}}" class="text-body d-block">Proyectos</a>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="list-group-item-actions">
-                                            
-                                        </a>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="list-group-item">
-                                <div class="row align-items-center">
-                                    <div class="col-auto"><span class="status-dot d-block"></span></div>
-                                    <div class="col text-truncate">
-                                        <a href="#" class="text-body d-block">Notificaciones</a>
+                                <a href="{{ route('proyectos.index') }}" class="btn border-0 shadow-none p-0">
+                                    <div
+                                        class="row align-items-center {{ request()->routeIs('proyectos.index') ? 'text-success' : '' }}">
+                                        <div class="col-auto pe-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-grid-dots" width="44"
+                                                height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#597e8d"
+                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <circle cx="5" cy="5" r="1" />
+                                                <circle cx="12" cy="5" r="1" />
+                                                <circle cx="19" cy="5" r="1" />
+                                                <circle cx="5" cy="12" r="1" />
+                                                <circle cx="12" cy="12" r="1" />
+                                                <circle cx="19" cy="12" r="1" />
+                                                <circle cx="5" cy="19" r="1" />
+                                                <circle cx="12" cy="19" r="1" />
+                                                <circle cx="19" cy="19" r="1" />
+                                            </svg>
+                                        </div>
+                                        <div class="col">
+                                            Mis Proyectos
+                                        </div>
                                     </div>
-                                    <div class="col-auto">
-                                        <a href="#" class="list-group-item-actions show">
-                                        </a>
+                                </a>
+                            </div>
+                            <div class="list-group-item">
+                                <a href="{{ route('diagramas.misDiagramas') }}" class="btn border-0 shadow-none p-0">
+                                    <div class="row align-items-center {{-- {{request()->routeIs('proyectos.index')? 'text-success' : '' }} --}}">
+                                        <div class="col-auto pe-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-layout-board" width="44"
+                                                height="44" viewBox="0 0 24 24" stroke-width="1.5"
+                                                stroke="#597e8d" fill="none" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <rect x="4" y="4" width="16" height="16"
+                                                    rx="2" />
+                                                <path d="M4 9h8" />
+                                                <path d="M12 15h8" />
+                                                <path d="M12 4v16" />
+                                            </svg>
+                                        </div>
+                                        <div class="col">
+                                            Mis Diagramas
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -110,61 +145,37 @@
                         </svg>
                         <span class="badge bg-red"></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card">
+                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-end dropdown-menu-card" style="width: 300px">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Last updates</h3>
+                                <h3 class="card-title">Notificacion de Solicitudes</h3>
                             </div>
                             <div class="list-group list-group-flush list-group-hoverable">
-                                <div class="list-group-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-auto"><span
-                                                class="status-dot status-dot-animated bg-red d-block"></span></div>
-                                        <div class="col text-truncate">
-                                            <a href="#" class="text-body d-block">Example 1</a>
-                                            <div class="d-block text-muted text-truncate mt-n1">
-                                                Change deprecated html tags to text decoration classes (#29604)
+                                @foreach (Auth::user()->invitaciones as $notificacion)
+                                    <div class="list-group-item">
+                                        <div class="row align-items-center">
+                                            <div class="col text-truncate">
+                                                <a href="#" class="text-body">Proyecto: {{$notificacion->proyecto->nombre}}</a>
+                                                <div class="text-muted text-truncate mt-n1">
+                                                    {{ $notificacion->contenido }}
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <a href="#" class="list-group-item-actions show">
+                                                    <!-- Download SVG icon from http://tabler-icons.io/i/star -->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon text-yellow"
+                                                        width="24" height="24" viewBox="0 0 24 24"
+                                                        stroke-width="2" stroke="currentColor" fill="none"
+                                                        stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path
+                                                            d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
+                                                    </svg>
+                                                </a>
                                             </div>
                                         </div>
-                                        <div class="col-auto">
-                                            <a href="#" class="list-group-item-actions">
-                                                <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-muted"
-                                                    width="24" height="24" viewBox="0 0 24 24"
-                                                    stroke-width="2" stroke="currentColor" fill="none"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path
-                                                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
-                                                </svg>
-                                            </a>
-                                        </div>
                                     </div>
-                                </div>
-                                <div class="list-group-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-auto"><span class="status-dot d-block"></span></div>
-                                        <div class="col text-truncate">
-                                            <a href="#" class="text-body d-block">Example 2</a>
-                                            <div class="d-block text-muted text-truncate mt-n1">
-                                                justify-content:between ⇒ justify-content:space-between (#29734)
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a href="#" class="list-group-item-actions show">
-                                                <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon text-yellow"
-                                                    width="24" height="24" viewBox="0 0 24 24"
-                                                    stroke-width="2" stroke="currentColor" fill="none"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path
-                                                        d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

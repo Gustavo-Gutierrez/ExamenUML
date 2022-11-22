@@ -9,10 +9,8 @@
                         <div class="col">
                             <h2 class="page-title">
                                 Mis Proyectos
-                                @if (Session::has('message'))
-                                    {{ $message }}
-                                @endif
                             </h2>
+                            <p style="font-size: 10px">Proyectos en los que participas</p>
                         </div>
                         <!-- Page title actions -->
                         <div class="col-12 col-md-auto ms-auto d-print-none">
@@ -29,7 +27,6 @@
                                 Crear Proyecto
                             </a>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -40,9 +37,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="#">Ver todos</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{-- {{ route('eventos.favoritos') }} --}}">Favoritos</a>
-                        </li>
+                        {{-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('eventos.favoritos') }}">Favoritos</a>
+                        </li> --}}
                     </ul>
                     @if (count($proyectos) > 0)
                         <div class="row row-cards">
@@ -65,24 +62,31 @@
                                                     <h3 class="card-title mb-1">
                                                         <a href="#" class="text-reset">{{ $proyecto->nombre }}</a>
                                                     </h3>
+                                                    <p class="mb-1" style="font-size: 10px">
+                                                        @if ($proyecto->user_id == Auth::user()->id)
+                                                            <span class="text-success">Dueño</span>
+                                                        @else
+                                                            <span class="text-info">participando</span>
+                                                        @endif
+                                                    </p>
                                                     <div class="text-muted">
                                                         {{ $proyecto->descripcion }}
                                                     </div>
                                                     <div class="text-muted">
-                                                        Fecha de finalizacion: {{ $proyecto->fecha_fin }}
+                                                        Fecha de finalizacion:
+                                                        {{ Carbon\Carbon::parse($proyecto->fecha_fin)->format('Y-m-d H:i') }}
                                                     </div>
                                                     @if ($proyecto->terminado == 1)
-                                                        <div class="text-muted text-success">
+                                                        <div class="text-success">
                                                             Proyecto terminado!
                                                         </div>
                                                     @elseif($proyecto->fecha_fin > Carbon\Carbon::now())
-                                                        <div class="text-muted text-success">
-                                                            Tiempo restante: {{ $proyecto->tiempoRestante() }} Días
+                                                        <div class="text-success">
+                                                            Tiempo restante: {{ $proyecto->tiempoRestante() }}
                                                         </div>
                                                     @else
                                                         <div class="text-danger">
                                                             Estas retrasado por: {{ $proyecto->tiempoRestante() }}
-                                                            Dias
                                                         </div>
                                                     @endif
                                                     {{-- <div class="text-muted">
@@ -91,12 +95,13 @@
                                                     <div class="mt-3">
                                                         <div class="row g-2 align-items-center">
                                                             <div class="col-auto">
-                                                                Progreso: 
+                                                                Progreso:
                                                                 {{ $proyecto->porcentajeTerminado() }}%
                                                             </div>
                                                             <div class="col">
                                                                 <div class="progress progress-sm">
-                                                                    <div class="progress-bar" style="width: {{ $proyecto->porcentajeTerminado() }}%"
+                                                                    <div class="progress-bar"
+                                                                        style="width: {{ $proyecto->porcentajeTerminado() }}%"
                                                                         role="progressbar" aria-valuenow="25"
                                                                         aria-valuemin="0" aria-valuemax="100"
                                                                         aria-label="25% Complete">
@@ -118,7 +123,8 @@
                                                                 stroke-linecap="round" stroke-linejoin="round">
                                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                                 <circle cx="12" cy="12" r="1" />
-                                                                <circle cx="12" cy="19" r="1" />
+                                                                <circle cx="12" cy="19"
+                                                                    r="1" />
                                                                 <circle cx="12" cy="5"
                                                                     r="1" />
                                                             </svg>
@@ -126,11 +132,16 @@
                                                         <div class="dropdown-menu dropdown-menu-end">
                                                             {{-- @can('verImagenesAgregadas') --}}
                                                             <a href="{{ route('diagramas.index', $proyecto->id) }}"
-                                                                class="dropdown-item">Ver y Agregar Diagramas</a>
+                                                                class="dropdown-item">Diagramas</a>
                                                             {{-- @endcan --}}
-                                                            <a href="{{-- {{ route('diagramas.index', $proyecto->id) }} --}}"
-                                                                class="dropdown-item">Editar
-                                                                Informacion</a>
+                                                            @if ($proyecto->user_id == Auth::user()->id)
+                                                                <a href="{{ route('proyectos.edit', $proyecto->id) }}"
+                                                                    class="dropdown-item">Editar
+                                                                    Informacion</a>
+                                                                <a href="{{ route('proyectos.usuarios', $proyecto->id) }}"
+                                                                    class="dropdown-item">Administrar Acceso</a>
+                                                            @endif
+
                                                         </div>
                                                     </div>
                                                     {{-- <div class="btn-action col-auto">
@@ -176,9 +187,9 @@
                                                                         <i class="fa-solid fa-xmark text-danger"></i>
                                                                     </span>
                                                                 @else
-                                                                <span class="switch-icon-b text-muted mt-1">
-                                                                    <i class="fa-solid fa-check text-success"></i>
-                                                                </span>
+                                                                    <span class="switch-icon-b text-muted mt-1">
+                                                                        <i class="fa-solid fa-check text-success"></i>
+                                                                    </span>
                                                                     <span class="switch-icon-a text-red mt-1">
                                                                         <i class="fa-solid fa-xmark text-danger"></i>
                                                                     </span>
@@ -365,15 +376,18 @@
                             <div class="row row-cards">
                                 <div class="col-lg-6">
 
-                                    <div class="containerdd">
+                                    <div class="containerdd" style="max-width: 300px">
                                         <h3 class="text-white">Subir Imagen</h3>
-                                        <div class="drag-area">
-                                            <div class="icono">
+                                        <div class="drag-area" style="height: 100px">
+                                            <div class="icono" style="font-size: 10px">
                                                 <i class="fas fa-images"></i>
                                             </div>
-                                            <span class="header">Arrastrar y soltar en el area</span>
-                                            <span class="header">o <span class="buttonDrop">navega</span></span>
-                                            <span class="support">Support: JPEG, JPG, PNG</span>
+                                            <span class="header" style="font-size: 10px">Arrastrar y soltar en el
+                                                area</span>
+                                            <span class="header" style="font-size: 10px">o <span class="buttonDrop"
+                                                    style="font-size: 12px">navega</span></span>
+                                            <span class="support" style="font-size: 10px">Support: JPEG, JPG,
+                                                PNG</span>
                                         </div>
                                         <input type="file" id="img" name="url" class="form-control"
                                             accept=".jpge,.jpg,.png" hidden>

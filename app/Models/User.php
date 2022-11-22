@@ -49,4 +49,21 @@ class User extends Authenticatable
     public function proyectos_part(){
         return $this->belongsToMany(Proyecto::class, 'participas');
     }
+
+    public function misDiagramas(){
+        return $this->belongsToMany(Diagrama::class, 'user_diagramas');
+    }
+
+    public function invitaciones(){
+        return $this->hasMany(Notificacion::class);
+    }
+
+    public function invitacion($proyecto_id){
+        $notificacion = $this->invitaciones()->where('proyecto_id', $proyecto_id)->get();
+        $id = 0;
+        foreach ($notificacion as $noti) {
+            $id = $noti->id;
+        }
+        return $id;
+    }
 }

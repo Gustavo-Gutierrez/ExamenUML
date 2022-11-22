@@ -1,4 +1,4 @@
-@section('title', 'Diagramas')
+@section('title', 'Mis Diagramas')
 <x-app-layout>
     <div class="page">
         <div class="page-wrapper">
@@ -10,16 +10,16 @@
                             <h2 class="page-title">
                                 Diagramas
                             </h2>
-                            <p style="font-size: 10px">Proyecto {{ $proyecto->nombre }}</p>
+                            <p style="font-size: 10px">Diagramas en los que participas</p>
 
                         </div>
                         <!-- Page title actions -->
                         <div class="col-12 col-md-auto ms-auto d-print-none">
-                            <span class="d-none d-sm-inline">
+                            {{-- <span class="d-none d-sm-inline">
                                 <a href="{{ route('proyectos.index') }}" class="btn btn-secondary">
                                     Volver
                                 </a>
-                            </span>
+                            </span> --}}
                             <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
                                 data-bs-target="#modal-report">
                                 <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
@@ -75,13 +75,12 @@
                                                             <a href="#"
                                                                 class="text-reset">{{ $diagrama->nombre }}</a>
                                                         </h3>
+                                                        <p class="mb-1" style="font-size: 10px">Proyecto: {{ $diagrama->proyecto->nombre }}</p>
                                                         <p class="mb-1" style="font-size: 10px">
                                                             @if ($diagrama->proyecto->user_id == Auth::user()->id)
                                                             <span class="text-success">Dueño</span>
-                                                            @elseif(Auth::user()->misDiagramas()->where('diagrama_id', $diagrama->id)->get())
-                                                            <span class="text-info">participando</span>
                                                             @else
-                                                            <span class="text-danger">No eres participe</span>
+                                                            <span class="text-info">participando</span>
                                                             @endif
                                                         </p>
                                                         <div class="text-muted">
@@ -145,17 +144,15 @@
                                                             </a>
                                                             <div class="dropdown-menu dropdown-menu-end">
                                                                 {{-- @can('verImagenesAgregadas') --}}
-                                                                @if (Auth::user()->misDiagramas()->where('diagrama_id', $diagrama->id)->get())
                                                                 <a href="{{-- {{ route('diagramas.index', $proyecto->id) }} --}}"
                                                                     class="dropdown-item">Editar
-                                                                    Diagrama</a>                                                                    
-                                                                @endif
+                                                                    Diagrama</a>
+                                                                {{-- @endcan --}}
                                                                 @if ($diagrama->proyecto->user_id == Auth::user()->id)
-                                                                <a href="{{ route('diagramas.edit', $diagrama->id) }}"
+                                                                    <a href="{{ route('diagramas.edit', $diagrama->id) }}"
                                                                     class="dropdown-item">Editar
                                                                     Información</a>
                                                                 @endif
-                                                                {{-- @endcan --}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -290,6 +287,18 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Seleccionar Proyecto</label>
+                                            <select class="form-select" name="proyecto_id">
+                                                @foreach (Auth::user()->proyectos as $proyecto)
+                                                    <option value="{{$proyecto->id}}">{{$proyecto->nombre}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <label class="form-label">Tipo de Diagrama</label>
                             <div class="form-selectgroup-boxes row mb-3">
@@ -362,7 +371,7 @@
                                 <div>
                                     <label class="form-label">Descripcion</label>
                                     <textarea name="descripcion" class="form-control" rows="3"></textarea>
-                                    <input type="text" name="proyecto_id" value="{{ $proyecto->id }}" hidden>
+                                    {{-- <input type="text" name="proyecto_id" value="{{ $proyecto->id }}" hidden> --}}
                                 </div>
                             </div>
 

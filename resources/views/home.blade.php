@@ -114,7 +114,7 @@
 
                                             <div class="carousel-inner">
                                                 {{-- @foreach ($eventos as $evento) --}}
-                                                
+
                                                 <!-- <div class="carousel-item {{-- {{ ++$i == 1 ? 'active' : '' }} --}}">
                                                     <div class="drag-area" style="border: 0">
                                                         <img class="d-block w-100" alt=""
@@ -131,7 +131,8 @@
                                                 <div class="carousel-item active{{-- {{ ++$i == 1 ? 'active' : '' }} --}}">
                                                     <div class="" style="border: 0">
                                                         <img class="d-block h-auto" alt=""
-                                                            src="{{ asset('/assets/img/image-level-1.png') }}" style="">
+                                                            src="{{ asset('/assets/img/image-level-1.png') }}"
+                                                            style="">
                                                     </div>
                                                     <div class="carousel-caption-background d-none d-md-block"></div>
                                                     <div class="carousel-caption d-none d-md-block">
@@ -143,7 +144,8 @@
                                                 <div class="carousel-item {{-- {{ ++$i == 1 ? 'active' : '' }} --}}">
                                                     <div class="" style="border: 0">
                                                         <img class="d-block w-max" alt=""
-                                                            src="{{ asset('/assets/img/image-level-2.png') }}" style="">
+                                                            src="{{ asset('/assets/img/image-level-2.png') }}"
+                                                            style="">
                                                     </div>
                                                     <div class="carousel-caption-background d-none d-md-block"></div>
                                                     <div class="carousel-caption d-none d-md-block">
@@ -155,7 +157,8 @@
                                                 <div class="carousel-item {{-- {{ ++$i == 1 ? 'active' : '' }} --}}">
                                                     <div class="" style="border: 0">
                                                         <img class="d-block w-max" alt=""
-                                                            src="{{ asset('/assets/img/image-level-3.png') }}" style="">
+                                                            src="{{ asset('/assets/img/image-level-3.png') }}"
+                                                            style="">
                                                     </div>
                                                     <div class="carousel-caption-background d-none d-md-block"></div>
                                                     <div class="carousel-caption d-none d-md-block">
@@ -167,7 +170,8 @@
                                                 <div class="carousel-item {{-- {{ ++$i == 1 ? 'active' : '' }} --}}">
                                                     <div class="" style="border: 0">
                                                         <img class="d-block w-100" alt=""
-                                                            src="{{ asset('/assets/img/image-level-4.png') }}" style="">
+                                                            src="{{ asset('/assets/img/image-level-4.png') }}"
+                                                            style="">
                                                     </div>
                                                     <div class="carousel-caption-background d-none d-md-block"></div>
                                                     <div class="carousel-caption d-none d-md-block">
@@ -282,47 +286,69 @@
                                                     alt=""></div>
                                         </div>
                                         <div class="col-8">
-                                            <div class="markdown text-muted ms-2">
+                                            <div class="ms-2">
                                                 <h3 class="h1">Nivel 1: diagrama de contexto del sistemaEnlace</h3>
-                                                <p class="mb-1">Un diagrama de contexto del sistema es un buen punto
-                                                    de partida para
-                                                    diagramar y documentar un sistema de software, lo que le permite dar
-                                                    un paso
-                                                    atrás y ver el panorama general. Dibuje un diagrama que muestre su
-                                                    sistema
-                                                    como un cuadro en el centro, rodeado por sus usuarios y los otros
-                                                    sistemas
-                                                    con los que interactúa.</p>
-                                                <p>Los detalles no son importantes aquí, ya que esta es su vista alejada
-                                                    que
-                                                    muestra una imagen grande del panorama del sistema. El enfoque debe
-                                                    estar en
-                                                    las personas (actores, roles, personajes, etc.) y los sistemas de
-                                                    software
-                                                    en lugar de las tecnologías, los protocolos y otros detalles de bajo
-                                                    nivel.
-                                                    Es el tipo de diagrama que podría mostrar a personas no técnicas.
-                                                </p>
-                                                <span style="font-size: 10px">
-                                                    <p class="mb-1"><b>Alcance : </b>Un solo sistema de software.</p>
-                                                    <p class="mb-1"><b>Elementos primarios : </b>El sistema de
-                                                        software en el alcance.</p>
-                                                    <p class="mb-1"><b>Elementos de soporte : </b>personas (por
-                                                        ejemplo, usuarios, actores, roles o
-                                                        personas) y sistemas de software (dependencias externas) que
-                                                        están
-                                                        directamente conectados al sistema de software en el alcance.
-                                                        Por lo
-                                                        general, estos otros sistemas de software se encuentran fuera
-                                                        del alcance o
-                                                        los límites de su propio sistema de software, y usted no tiene
-                                                        responsabilidad ni propiedad sobre ellos.
+                                                <span class="text-muted">
+                                                    <p class="mb-1">Un diagrama de contexto del sistema es un buen
+                                                        punto
+                                                        de partida para
+                                                        diagramar y documentar un sistema de software, lo que le permite
+                                                        dar
+                                                        un paso
+                                                        atrás y ver el panorama general. Dibuje un diagrama que muestre
+                                                        su
+                                                        sistema
+                                                        como un cuadro en el centro, rodeado por sus usuarios y los
+                                                        otros
+                                                        sistemas
+                                                        con los que interactúa.</p>
+                                                    <p>Los detalles no son importantes aquí, ya que esta es su vista
+                                                        alejada
+                                                        que
+                                                        muestra una imagen grande del panorama del sistema. El enfoque
+                                                        debe
+                                                        estar en
+                                                        las personas (actores, roles, personajes, etc.) y los sistemas
+                                                        de
+                                                        software
+                                                        en lugar de las tecnologías, los protocolos y otros detalles de
+                                                        bajo
+                                                        nivel.
+                                                        Es el tipo de diagrama que podría mostrar a personas no
+                                                        técnicas.
                                                     </p>
-                                                    <p class="mb-1"><b>Público objetivo : </b>todos, tanto técnicos
-                                                        como no técnicos, dentro y fuera
-                                                        del equipo de desarrollo de software.</p>
-                                                    <p class="mb-1"><b>Recomendado para la mayoría de los equipos :
-                                                        </b><span class="text-success">Sí.</span></p>
+                                                    <span style="font-size: 10px">
+                                                        <p class="mb-1"><b>Alcance : </b>Un solo
+                                                            sistema de software.
+                                                        </p>
+                                                        <p class="mb-1"><b>Elementos primarios :
+                                                            </b>El sistema de
+                                                            software en el alcance.</p>
+                                                        <p class="mb-1"><b>Elementos de soporte :
+                                                            </b>personas (por
+                                                            ejemplo, usuarios, actores, roles o
+                                                            personas) y sistemas de software (dependencias externas) que
+                                                            están
+                                                            directamente conectados al sistema de software en el
+                                                            alcance.
+                                                            Por lo
+                                                            general, estos otros sistemas de software se encuentran
+                                                            fuera
+                                                            del alcance o
+                                                            los límites de su propio sistema de software, y usted no
+                                                            tiene
+                                                            responsabilidad ni propiedad sobre ellos.
+                                                        </p>
+                                                        <p class="mb-1"><b>Público objetivo :
+                                                            </b>todos, tanto
+                                                            técnicos
+                                                            como no técnicos, dentro y fuera
+                                                            del equipo de desarrollo de software.</p>
+                                                        <p class="mb-1"><b>Recomendado para la
+                                                                mayoría de los equipos
+                                                                :
+                                                            </b><span class="text-success">Sí.</span></p>
+                                                    </span>
                                                 </span>
                                             </div>
                                         </div>
@@ -336,48 +362,64 @@
                                                     alt=""></div>
                                         </div>
                                         <div class="col-8">
-                                            <div class="markdown text-muted ms-2">
+                                            <div class="markdown ms-2">
                                                 <h3 class="h1">Nivel 2: Diagrama de contenedorEnlace</h3>
-                                                <p class="mb-1">Una vez que comprenda cómo encaja su sistema en el
-                                                    entorno de TI general, el siguiente paso realmente útil es acercarse
-                                                    al límite del sistema con un diagrama de contenedor. Un "contenedor"
-                                                    es algo así como una aplicación web del lado del servidor, una
-                                                    aplicación de una sola página, una aplicación de escritorio, una
-                                                    aplicación móvil, un esquema de base de datos, un sistema de
-                                                    archivos, etc. Básicamente, un contenedor es una unidad
-                                                    ejecutable/implementable por separado (por ejemplo, un espacio de
-                                                    proceso separado ) que ejecuta código o almacena datos.
-                                                </p>
-                                                <p class="mb-1">El diagrama de contenedores muestra la forma de alto
-                                                    nivel de la arquitectura del software y cómo se distribuyen las
-                                                    responsabilidades a través de ella. También muestra las principales
-                                                    opciones tecnológicas y cómo los contenedores se comunican entre sí.
-                                                    Es un diagrama centrado en la tecnología simple y de alto nivel que
-                                                    es útil para los desarrolladores de software y el personal de
-                                                    soporte/operaciones por igual.
-                                                </p>
-                                                <span style="font-size: 10px">
-                                                    <p class="mb-1"><b>Alcance : </b>Un solo sistema de software.</p>
+                                                <span class="text-muted">
+                                                    <p class="mb-1">Una vez que comprenda cómo encaja su sistema en
+                                                        el
+                                                        entorno de TI general, el siguiente paso realmente útil es
+                                                        acercarse
+                                                        al límite del sistema con un diagrama de contenedor. Un
+                                                        "contenedor"
+                                                        es algo así como una aplicación web del lado del servidor, una
+                                                        aplicación de una sola página, una aplicación de escritorio, una
+                                                        aplicación móvil, un esquema de base de datos, un sistema de
+                                                        archivos, etc. Básicamente, un contenedor es una unidad
+                                                        ejecutable/implementable por separado (por ejemplo, un espacio
+                                                        de
+                                                        proceso separado ) que ejecuta código o almacena datos.
+                                                    </p>
+                                                    <p class="mb-1">El diagrama de contenedores muestra la forma de
+                                                        alto
+                                                        nivel de la arquitectura del software y cómo se distribuyen las
+                                                        responsabilidades a través de ella. También muestra las
+                                                        principales
+                                                        opciones tecnológicas y cómo los contenedores se comunican entre
+                                                        sí.
+                                                        Es un diagrama centrado en la tecnología simple y de alto nivel
+                                                        que
+                                                        es útil para los desarrolladores de software y el personal de
+                                                        soporte/operaciones por igual.
+                                                    </p>
+                                                    <span style="font-size: 10px">
+                                                        <p class="mb-1"><b>Alcance : </b>Un solo sistema de software.
+                                                        </p>
 
-                                                    <p class="mb-1"><b>Elementos primarios : </b>Contenedores dentro
-                                                        del sistema de software en
-                                                        el alcance.</p>
-                                                    <p class="mb-1"><b>Elementos de apoyo : </b>Personas y sistemas
-                                                        de software conectados
-                                                        directamente a los contenedores.</p>
+                                                        <p class="mb-1"><b>Elementos primarios : </b>Contenedores
+                                                            dentro
+                                                            del sistema de software en
+                                                            el alcance.</p>
+                                                        <p class="mb-1"><b>Elementos de apoyo : </b>Personas y
+                                                            sistemas
+                                                            de software conectados
+                                                            directamente a los contenedores.</p>
 
-                                                    <p class="mb-1"><b>Público objetivo : </b>personas técnicas
-                                                        dentro y fuera del equipo de
-                                                        desarrollo de software; incluyendo arquitectos de software,
-                                                        desarrolladores y personal de operaciones/soporte.</p>
+                                                        <p class="mb-1"><b>Público objetivo : </b>personas técnicas
+                                                            dentro y fuera del equipo de
+                                                            desarrollo de software; incluyendo arquitectos de software,
+                                                            desarrolladores y personal de operaciones/soporte.</p>
 
-                                                    <p class="mb-1"><b>Recomendado para la mayoría de los equipos :
-                                                        </b><span class="text-success">Sí.</span></p>
+                                                        <p class="mb-1"><b>Recomendado para la mayoría de los equipos
+                                                                :
+                                                            </b><span class="text-success">Sí.</span></p>
 
-                                                    <p class="mb-1"><b>Notas : </b>este diagrama no dice nada sobre
-                                                        escenarios de
-                                                        implementación, agrupación, replicación, conmutación por error,
-                                                        etc.</p>
+                                                        <p class="mb-1"><b>Notas : </b>este diagrama no dice nada
+                                                            sobre
+                                                            escenarios de
+                                                            implementación, agrupación, replicación, conmutación por
+                                                            error,
+                                                            etc.</p>
+                                                    </span>
                                                 </span>
                                             </div>
                                         </div>
@@ -391,37 +433,44 @@
                                                     alt=""></div>
                                         </div>
                                         <div class="col-8">
-                                            <div class="markdown text-muted ms-2">
+                                            <div class="markdown ms-2">
                                                 <h3 class="h1">Nivel 3: diagrama de componentesEnlace</h3>
-                                                <p class="mb-1">A continuación, puede acercar y descomponer aún más
-                                                    cada contenedor para identificar los principales bloques de
-                                                    construcción estructurales y sus interacciones.
-                                                </p>
-                                                <p class="mb-1">El diagrama de componentes muestra cómo un contenedor
-                                                    se compone de una serie de "componentes", qué es cada uno de esos
-                                                    componentes, sus responsabilidades y los detalles de
-                                                    tecnología/implementación.
-                                                </p>
-                                                <span style="font-size: 10px">
-                                                    <p class="mb-1"><b>Alcance : </b>Un solo contenedor.</p>
-
-                                                    <p class="mb-1"><b>Elementos primarios : </b>Componentes
-                                                        dentro del contenedor en el
-                                                        alcance.</p>
-                                                    <p class="mb-1"><b>Elementos de soporte : </b>Contenedores
-                                                        (dentro del alcance del sistema
-                                                        de software) más personas y sistemas de software conectados
-                                                        directamente a los componentes.</p>
-
-                                                    <p class="mb-1"><b>Público objetivo : </b>Arquitectos y
-                                                        desarrolladores de software.</p>
-
-                                                    <p class="mb-1"><b>Recomendado para la mayoría de los equipos :
-                                                        </b><span class="text-danger">no, solo cree diagramas
-                                                            de componentes si cree que agregan valor y considere
-                                                            automatizar su
-                                                            creación para una documentación de larga duración.</span>
+                                                <span class="text-muted">
+                                                    <p class="mb-1">A continuación, puede acercar y descomponer aún
+                                                        más
+                                                        cada contenedor para identificar los principales bloques de
+                                                        construcción estructurales y sus interacciones.
                                                     </p>
+                                                    <p class="mb-1">El diagrama de componentes muestra cómo un
+                                                        contenedor
+                                                        se compone de una serie de "componentes", qué es cada uno de
+                                                        esos
+                                                        componentes, sus responsabilidades y los detalles de
+                                                        tecnología/implementación.
+                                                    </p>
+                                                    <span style="font-size: 10px">
+                                                        <p class="mb-1"><b>Alcance : </b>Un solo contenedor.</p>
+
+                                                        <p class="mb-1"><b>Elementos primarios : </b>Componentes
+                                                            dentro del contenedor en el
+                                                            alcance.</p>
+                                                        <p class="mb-1"><b>Elementos de soporte : </b>Contenedores
+                                                            (dentro del alcance del sistema
+                                                            de software) más personas y sistemas de software conectados
+                                                            directamente a los componentes.</p>
+
+                                                        <p class="mb-1"><b>Público objetivo : </b>Arquitectos y
+                                                            desarrolladores de software.</p>
+
+                                                        <p class="mb-1"><b>Recomendado para la mayoría de los equipos
+                                                                :
+                                                            </b><span class="text-danger">no, solo cree diagramas
+                                                                de componentes si cree que agregan valor y considere
+                                                                automatizar su
+                                                                creación para una documentación de larga
+                                                                duración.</span>
+                                                        </p>
+                                                    </span>
                                                 </span>
                                             </div>
                                         </div>
@@ -431,40 +480,49 @@
                                         <div class="col-3 row">
                                             <div><img src="{{ asset('/assets/img/image-level-4.png') }}"
                                                     alt=""></div>
-                                            
+
                                         </div>
                                         <div class="col-8">
-                                            <div class="markdown text-muted ms-2">
+                                            <div class="markdown ms-2">
                                                 <h3 class="h1">Nivel 4: CódigoEnlace</h3>
-                                                <p class="mb-1">Finalmente, puede ampliar cada componente para
-                                                    mostrar cómo se implementa como código; utilizando diagramas de
-                                                    clases UML, diagramas entidad relación o similares.
-                                                </p>
-                                                <p class="mb-1">Este es un nivel de detalle opcional y, a menudo,
-                                                    está disponible a pedido desde herramientas como IDE. Idealmente,
-                                                    este diagrama se generaría automáticamente utilizando herramientas
-                                                    (por ejemplo, una herramienta de modelado IDE o UML), y debería
-                                                    considerar mostrar solo aquellos atributos y métodos que le permitan
-                                                    contar la historia que desea contar. Este nivel de detalle no se
-                                                    recomienda para nada más que para los componentes más importantes o
-                                                    complejos.
-                                                </p>
-                                                <span style="font-size: 10px">
-                                                    <p class="mb-1"><b>Alcance : </b>Un solo componente.</p>
+                                                <span class="text-muted">
+                                                    <p class="mb-1">Finalmente, puede ampliar cada componente para
+                                                        mostrar cómo se implementa como código; utilizando diagramas de
+                                                        clases UML, diagramas entidad relación o similares.
+                                                    </p>
+                                                    <p class="mb-1">Este es un nivel de detalle opcional y, a menudo,
+                                                        está disponible a pedido desde herramientas como IDE.
+                                                        Idealmente,
+                                                        este diagrama se generaría automáticamente utilizando
+                                                        herramientas
+                                                        (por ejemplo, una herramienta de modelado IDE o UML), y debería
+                                                        considerar mostrar solo aquellos atributos y métodos que le
+                                                        permitan
+                                                        contar la historia que desea contar. Este nivel de detalle no se
+                                                        recomienda para nada más que para los componentes más
+                                                        importantes o
+                                                        complejos.
+                                                    </p>
+                                                    <span style="font-size: 10px">
+                                                        <p class="mb-1"><b>Alcance : </b>Un solo componente.</p>
 
-                                                    <p class="mb-1"><b>Elementos primarios : </b>elementos de código
-                                                        (por ejemplo, clases,
-                                                        interfaces, objetos, funciones, tablas de bases de datos, etc.)
-                                                        dentro del componente en el ámbito.</p>
+                                                        <p class="mb-1"><b>Elementos primarios : </b>elementos de
+                                                            código
+                                                            (por ejemplo, clases,
+                                                            interfaces, objetos, funciones, tablas de bases de datos,
+                                                            etc.)
+                                                            dentro del componente en el ámbito.</p>
 
-                                                    <p class="mb-1"><b>Público objetivo : </b>Arquitectos y
-                                                        desarrolladores de software.</p>
+                                                        <p class="mb-1"><b>Público objetivo : </b>Arquitectos y
+                                                            desarrolladores de software.</p>
 
-                                                    <p class="mb-1"><b>Recomendado para la mayoría de los equipos :
-                                                        </b><span class="text-danger">no, para la
-                                                            documentación de larga duración, la mayoría de los IDE
-                                                            pueden
-                                                            generar este nivel de detalle a pedido.</span></p>
+                                                        <p class="mb-1"><b>Recomendado para la mayoría de los equipos
+                                                                :
+                                                            </b><span class="text-danger">no, para la
+                                                                documentación de larga duración, la mayoría de los IDE
+                                                                pueden
+                                                                generar este nivel de detalle a pedido.</span></p>
+                                                    </span>
                                                 </span>
                                             </div>
                                         </div>

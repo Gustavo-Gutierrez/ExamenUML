@@ -16,6 +16,8 @@ class CreateNotificacionsTable extends Migration
         Schema::create('notificacions', function (Blueprint $table) {
             $table->id();
             $table->string('contenido');
+            $table->smallInteger('aceptado')->default(0); /* 0:no 1:si */            
+            $table->smallInteger('leido')->default(0); /* 0:no 1:si */
             $table->foreignId('proyecto_id')
             ->nullable()
             ->constrained('proyectos')

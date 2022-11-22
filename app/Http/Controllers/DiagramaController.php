@@ -16,6 +16,11 @@ class DiagramaController extends Controller
         return view('diagramas.index', compact('diagramas', 'proyecto'));
     }
 
+    public function misDiagramas(){
+        $diagramas = Auth::user()->misDiagramas;
+        return view('diagramas.misdiagramas', compact('diagramas'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -70,6 +75,24 @@ class DiagramaController extends Controller
         $diagrama->contenido = $request->input('id');
         $diagrama->update();
         return response()->json(['msm' => 'msmsms'], 200);
+    }
+
+    public function edit(Diagrama $diagrama){
+        return view('diagramas.edit', compact('diagrama'));
+    }
+
+    public function update(Request $request, Diagrama $diagrama)
+    {
+        try {
+            $diagrama->nombre = $request->nombre;
+            $diagrama->descripcion = $request->descripcion;
+            $diagrama->tipo = $request->tipo;
+            
+            $diagrama->update();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Ha ocurrido un error'.$e->getMessage());
+        }
+        return redirect()->route('diagramas.index', $diagrama->proyecto_id )->with('message', 'Se edito la inf del diagrama de manera correcta');
     }
 
 }

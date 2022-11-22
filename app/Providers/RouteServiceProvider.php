@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -35,6 +36,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /* Carbon::setlocale('es'); */
         $this->configureRateLimiting();
 
         $this->routes(function () {

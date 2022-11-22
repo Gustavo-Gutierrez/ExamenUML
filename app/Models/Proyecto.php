@@ -17,8 +17,12 @@ class Proyecto extends Model
         return $this->hasMany(Diagrama::class);
     }
 
+    public function usuarios(){
+        return $this->belongsToMany(User::class, 'participas');
+    }
+
     public function tiempoRestante(){
-        return Carbon::createFromTimestamp(strtotime($this->fecha_fin))->diff(\Carbon\Carbon::now())->days;
+        return Carbon::parse($this->fecha_fin)->longAbsoluteDiffForHumans();
     }
 
     public function porcentajeTerminado(){

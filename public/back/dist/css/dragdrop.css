@@ -2,7 +2,7 @@
 
 .containerdd {
     border-radius: 4px;
-    max-width: 300px;
+    max-width: 650px;
     width: 100%;
     padding: 30px;
     background: #1d273b;
@@ -11,7 +11,7 @@
 }
 
 .drag-area {
-    height: 100px;
+    height: 350px;
     border: 3px dashed #606e89ca;
     display: flex;
     align-items: center;
@@ -26,12 +26,12 @@ h3 {
 }
 
 .drag-area .icono {
-    font-size: 20px;
+    font-size: 50px;
     color: #1683ff;
 }
 
 .drag-area .header {
-    font-size: 10px;
+    font-size: 20px;
     font-weight: 500;
     color: #34495e;
 }
@@ -43,7 +43,7 @@ h3 {
 }
 
 .drag-area .buttonDrop {
-    font-size: 10px;
+    font-size: 20px;
     font-weight: 500;
     color: #1683ff;
     cursor: pointer;
