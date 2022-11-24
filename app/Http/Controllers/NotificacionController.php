@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notificacion;
+use App\Models\Proyecto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NotificacionController extends Controller
 {
@@ -59,6 +61,15 @@ class NotificacionController extends Controller
         //
     }
 
+    public function aceptar(Request $request, Notificacion $notificacion){
+        DB::table('participas')->insert([
+            'proyecto_id' => $notificacion->proyecto_id,
+            'user_id'=> $notificacion->user_id
+        ]);
+        $notificacion->aceptado = 1;
+        $notificacion->update();
+        return redirect()->route('proyectos.index');
+    }
     /**
      * Show the form for editing the specified resource.
      *

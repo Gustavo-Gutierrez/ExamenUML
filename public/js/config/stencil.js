@@ -43,7 +43,7 @@ App.config = App.config || {};
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
                 image: {
-                    xlinkHref: './assets/image-person.svg'
+                    xlinkHref: `${person}`
                 },
                 header: {
                     stroke: '#31d0c6',
@@ -120,7 +120,7 @@ App.config = App.config || {};
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
                 image: {
-                    xlinkHref: './assets/image-person-2.svg'
+                    xlinkHref: `${person2}`
                 },
                 header: {
                     stroke: '#31d0c6',
@@ -467,7 +467,7 @@ App.config = App.config || {};
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
                 image: {
-                    xlinkHref: './assets/image-data-container.svg'
+                    xlinkHref: `${data_container}`
                 },
                 header: {
                     stroke: '#31d0c6',
@@ -544,7 +544,7 @@ App.config = App.config || {};
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
                 image: {
-                    xlinkHref: './assets/image-hexagon.svg'
+                    xlinkHref: `${hexagon}`
                 },
                 header: {
                     stroke: '#31d0c6',
@@ -621,7 +621,7 @@ App.config = App.config || {};
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
                 image: {
-                    xlinkHref: './assets/image-cylinder-horizontal.svg'
+                    xlinkHref: `${cylinder_horizontal}`
                 },
                 header: {
                     stroke: '#31d0c6',
@@ -698,7 +698,7 @@ App.config = App.config || {};
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
                 image: {
-                    xlinkHref: './assets/image-web-browser.svg'
+                    xlinkHref: `${web_browser}`
                 },
                 header: {
                     stroke: '#31d0c6',
@@ -721,12 +721,12 @@ App.config = App.config || {};
                     strokeDasharray: '0',
                     height: 0
                 },
-                body: {
+                /* body: {
                     fill: 'transparent',
                     stroke: '#31d0c6',
                     strokeWidth: 0,
                     strokeDasharray: '0'
-                },
+                }, */
                 /* label: {
                     text: 'Container name',
                     fontFamily: 'Roboto Condensed',

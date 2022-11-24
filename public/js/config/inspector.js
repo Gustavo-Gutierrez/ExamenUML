@@ -1246,7 +1246,7 @@ App.config = App.config || {};
         'standard.EmbeddedImage': {
             inputs: {
                 attrs: {
-                    body: {
+                    /* body: {
                         fill: {
                             type: 'color-palette',
                             options: options.colorPalette,
@@ -1286,7 +1286,7 @@ App.config = App.config || {};
                             },
                             index: 4
                         }
-                    },
+                    }, */
                     headerText: {
                         text: {
                             type: 'content-editable',
@@ -1413,7 +1413,7 @@ App.config = App.config || {};
                             index: 5
                         }
                     },
-                    image: {
+                    /* image: {
                         xlinkHref: {
                             type: 'select-box',
                             options: options.imageIcons,
@@ -1421,7 +1421,7 @@ App.config = App.config || {};
                             group: 'image',
                             index: 1
                         }
-                    }
+                    } */
                 }
             },
             groups: {
@@ -1435,15 +1435,15 @@ App.config = App.config || {};
                 }, */
                 headerText: {
                     label: 'Header Text',
-                    index: 3
+                    index: 1
                 },
                 subHeaderText: {
                     label: 'SubHeader Text',
-                    index: 4
+                    index: 2
                 },
                 contentText: {
                     label: 'Content Text',
-                    index: 5
+                    index: 3
                 }
             }
         },

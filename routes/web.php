@@ -3,7 +3,8 @@
 use App\Http\Controllers\DiagramaController;
 use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\ProyectoController;
-use App\Models\Diagrama;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,12 +23,23 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::view('/home', 'home', ['diagrama' => Diagrama::find(1)])->name('dashboard');
+    Route::get('/home', function(){
+    $usuario = User::find(Auth::user()->id);
+    $proyectos = $usuario->proyectos()->where('favorito', 1)->paginate(5);
+    return view('home', compact('proyectos'));
+})->name('dashboard');
 
+    /* Proyectos */
+    Route::put('Aceptar-Notificacion/{notificacion}', [NotificacionController::class, 'aceptar'])->name('notificaciones.aceptar');
     Route::get('proyectos-usuarios/{proyecto}', [ProyectoController::class, 'usuarios'])->name('proyectos.usuarios');
     Route::post('proyectos/favorito', [ProyectoController::class, 'favorito']);
     Route::post('proyectos/terminado', [ProyectoController::class, 'terminado']);
     Route::resource('proyectos', ProyectoController::class);
+
+    /* Diagramas */
+    Route::get('digramas/{diagrama}/usuarios', [DiagramaController::class, 'usuarios'])->name('diagramas.usuarios');
+    Route::post('diagramas/agregar-usuario', [DiagramaController::class, 'agregar'])->name('diagramas.agregarUsuario');
+    Route::get('diagramar/{diagrama}',[DiagramaController::class, 'diagramar'])->name('diagramas.diagramar');
     Route::get('diagramas/',[DiagramaController::class, 'misDiagramas'])->name('diagramas.misDiagramas');
     Route::post('diagramas/guardar', [DiagramaController::class, 'guardar']);
     Route::post('diagramas/favorito', [DiagramaController::class, 'favorito']);
@@ -37,6 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::put('diagramas/{diagrama}/update', [DiagramaController::class, 'update'])->name('diagramas.update');
     Route::post('diagramas/', [DiagramaController::class, 'store'])->name('diagramas.store');
 
+    /* Notificaciones */
     Route::resource('notificaciones', NotificacionController::class);
 
 });

@@ -202,47 +202,54 @@
                         <div class="col-md-4 col-lg-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Proyectos Cercanos</h3>
+                                    <h3 class="card-title">Diagramas Favoritos</h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="row row-cards">
 
-                                        {{-- @foreach ($eventos_asistidos as $evento_a)
-                                        <div class="col-12">
-                                            <div class="card card-sm">
-                                                <div class="card-body">
-                                                    <div class="row align-items-center">
+                                        @foreach ($proyectos as $proyecto)
+                                            <div class="col-12">
+                                                <div class="card card-sm">
+                                                    <div class="card-body">
+                                                        <div class="row align-items-center">
 
-                                                        <div class="col-auto">
-                                                            <img class='avatar'
-                                                                src="{{ asset('storage/' . $evento_a->evento->url) }}"
-                                                                alt="">
-                                                        </div>
-
-                                                        <div class="col">
-                                                            <div class="font-weight-medium">
-                                                                {{ $evento_a->evento->nombre }}
-                                                            </div>
-                                                            <div class="text-muted">
-                                                                {{ $evento_a->calificacion }}
-                                                            </div>
-                                                        </div>
-
-                                                        @if ($evento_a->favorito == 1)
                                                             <div class="col-auto">
-                                                                <i class="fa-solid fa-heart text-pink"></i>
+                                                                <img class='avatar'
+                                                                    src="{{ asset('assets/img/image-preview.svg') }}"
+                                                                    alt="">
                                                             </div>
-                                                        @else
-                                                            <div class="col-auto">
-                                                                <i class="fa-regular fa-heart text-pink"></i>
-                                                            </div>
-                                                        @endif
 
+                                                            <div class="col">
+                                                                <div class="font-weight-medium">
+                                                                    {{ $proyecto->nombre }}
+                                                                </div>
+                                                                <div class="text-muted">
+                                                                    {{ $proyecto->calificacion }}
+                                                                </div>
+                                                            </div>
+
+                                                            @if ($proyecto->favorito == 1)
+                                                                <div class="col-auto">
+                                                                    <i class="fa-solid fa-heart text-pink"></i>
+                                                                </div>
+                                                            @else
+                                                                <div class="col-auto">
+                                                                    <i class="fa-regular fa-heart text-pink"></i>
+                                                                </div>
+                                                            @endif
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="card mt-1">
+                                        <div class="card-body pb-0">
+                                            <div class="pagination">
+                                                {{ $proyectos->links() }}
+                                            </div>
                                         </div>
-                                    @endforeach --}}
                                     </div>
                                 </div>
                             </div>

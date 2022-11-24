@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DiagramaSent;
 use App\Models\Diagrama;
 use App\Models\Proyecto;
 use Illuminate\Http\Request;
@@ -19,6 +20,11 @@ class DiagramaController extends Controller
     public function misDiagramas(){
         $diagramas = Auth::user()->misDiagramas;
         return view('diagramas.misdiagramas', compact('diagramas'));
+    }
+
+    public function diagramar(Diagrama $diagrama){
+        $proyecto = $diagrama->proyecto;
+        return view('diagramas.diagramar', compact('diagrama', 'proyecto'));
     }
 
     public function store(Request $request)
@@ -71,9 +77,10 @@ class DiagramaController extends Controller
     }
 
     public function guardar(Request $request){
-        $diagrama = Diagrama::findOrFail(1);
-        $diagrama->contenido = $request->input('id');
+        $diagrama = Diagrama::findOrFail($request->input('id'));
+        $diagrama->contenido = $request->input('contenido');
         $diagrama->update();
+        broadcast(new DiagramaSent($diagrama))->toOthers();
         return response()->json(['msm' => 'msmsms'], 200);
     }
 
@@ -93,6 +100,27 @@ class DiagramaController extends Controller
             return redirect()->back()->with('error', 'Ha ocurrido un error'.$e->getMessage());
         }
         return redirect()->route('diagramas.index', $diagrama->proyecto_id )->with('message', 'Se edito la inf del diagrama de manera correcta');
+    }
+
+    public function usuarios(Diagrama $diagrama){
+        $usuarios = $diagrama->proyecto->usuarios;
+        return view('diagramas.usuarios', compact('diagrama', 'usuarios'));
+    }
+
+    public function agregar(Request $request){
+        try {
+            DB::transaction(function () use ($request){
+                DB::table('user_diagramas')->insert([
+                    'user_id' => $request->user_id,
+                    'diagrama_id' => $request->diagrama_id
+                ]);
+            });
+            DB::commit();
+            return redirect()->back()->with('Se agrego el usuario correctamente');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Ha ocurrido un error'.$e->getMessage());
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-@section('title', 'Usuarios del Proyecto')
+@section('title', 'Proyectos')
 <x-app-layout>
     <div class="page">
         <div class="page-wrapper">
@@ -10,10 +10,17 @@
                             <h2 class="page-title">
                                 Administrar Usuarios
                             </h2>
-                            <p style="font-size: 10px">Proyecto: {{ $proyecto->nombre }}</p>
+                            <p style="font-size: 10px">Proyecto: {{ $diagrama->nombre }}</p>
                         </div>
                         <!-- Page title actions -->
-
+                        <div class="col-12 col-md-auto ms-auto d-print-none">
+                            <span class="d-none d-sm-inline">
+                                <a href="{{ route('diagramas.index', $diagrama->id) }}" class="btn btn-secondary">
+                                    Volver
+                                </a>
+                            </span>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
@@ -34,8 +41,8 @@
                                 <div class="card-header">
                                     <h3 class="card-title">Usuarios</h3>
                                 </div>
-                                @if (count($usuarios) > 0)
-                                    @foreach ($usuarios as $usuario)
+                                @if (count($diagrama->usuarios) > 0)
+                                    @foreach ($diagrama->usuarios as $usuario)
                                         <div class="list-group list-group-flush list-group-hoverable">
                                             <div class="list-group-item">
                                                 <div class="row align-items-center">
@@ -117,7 +124,7 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Seleccionar el usuario</label>
                                                 {{-- <select class="form-select" name="usuario_id"> --}}
-                                                @foreach ($usuariosV as $usuarioV)
+                                                @foreach ($usuarios as $usuario)
                                                     <div class="list-group list-group-flush list-group-hoverable">
                                                         <div class="list-group-item">
                                                             <div class="row align-items-center">
@@ -129,16 +136,15 @@
                                                                 </div>
                                                                 <div class="col text-truncate">
                                                                     <a href="#"
-                                                                        class="text-reset d-block">{{ $usuarioV->name }}</a>
+                                                                        class="text-reset d-block">{{ $usuario->name }}</a>
                                                                     <div
                                                                         class="d-block text-muted text-truncate mt-n1">
-                                                                        {{ $usuarioV->email }}
+                                                                        {{ $usuario->email }}
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-auto">
-                                                                    @if (count(
-                                                                        $usuarioV->proyectos_part()->where('proyecto_id', $proyecto->id)->get()) > 0)
-                                                                        @if ($usuarioV->id == $proyecto->user_id)
+                                                                    @if ($diagrama->usuarios->contains($usuario->id))
+                                                                        @if ($usuario->id == $diagrama->user_id)
                                                                             <div class="row">
                                                                                 <div class="col-auto px-1">
                                                                                     <a href="#"
@@ -154,52 +160,21 @@
                                                                             </a>
                                                                         @endif
                                                                     @else
-                                                                        @if (count(
-                                                                            $usuarioV->invitaciones()->where('proyecto_id', $proyecto->id)->where('aceptado', 1)->get()) > 0)
-                                                                            <a href="#"
-                                                                                class="btn btn-info disabled">
-                                                                                Participando
-                                                                            </a>
-                                                                        @elseif(count(
-                                                                            $usuarioV->invitaciones()->where('proyecto_id', $proyecto->id)->get()) > 0)
-                                                                            <div class="row">
-                                                                                <div class="col-auto px-1">
-                                                                                    <a href="#"
-                                                                                        class="btn btn-cyan disabled">
-                                                                                        Invitado
-                                                                                    </a>
-                                                                                </div>
-                                                                                <div class="col-auto px-1">
-                                                                                    <form
-                                                                                        action="{{ route('notificaciones.destroy', $usuarioV->invitacion($proyecto->id)) }}"
-                                                                                        method="POST">
-                                                                                        @csrf
-                                                                                        @method('delete')
-                                                                                        {{-- {{$usuarioV->invitaciones()->where('proyecto_id', $proyecto->id)->get() }} --}}
-                                                                                        <button class="btn btn-danger"
-                                                                                            type="submit">
-                                                                                            Cancelar
-                                                                                        </button>
-                                                                                    </form>
-                                                                                </div>
-                                                                            </div>
-                                                                        @else
-                                                                            <form
-                                                                                action="{{ route('notificaciones.store') }}"
-                                                                                method="POST">
-                                                                                @csrf
-                                                                                <input type="integer" hidden
-                                                                                    value="{{ $proyecto->id }}"
-                                                                                    name="proyecto_id">
-                                                                                <input type="integer" hidden
-                                                                                    value="{{ $usuarioV->id }}"
-                                                                                    name="user_id">
-                                                                                <button class="btn btn-success"
-                                                                                    type="submit">
-                                                                                    Invitar
-                                                                                </button>
-                                                                            </form>
-                                                                        @endif
+                                                                        <form
+                                                                            action="{{ route('diagramas.agregarUsuario') }}"
+                                                                            method="POST">
+                                                                            @csrf
+                                                                            <input type="integer" hidden
+                                                                                value="{{ $diagrama->id }}"
+                                                                                name="diagrama_id">
+                                                                            <input type="integer" hidden
+                                                                                value="{{ $usuario->id }}"
+                                                                                name="user_id">
+                                                                            <button class="btn btn-success"
+                                                                                type="submit">
+                                                                                Agregar
+                                                                            </button>
+                                                                        </form>
                                                                     @endif
 
 

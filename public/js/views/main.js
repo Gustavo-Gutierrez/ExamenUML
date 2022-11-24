@@ -268,28 +268,16 @@ var App = window.App || {};
                 selection.destroySelectionBox(primaryCell);
                 this.selectPrimaryCell(primaryCellView);
                 /* console.log('cambio'); */
-                guardar(this.paper.model.toJSON());
+                guardar(JSON.stringify(this.paper.model.toJSON()));
+
             } else if (collection.length === 2) {
                 collection.each(function(cell) {
                     selection.createSelectionBox(cell);
                 });
                 /* console.log('otro'); */
-                guardar(this.paper.model.toJSON())
+                guardar(JSON.stringify(this.paper.model.toJSON()));
             }
-            /* $.ajax({
-                type: "POST",
-                    url: "{{ url('diagramas/guardar') }}",
-                    data: {
-                        id: this.paper.model.toJSON()
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    dataType: 'JSON',
-                    success: function() {
-                        
-                    },
-            }); */
+
             /* console.log(this.paper.model.toJSON()); */ /* Guardar esto en DB */
         },
 

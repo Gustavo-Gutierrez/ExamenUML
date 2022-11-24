@@ -50,14 +50,15 @@
                         @if (count($diagramas) > 0)
                             <div class="row row-cards">
                                 @foreach ($diagramas as $diagrama)
-                                    <div class="col-lg-12 mt-1 mb-1">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="row align-items-center">
-                                                    <div class="col-2">
-                                                        <img src="{{ asset('assets/img/image-preview.svg') }}"
-                                                            alt="Food Deliver UI dashboards" class="rounded">
-                                                        {{-- <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-vector-bezier" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    @if ($diagrama->usuarios->contains(Auth::user()->id))
+                                        <div class="col-lg-12 mt-1 mb-1">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-2">
+                                                            <img src="{{ asset('assets/img/image-preview.svg') }}"
+                                                                alt="Food Deliver UI dashboards" class="rounded">
+                                                            {{-- <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-vector-bezier" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                                             <rect x="3" y="14" width="4" height="4" rx="1" />
                                                             <rect x="17" y="14" width="4" height="4" rx="1" />
@@ -69,147 +70,156 @@
                                                             <circle cx="3" cy="8" r="1" />
                                                             <circle cx="21" cy="8" r="1" />
                                                           </svg> --}}
-                                                    </div>
-                                                    <div class="col">
-                                                        <h3 class="card-title mb-1">
-                                                            <a href="#"
-                                                                class="text-reset">{{ $diagrama->nombre }}</a>
-                                                        </h3>
-                                                        <p class="mb-1" style="font-size: 10px">
-                                                            @if ($diagrama->proyecto->user_id == Auth::user()->id)
-                                                            <span class="text-success">Dueño</span>
-                                                            @elseif(Auth::user()->misDiagramas()->where('diagrama_id', $diagrama->id)->get())
-                                                            <span class="text-info">participando</span>
-                                                            @else
-                                                            <span class="text-danger">No eres participe</span>
-                                                            @endif
-                                                        </p>
-                                                        <div class="text-muted">
-                                                            {{ $diagrama->descripcion }}
                                                         </div>
-                                                        <div class="text-muted">
-                                                            @switch($diagrama->tipo)
-                                                                @case(1)
-                                                                    Nivel 1: Diagrama de Contexto
-                                                                @break
+                                                        <div class="col">
+                                                            <h3 class="card-title mb-1">
+                                                                <a href="#"
+                                                                    class="text-reset">{{ $diagrama->nombre }}</a>
+                                                            </h3>
+                                                            <p class="mb-1" style="font-size: 10px">
+                                                                @if ($diagrama->proyecto->user_id == Auth::user()->id)
+                                                                    <span class="text-success">Dueño</span>
+                                                                @elseif(Auth::user()->misDiagramas()->where('diagrama_id', $diagrama->id)->get())
+                                                                    <span class="text-info">participando</span>
+                                                                @else
+                                                                    <span class="text-danger">No eres participe</span>
+                                                                @endif
+                                                            </p>
+                                                            <div class="text-muted">
+                                                                {{ $diagrama->descripcion }}
+                                                            </div>
+                                                            <div class="text-muted">
+                                                                @switch($diagrama->tipo)
+                                                                    @case(1)
+                                                                        Nivel 1: Diagrama de Contexto
+                                                                    @break
 
-                                                                @case(2)
-                                                                    Nivel 2: Diagrama de Contenedores
-                                                                @break
+                                                                    @case(2)
+                                                                        Nivel 2: Diagrama de Contenedores
+                                                                    @break
 
-                                                                @case(3)
-                                                                    Nivel 3: Diagrama de Componentes
-                                                                @break
+                                                                    @case(3)
+                                                                        Nivel 3: Diagrama de Componentes
+                                                                    @break
 
-                                                                @default
-                                                                    Nivel 4: Diagrama de Codigo
-                                                            @endswitch
-                                                        </div>
-                                                        <div class="mt-3">
-                                                            <div class="row g-2 align-items-center">
-                                                                <div class="col-auto">
-                                                                    {{-- {{ $evento_a->evento->porcentaje() }} --}}%
-                                                                </div>
-                                                                <div class="col">
-                                                                    <div class="progress progress-sm">
-                                                                        <div class="progress-bar" style="width: %"
-                                                                            role="progressbar" aria-valuenow="25"
-                                                                            aria-valuemin="0" aria-valuemax="100"
-                                                                            aria-label="25% Complete">
+                                                                    @default
+                                                                        Nivel 4: Diagrama de Codigo
+                                                                @endswitch
+                                                            </div>
+                                                            <div class="mt-3">
+                                                                <div class="row g-2 align-items-center">
+                                                                    <div class="col-auto">
+                                                                        {{-- {{ $evento_a->evento->porcentaje() }} --}}%
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="progress progress-sm">
+                                                                            <div class="progress-bar" style="width: %"
+                                                                                role="progressbar" aria-valuenow="25"
+                                                                                aria-valuemin="0" aria-valuemax="100"
+                                                                                aria-label="25% Complete">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="col-auto">
-                                                        <div class="dropdown">
-                                                            <a href="#" class="btn-action"
-                                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <!-- Download SVG icon from http://tabler-icons.io/i/dots-vertical -->
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon"
-                                                                    width="24" height="24" viewBox="0 0 24 24"
-                                                                    stroke-width="2" stroke="currentColor"
-                                                                    fill="none" stroke-linecap="round"
-                                                                    stroke-linejoin="round">
-                                                                    <path stroke="none" d="M0 0h24v24H0z"
-                                                                        fill="none" />
-                                                                    <circle cx="12" cy="12"
-                                                                        r="1" />
-                                                                    <circle cx="12" cy="19"
-                                                                        r="1" />
-                                                                    <circle cx="12" cy="5"
-                                                                        r="1" />
-                                                                </svg>
-                                                            </a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                {{-- @can('verImagenesAgregadas') --}}
-                                                                @if (Auth::user()->misDiagramas()->where('diagrama_id', $diagrama->id)->get())
-                                                                <a href="{{-- {{ route('diagramas.index', $proyecto->id) }} --}}"
-                                                                    class="dropdown-item">Editar
-                                                                    Diagrama</a>                                                                    
-                                                                @endif
-                                                                @if ($diagrama->proyecto->user_id == Auth::user()->id)
-                                                                <a href="{{ route('diagramas.edit', $diagrama->id) }}"
-                                                                    class="dropdown-item">Editar
-                                                                    Información</a>
-                                                                @endif
-                                                                {{-- @endcan --}}
+                                                        <div class="col-auto">
+                                                            <div class="dropdown">
+                                                                <a href="#" class="btn-action"
+                                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <!-- Download SVG icon from http://tabler-icons.io/i/dots-vertical -->
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        class="icon" width="24" height="24"
+                                                                        viewBox="0 0 24 24" stroke-width="2"
+                                                                        stroke="currentColor" fill="none"
+                                                                        stroke-linecap="round" stroke-linejoin="round">
+                                                                        <path stroke="none" d="M0 0h24v24H0z"
+                                                                            fill="none" />
+                                                                        <circle cx="12" cy="12"
+                                                                            r="1" />
+                                                                        <circle cx="12" cy="19"
+                                                                            r="1" />
+                                                                        <circle cx="12" cy="5"
+                                                                            r="1" />
+                                                                    </svg>
+                                                                </a>
+                                                                <div class="dropdown-menu dropdown-menu-end">
+                                                                    {{-- @can('verImagenesAgregadas') --}}
+                                                                    @if (count(Auth::user()->misDiagramas()->where('diagrama_id', $diagrama->id)->get()) > 0)
+                                                                        <a href="{{ route('diagramas.diagramar', $diagrama->id) }}"
+                                                                            class="dropdown-item">Editar
+                                                                            Diagrama</a>
+                                                                    @endif
+                                                                    @if ($diagrama->proyecto->user_id == Auth::user()->id)
+                                                                        <a href="{{ route('diagramas.edit', $diagrama->id) }}"
+                                                                            class="dropdown-item">Editar
+                                                                            Información</a>
+                                                                        <a href="{{ route('diagramas.usuarios', $diagrama->id) }}"
+                                                                            class="dropdown-item">Administrar</a>
+                                                                    @endif
+                                                                    {{-- @endcan --}}
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <div class="btn-action">
-                                                            <button class="switch-icon switch-icon-fade"
-                                                                data-bs-toggle="switch-icon" title="Favorito"
-                                                                onclick="favorito({{ $diagrama->id }})">
-                                                                @if ($diagrama->favorito == 1)
-                                                                    <span class="switch-icon-a text-red mt-1">
-                                                                        <i class="fa-solid fa-heart text-pink"></i>
-                                                                    </span>
-                                                                    <span class="switch-icon-b text-muted mt-1">
-                                                                        <i class="fa-regular fa-heart text-pink"></i>
-                                                                    </span>
-                                                                @else
-                                                                    <span class="switch-icon-a text-red mt-1">
-                                                                        <i class="fa-regular fa-heart text-pink"></i>
-                                                                    </span>
-                                                                    <span class="switch-icon-b text-muted mt-1">
-                                                                        <i class="fa-solid fa-heart text-pink"></i>
-                                                                    </span>
-                                                                @endif
-                                                            </button>
+                                                        <div class="col-auto">
+                                                            <div class="btn-action">
+                                                                <button class="switch-icon switch-icon-fade"
+                                                                    data-bs-toggle="switch-icon" title="Favorito"
+                                                                    onclick="favorito({{ $diagrama->id }})">
+                                                                    @if ($diagrama->favorito == 1)
+                                                                        <span class="switch-icon-a text-red mt-1">
+                                                                            <i class="fa-solid fa-heart text-pink"></i>
+                                                                        </span>
+                                                                        <span class="switch-icon-b text-muted mt-1">
+                                                                            <i
+                                                                                class="fa-regular fa-heart text-pink"></i>
+                                                                        </span>
+                                                                    @else
+                                                                        <span class="switch-icon-a text-red mt-1">
+                                                                            <i
+                                                                                class="fa-regular fa-heart text-pink"></i>
+                                                                        </span>
+                                                                        <span class="switch-icon-b text-muted mt-1">
+                                                                            <i class="fa-solid fa-heart text-pink"></i>
+                                                                        </span>
+                                                                    @endif
+                                                                </button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <div class="btn-action">
-                                                            <button class="switch-icon switch-icon-flip"
-                                                                data-bs-toggle="switch-icon" title="Estado"
-                                                                onclick="terminado({{ $diagrama->id }})">
-                                                                @if ($diagrama->terminado == 1)
-                                                                    <span class="switch-icon-a text-red mt-1">
-                                                                        <i class="fa-solid fa-check text-success"></i>
-                                                                    </span>
-                                                                    <span class="switch-icon-b text-muted mt-1">
-                                                                        <i class="fa-solid fa-xmark text-danger"></i>
-                                                                    </span>
-                                                                @else
-                                                                    <span class="switch-icon-b text-muted mt-1">
-                                                                        <i class="fa-solid fa-check text-success"></i>
-                                                                    </span>
-                                                                    <span class="switch-icon-a text-red mt-1">
-                                                                        <i class="fa-solid fa-xmark text-danger"></i>
-                                                                    </span>
-                                                                @endif
-                                                            </button>
+                                                        <div class="col-auto">
+                                                            <div class="btn-action">
+                                                                <button class="switch-icon switch-icon-flip"
+                                                                    data-bs-toggle="switch-icon" title="Estado"
+                                                                    onclick="terminado({{ $diagrama->id }})">
+                                                                    @if ($diagrama->terminado == 1)
+                                                                        <span class="switch-icon-a text-red mt-1">
+                                                                            <i
+                                                                                class="fa-solid fa-check text-success"></i>
+                                                                        </span>
+                                                                        <span class="switch-icon-b text-muted mt-1">
+                                                                            <i
+                                                                                class="fa-solid fa-xmark text-danger"></i>
+                                                                        </span>
+                                                                    @else
+                                                                        <span class="switch-icon-b text-muted mt-1">
+                                                                            <i
+                                                                                class="fa-solid fa-check text-success"></i>
+                                                                        </span>
+                                                                        <span class="switch-icon-a text-red mt-1">
+                                                                            <i
+                                                                                class="fa-solid fa-xmark text-danger"></i>
+                                                                        </span>
+                                                                    @endif
+                                                                </button>
+                                                            </div>
                                                         </div>
-                                                    </div>
 
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 @endforeach
                             </div>
                             <div class="card mt-1">
@@ -284,7 +294,8 @@
                                             <select class="form-select" name="diagrama_id">
                                                 <option value="nuevo" selected>Nuevo</option>
                                                 @foreach (Auth::user()->misDiagramas as $diagrama)
-                                                    <option value="{{$diagrama->id}}">{{$diagrama->nombre}}</option>
+                                                    <option value="{{ $diagrama->id }}">{{ $diagrama->nombre }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>

@@ -41,43 +41,50 @@
     <link href="{{ asset('back/dist/css/demo.css') }}" rel="stylesheet" />
     {{-- <link href="{{ asset('./back/dist/css/demo.css') }}" rel="stylesheet" /> --}}
     <link rel="stylesheet" href="{{ asset('back/dist/css/dragdrop.css') }}">
-    
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <!--Iconos tabler-->
+    {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
+
+    <!-- Scripts -->
 </head>
 
 <body>
     {{-- <div class="page"> --}}
-    @include('layouts.header')
-    {{-- @include('layouts.navbar') --}}
-    {{ $slot }}
-    {{-- @yield('content') --}}
-    @include('layouts.footer')
-    {{-- </div> --}}
-
-    <!-- Libs JS -->
-
-
-    {{-- <script src="{{ asset('back/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('back/dist/libs/litepicker/dist/litepicker.js') }}" defer></script>
- --}}
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
-    <script src="{{ asset('back/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('back/dist/libs/litepicker/dist/litepicker.js') }}" defer></script> --}}
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        @include('layouts.header')
+        {{-- @include('layouts.navbar') --}}
+        {{ $slot }}
+        {{-- @yield('content') --}}
+        @include('layouts.footer')
+        {{-- </div> --}}
+        
+        <!-- Libs JS -->
+        
+        
+        {{-- <script src="{{ asset('back/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
+        <script src="{{ asset('back/dist/libs/litepicker/dist/litepicker.js') }}" defer></script>
+        --}}
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js"></script>
+        <script src="{{ asset('back/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
+        <script src="{{ asset('back/dist/libs/litepicker/dist/litepicker.js') }}" defer></script> --}}
+        <script src="{{ mix('js/app.js') }}"></script>
+        <script src="{{asset('/js/app.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    
+
     <script>
         @if (Session::has('message'))
-        toastr.options = {
-            "closeButton": true,
-            "progressBar": true,
-        };
-        toastr.success("{{ session('message') }}");
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+            };
+            toastr.success("{{ session('message') }}");
         @endif
         @if (Session::has('error'))
             toastr.options = {
@@ -85,14 +92,14 @@
                 "progressBar": true,
             };
             toastr.error("{{ session('error') }}");
-            @endif
-            </script>
-   
-   <!-- Tabler Core -->
-   @stack('scripts')
-   
-   
-   <script src="{{ asset('back/dist/js/tabler.min.js') }}"></script>
+        @endif
+    </script>
+
+    <!-- Tabler Core -->
+    @stack('scripts')
+
+
+    <script src="{{ asset('back/dist/js/tabler.min.js') }}"></script>
     <script src="{{ asset('back/dist/js/demo-theme.min.js') }}"></script>
 </body>
 

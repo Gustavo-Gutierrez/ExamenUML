@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class ProyectoController extends Controller
@@ -14,6 +15,7 @@ class ProyectoController extends Controller
     
     public function index()
     {
+
         $proyectos = Auth::user()->proyectos_part;
         return view('proyectos.index', compact('proyectos'));
     }
