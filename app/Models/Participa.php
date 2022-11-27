@@ -10,5 +10,5 @@ class Participa extends Model
     use HasFactory;
     protected $table = 'participas';
     
-    protected $fillable = [];
+    protected $fillable = ['user_id', 'proyecto_id'];
 }

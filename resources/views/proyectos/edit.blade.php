@@ -8,8 +8,17 @@
                     <div class="row g-2 align-items-center">
                         <div class="col">
                             <h2 class="page-title">
-                                Editando Informacion del Proyecto
+                                Diagramas
                             </h2>
+                            <p style="font-size: 10px">Diagramas en los que participas</p>
+
+                        </div>
+                        <div class="col-12 col-md-auto ms-auto d-print-none">
+                            <span class="d-none d-sm-inline">
+                                <a href="{{ route('proyectos.index') }}" class="btn btn-secondary">
+                                    Volver
+                                </a>
+                            </span>
                         </div>
                     </div>
                 </div>

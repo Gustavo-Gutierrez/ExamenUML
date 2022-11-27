@@ -569,7 +569,7 @@ progress {
 
 @media (min-width: 1300px) {
   .container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
-    max-width: 1530px; } }
+    max-width: 1500px; } }
 
 .row {
   --tblr-gutter-x: 1rem;

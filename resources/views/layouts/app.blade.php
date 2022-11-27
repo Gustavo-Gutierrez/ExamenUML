@@ -47,7 +47,11 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <!--Iconos tabler-->
     {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
-
+    <style>
+        .colorchange:hover{
+            color:rgb(255, 170, 0);
+        }
+    </style>
     <!-- Scripts -->
 </head>
 

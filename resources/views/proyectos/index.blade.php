@@ -111,7 +111,40 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                <div class="col-auto">
+                                                    <div class="datagrid-title">Lista de Usuarios</div>
+                                                    <div class="datagrid-content">
+                                                        @if (count($proyecto->usuarios) > 1)
+                                                            <div class="avatar-list avatar-list-stacked">
+                                                                @foreach ($proyecto->usuarios as $usuario)
+                                                                    
+                                                                        @if ($usuario->url)
+                                                                            <span
+                                                                                class="avatar avatar-xs avatar-rounded cursor-help"
+                                                                                style="background-image: url({{ asset('storage/' . $usuario->url) }})"
+                                                                                data-bs-toggle="popover"
+                                                                                data-bs-placement="top"
+                                                                                data-bs-html="true"
+                                                                                data-bs-content="<p class='mb-0'>{{ $usuario->name }} {{$usuario->id == $proyecto->id ? ' - Dueño': ' - Participante'}}</p><p class='mb-0'><a href='#'>{{ $usuario->email }}</a></p>">
+                                                                            </span>
+                                                                        @else
+                                                                            <span
+                                                                                class="avatar avatar-xs avatar-rounded cursor-help"
+                                                                                data-bs-toggle="popover"
+                                                                                data-bs-placement="top"
+                                                                                data-bs-html="true"
+                                                                                data-bs-content="<p class='mb-0'>{{ $usuario->name }} {{$usuario->id == $proyecto->id ? ' - Dueño': ' - Participante'}}</p>
+                                                                            <p class='mb-0'><a href='#'>{{ $usuario->email }}</a></p>
+                                                                            ">{{ Str::substr($usuario->name, 0, 2) }}</span>
+                                                                        @endif
+                                                                   
+                                                                @endforeach
+                                                            </div>
+                                                        @else
+                                                            <span class="h6">Sin usuarios</span>
+                                                        @endif
+                                                    </div>
+                                                </div>
                                                 <div class="col-auto row">
                                                     <div class="col-auto dropdown">
                                                         <a href="#" class="btn-action" data-bs-toggle="dropdown"
@@ -133,6 +166,16 @@
                                                             {{-- @can('verImagenesAgregadas') --}}
                                                             <a href="{{ route('diagramas.index', $proyecto->id) }}"
                                                                 class="dropdown-item">Diagramas</a>
+                                                            @if ($proyecto->user_id != Auth::user()->id)
+                                                                <form
+                                                                    action="{{ route('proyectos.declinar', $proyecto->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('put')
+                                                                    <button
+                                                                        class="dropdown-item text-red" type="submit">Declinar</button>
+                                                                </form>
+                                                            @endif
                                                             {{-- @endcan --}}
                                                             @if ($proyecto->user_id == Auth::user()->id)
                                                                 <a href="{{ route('proyectos.edit', $proyecto->id) }}"
@@ -151,54 +194,61 @@
                                                             <div class="mask bg-danger"></div>
                                                         </div>
                                                     </div> --}}
-                                                    <div class="col-auto">
-                                                        <div class="btn-action">
-                                                            <button class="switch-icon switch-icon-fade"
-                                                                data-bs-toggle="switch-icon" title="Favorito"
-                                                                onclick="favorito({{ $proyecto->id }})">
-                                                                @if ($proyecto->favorito == 1)
-                                                                    <span class="switch-icon-a text-red mt-1">
-                                                                        <i class="fa-solid fa-heart text-pink"></i>
-                                                                    </span>
-                                                                    <span class="switch-icon-b text-muted mt-1">
-                                                                        <i class="fa-regular fa-heart text-pink"></i>
-                                                                    </span>
-                                                                @else
-                                                                    <span class="switch-icon-a text-red mt-1">
-                                                                        <i class="fa-regular fa-heart text-pink"></i>
-                                                                    </span>
-                                                                    <span class="switch-icon-b text-muted mt-1">
-                                                                        <i class="fa-solid fa-heart text-pink"></i>
-                                                                    </span>
-                                                                @endif
-                                                            </button>
+                                                    @if ($proyecto->user_id == Auth::user()->id)
+                                                        <div class="col-auto">
+                                                            <div class="btn-action">
+                                                                <button class="switch-icon switch-icon-fade"
+                                                                    data-bs-toggle="switch-icon" title="Favorito"
+                                                                    onclick="favorito({{ $proyecto->id }})">
+                                                                    @if ($proyecto->favorito == 1)
+                                                                        <span class="switch-icon-a text-red mt-1">
+                                                                            <i class="fa-solid fa-heart text-pink"></i>
+                                                                        </span>
+                                                                        <span class="switch-icon-b text-muted mt-1">
+                                                                            <i
+                                                                                class="fa-regular fa-heart text-pink"></i>
+                                                                        </span>
+                                                                    @else
+                                                                        <span class="switch-icon-a text-red mt-1">
+                                                                            <i
+                                                                                class="fa-regular fa-heart text-pink"></i>
+                                                                        </span>
+                                                                        <span class="switch-icon-b text-muted mt-1">
+                                                                            <i class="fa-solid fa-heart text-pink"></i>
+                                                                        </span>
+                                                                    @endif
+                                                                </button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <div class="btn-action">
-                                                            <button class="switch-icon switch-icon-flip"
-                                                                data-bs-toggle="switch-icon" title="Estado"
-                                                                onclick="terminado({{ $proyecto->id }})">
-                                                                @if ($proyecto->terminado == 1)
-                                                                    <span class="switch-icon-a text-red mt-1">
-                                                                        <i class="fa-solid fa-check text-success"></i>
-                                                                    </span>
-                                                                    <span class="switch-icon-b text-muted mt-1">
-                                                                        <i class="fa-solid fa-xmark text-danger"></i>
-                                                                    </span>
-                                                                @else
-                                                                    <span class="switch-icon-b text-muted mt-1">
-                                                                        <i class="fa-solid fa-check text-success"></i>
-                                                                    </span>
-                                                                    <span class="switch-icon-a text-red mt-1">
-                                                                        <i class="fa-solid fa-xmark text-danger"></i>
-                                                                    </span>
-                                                                @endif
-                                                            </button>
+                                                        <div class="col-auto">
+                                                            <div class="btn-action">
+                                                                <button class="switch-icon switch-icon-flip"
+                                                                    data-bs-toggle="switch-icon" title="Estado"
+                                                                    onclick="terminado({{ $proyecto->id }})">
+                                                                    @if ($proyecto->terminado == 1)
+                                                                        <span class="switch-icon-a text-red mt-1">
+                                                                            <i
+                                                                                class="fa-solid fa-check text-success"></i>
+                                                                        </span>
+                                                                        <span class="switch-icon-b text-muted mt-1">
+                                                                            <i
+                                                                                class="fa-solid fa-xmark text-danger"></i>
+                                                                        </span>
+                                                                    @else
+                                                                        <span class="switch-icon-b text-muted mt-1">
+                                                                            <i
+                                                                                class="fa-solid fa-check text-success"></i>
+                                                                        </span>
+                                                                        <span class="switch-icon-a text-red mt-1">
+                                                                            <i
+                                                                                class="fa-solid fa-xmark text-danger"></i>
+                                                                        </span>
+                                                                    @endif
+                                                                </button>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    @endif
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>

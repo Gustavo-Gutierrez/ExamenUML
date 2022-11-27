@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Events\DiagramaSent;
 use App\Models\Diagrama;
 use App\Models\Proyecto;
+use App\Models\User;
+use App\Models\User_diagrama;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,12 +15,12 @@ class DiagramaController extends Controller
 {
     public function index(Proyecto $proyecto)
     {
-        $diagramas = $proyecto->diagramas;
+        $diagramas = $proyecto->diagramas()->paginate(4);
         return view('diagramas.index', compact('diagramas', 'proyecto'));
     }
 
     public function misDiagramas(){
-        $diagramas = Auth::user()->misDiagramas;
+        $diagramas = Auth::user()->misDiagramas()->paginate(3);
         return view('diagramas.misdiagramas', compact('diagramas'));
     }
 
@@ -116,9 +118,21 @@ class DiagramaController extends Controller
                 ]);
             });
             DB::commit();
-            return redirect()->back()->with('Se agrego el usuario correctamente');
+            return redirect()->back()->with('message','Se agrego el usuario correctamente');
         } catch (\Exception $e) {
             DB::rollBack();
+            return redirect()->back()->with('error', 'Ha ocurrido un error'.$e->getMessage());
+        }
+    }
+
+    public function banear(Request $request, Diagrama $diagrama){
+        try {
+            $user = User::find($request->user_id);
+            $relacion = Auth::user()->user_diagramas()->where('diagrama_id', $diagrama->id)->first();
+            $rel = User_diagrama::find($relacion->id);
+            $rel->delete();
+            return redirect()->back()->with('message','Se removio al usuario del diagrama: '.$diagrama->nombre);
+        } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Ha ocurrido un error'.$e->getMessage());
         }
     }

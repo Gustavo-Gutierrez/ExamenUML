@@ -107,11 +107,11 @@
                                                         <div class="mt-3">
                                                             <div class="row g-2 align-items-center">
                                                                 <div class="col-auto">
-                                                                    {{-- {{ $evento_a->evento->porcentaje() }} --}}%
+                                                                    {{$diagrama->terminado? '100': '0'}}%
                                                                 </div>
                                                                 <div class="col">
                                                                     <div class="progress progress-sm">
-                                                                        <div class="progress-bar" style="width: %"
+                                                                        <div class="progress-bar" style="width: {{$diagrama->terminado? '100': '0'}}%"
                                                                             role="progressbar" aria-valuenow="25"
                                                                             aria-valuemin="0" aria-valuemax="100"
                                                                             aria-label="25% Complete">
@@ -212,7 +212,7 @@
                             <div class="card mt-1">
                                 <div class="card-body pb-0">
                                     <div class="pagination">
-                                        {{-- {{ $eventos_a->links() }} --}}
+                                        {{ $diagramas->links() }}
                                     </div>
                                 </div>
                             </div>

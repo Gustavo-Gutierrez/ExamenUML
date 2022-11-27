@@ -21,6 +21,10 @@ class Proyecto extends Model
         return $this->belongsToMany(User::class, 'participas');
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
     public function tiempoRestante(){
         return Carbon::parse($this->fecha_fin)->longAbsoluteDiffForHumans();
     }

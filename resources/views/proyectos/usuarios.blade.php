@@ -14,6 +14,14 @@
                         </div>
                         <!-- Page title actions -->
 
+                        <div class="col-12 col-md-auto ms-auto d-print-none">
+                            <span class="d-none d-sm-inline">
+                                <a href="{{ route('proyectos.index') }}" class="btn btn-secondary">
+                                    Volver
+                                </a>
+                            </span>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -22,7 +30,7 @@
                 <div class="container-xl">
                     <ul class="nav nav-bordered mb-4">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Ver todos</a>
+                            <a class="nav-link active" href="#">Administrar</a>
                         </li>
                         {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('eventos.favoritos') }}">Favoritos</a>
@@ -41,31 +49,43 @@
                                                 <div class="row align-items-center">
                                                     <div class="col-auto">
                                                         <a href="#">
-                                                            <span class="avatar"
-                                                                style="background-image: url(./static/avatars/000m.jpg)"></span>
+                                                            @if ($usuario->url)
+                                                                <span class="avatar avatar-sm"
+                                                                    style="background-image: url({{ asset('storage/' . $usuario->url) }})"></span>
+                                                            @else
+                                                                <span
+                                                                    class="avatar avatar-sm">{{ Str::substr($usuario->name, 0, 2) }}</span>
+                                                            @endif
                                                         </a>
                                                     </div>
                                                     <div class="col text-truncate">
                                                         <a href="#"
                                                             class="text-reset d-block">{{ $usuario->name }}</a>
-                                                        <div class="d-block text-muted text-truncate mt-n1">Change
-                                                            deprecated html tags to text decoration classes (#29604)
+                                                        <div class="d-block text-muted text-truncate mt-n1">
+                                                            {{ $usuario->email }}
                                                         </div>
                                                     </div>
-                                                    <div class="col-auto">
-                                                        <a href="#" class="list-group-item-actions">
-                                                            <!-- Download SVG icon from http://tabler-icons.io/i/star -->
-                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                class="icon text-muted" width="24" height="24"
-                                                                viewBox="0 0 24 24" stroke-width="2"
-                                                                stroke="currentColor" fill="none"
-                                                                stroke-linecap="round" stroke-linejoin="round">
-                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                                <path
-                                                                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
-                                                            </svg>
-                                                        </a>
-                                                    </div>
+                                                    @if ($usuario->id != $proyecto->user_id)
+                                                        <div class="col-auto">
+                                                            <div class="row">
+                                                                <form
+                                                                    action="{{ route('proyectos.banear', $proyecto->id) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('put')
+                                                                    <div class="col-auto">
+                                                                        <input type="text" hidden name="user_id"
+                                                                            value="{{ $usuario->id }}">
+                                                                    </div>
+                                                                    <div class="col-auto px-1">
+                                                                        <button type="submit" class="btn btn-danger">
+                                                                            Banear
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -123,8 +143,13 @@
                                                             <div class="row align-items-center">
                                                                 <div class="col-auto">
                                                                     <a href="#">
-                                                                        <span class="avatar"
-                                                                            style="background-image: url(./static/avatars/000m.jpg)"></span>
+                                                                        @if ($usuarioV->url)
+                                                                            <span class="avatar avatar-sm"
+                                                                                style="background-image: url({{ asset('storage/' . $usuarioV->url) }})"></span>
+                                                                        @else
+                                                                            <span
+                                                                                class="avatar avatar-sm">{{ Str::substr($usuarioV->name, 0, 2) }}</span>
+                                                                        @endif
                                                                     </a>
                                                                 </div>
                                                                 <div class="col text-truncate">
@@ -149,13 +174,14 @@
                                                                             </div>
                                                                         @else
                                                                             <a href="#"
-                                                                                class="btn btn-success disabled">
+                                                                                class="btn btn-info disabled">
                                                                                 Participando
                                                                             </a>
                                                                         @endif
                                                                     @else
-                                                                        @if (count(
-                                                                            $usuarioV->invitaciones()->where('proyecto_id', $proyecto->id)->where('aceptado', 1)->get()) > 0)
+                                                                        {{-- @if (count(
+        $usuarioV->invitaciones()->where('proyecto_id', $proyecto->id)->where('aceptado', 1)->get(),
+    ) > 0)
                                                                             <a href="#"
                                                                                 class="btn btn-info disabled">
                                                                                 Participando
@@ -175,7 +201,6 @@
                                                                                         method="POST">
                                                                                         @csrf
                                                                                         @method('delete')
-                                                                                        {{-- {{$usuarioV->invitaciones()->where('proyecto_id', $proyecto->id)->get() }} --}}
                                                                                         <button class="btn btn-danger"
                                                                                             type="submit">
                                                                                             Cancelar
@@ -183,23 +208,23 @@
                                                                                     </form>
                                                                                 </div>
                                                                             </div>
-                                                                        @else
-                                                                            <form
-                                                                                action="{{ route('notificaciones.store') }}"
-                                                                                method="POST">
-                                                                                @csrf
-                                                                                <input type="integer" hidden
-                                                                                    value="{{ $proyecto->id }}"
-                                                                                    name="proyecto_id">
-                                                                                <input type="integer" hidden
-                                                                                    value="{{ $usuarioV->id }}"
-                                                                                    name="user_id">
-                                                                                <button class="btn btn-success"
-                                                                                    type="submit">
-                                                                                    Invitar
-                                                                                </button>
-                                                                            </form>
-                                                                        @endif
+                                                                        @else --}}
+                                                                        <form
+                                                                            action="{{ route('notificaciones.store') }}"
+                                                                            method="POST">
+                                                                            @csrf
+                                                                            <input type="integer" hidden
+                                                                                value="{{ $proyecto->id }}"
+                                                                                name="proyecto_id">
+                                                                            <input type="integer" hidden
+                                                                                value="{{ $usuarioV->id }}"
+                                                                                name="user_id">
+                                                                            <button class="btn btn-success"
+                                                                                type="submit">
+                                                                                Invitar
+                                                                            </button>
+                                                                        </form>
+                                                                        {{-- @endif --}}
                                                                     @endif
 
 

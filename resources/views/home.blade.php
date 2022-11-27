@@ -131,8 +131,7 @@
                                                 <div class="carousel-item active{{-- {{ ++$i == 1 ? 'active' : '' }} --}}">
                                                     <div class="" style="border: 0">
                                                         <img class="d-block h-auto" alt=""
-                                                            src="{{ asset('/assets/img/image-level-1.png') }}"
-                                                            style="">
+                                                            src="{{ asset('/assets/img/image-level-1.png') }}">
                                                     </div>
                                                     <div class="carousel-caption-background d-none d-md-block"></div>
                                                     <div class="carousel-caption d-none d-md-block">
@@ -144,8 +143,7 @@
                                                 <div class="carousel-item {{-- {{ ++$i == 1 ? 'active' : '' }} --}}">
                                                     <div class="" style="border: 0">
                                                         <img class="d-block w-max" alt=""
-                                                            src="{{ asset('/assets/img/image-level-2.png') }}"
-                                                            style="">
+                                                            src="{{ asset('/assets/img/image-level-2.png') }}">
                                                     </div>
                                                     <div class="carousel-caption-background d-none d-md-block"></div>
                                                     <div class="carousel-caption d-none d-md-block">
@@ -157,8 +155,7 @@
                                                 <div class="carousel-item {{-- {{ ++$i == 1 ? 'active' : '' }} --}}">
                                                     <div class="" style="border: 0">
                                                         <img class="d-block w-max" alt=""
-                                                            src="{{ asset('/assets/img/image-level-3.png') }}"
-                                                            style="">
+                                                            src="{{ asset('/assets/img/image-level-3.png') }}">
                                                     </div>
                                                     <div class="carousel-caption-background d-none d-md-block"></div>
                                                     <div class="carousel-caption d-none d-md-block">
@@ -170,8 +167,7 @@
                                                 <div class="carousel-item {{-- {{ ++$i == 1 ? 'active' : '' }} --}}">
                                                     <div class="" style="border: 0">
                                                         <img class="d-block w-100" alt=""
-                                                            src="{{ asset('/assets/img/image-level-4.png') }}"
-                                                            style="">
+                                                            src="{{ asset('/assets/img/image-level-4.png') }}">
                                                     </div>
                                                     <div class="carousel-caption-background d-none d-md-block"></div>
                                                     <div class="carousel-caption d-none d-md-block">
@@ -213,10 +209,16 @@
                                                     <div class="card-body">
                                                         <div class="row align-items-center">
 
-                                                            <div class="col-auto">
-                                                                <img class='avatar'
-                                                                    src="{{ asset('assets/img/image-preview.svg') }}"
-                                                                    alt="">
+                                                            <div class="col-2">
+                                                                @if ($proyecto->url)
+                                                                    <img src="{{ asset('storage/' . $proyecto->url) }}"
+                                                                        alt="Food Deliver UI dashboards"
+                                                                        class="rounded">
+                                                                @else
+                                                                    <img src="{{ asset('/assets/img/image-default.jpg') }}"
+                                                                        alt="Food Deliver UI dashboards"
+                                                                        class="rounded height-min">
+                                                                @endif
                                                             </div>
 
                                                             <div class="col">

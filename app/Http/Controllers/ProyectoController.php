@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Participa;
 use App\Models\Proyecto;
 use App\Models\User;
+use App\Models\User_diagrama;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +25,7 @@ class ProyectoController extends Controller
     public function usuarios(Proyecto $proyecto){
         $usuarios = $proyecto->usuarios;
         $usuariosV = User::all();
-        return view('proyectos.usuarios', compact('usuarios', 'proyecto', 'usuariosV'))->with('idN');
+        return view('proyectos.usuarios', compact('usuarios', 'proyecto', 'usuariosV'));
     }
 
     public function create()
@@ -119,9 +121,58 @@ class ProyectoController extends Controller
         return redirect()->route('proyectos.index')->with('message', 'Se edito la inf del poryecto de manera correcta');
     }
 
-    
+    public function declinar(Proyecto $proyecto){
+        try {
+            
+            $diagramas = $proyecto->diagramas;
+            $user = Auth::user();
+
+            if($diagramas){
+                foreach ($diagramas as $diagrama) {
+                    if ($user->misDiagramas->contains($diagrama->id)) {
+                        $relacionDiagrama = $user->user_diagramas()->where('diagrama_id', $diagrama->id)->first();
+                        $relD = User_diagrama::find($relacionDiagrama->id);
+                        $relD->delete();
+                    }
+                }
+            }
+            
+            $relacion = Auth::user()->participa()->where('proyecto_id', $proyecto->id)->first();
+            $participa = Participa::find($relacion->id);
+            $participa->delete();
+            return redirect()->back()->with('message', 'Se edito la inf del poryecto de manera correcta');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Ha ocurrido un error'.$e->getMessage());
+        }
+    }
+
+    public function banear(Request $request, Proyecto $proyecto){
+        try {
+            
+            $diagramas = $proyecto->diagramas;
+            $user = User::find($request->user_id);
+
+            if($diagramas){
+                foreach ($diagramas as $diagrama) {
+                    if ($user->misDiagramas->contains($diagrama->id)) {
+                        $relacionDiagrama = $user->user_diagramas()->where('diagrama_id', $diagrama->id)->first();
+                        $relD = User_diagrama::find($relacionDiagrama->id);
+                        $relD->delete();
+                    }
+                }
+            }
+            
+            $relacion = $user->participa()->where('proyecto_id', $proyecto->id)->first();
+            $participa = Participa::find($relacion->id);
+            $participa->delete();
+            return redirect()->back()->with('message', 'Se edito la inf del poryecto de manera correcta');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Ha ocurrido un error'.$e->getMessage());
+        }
+    }
+
     public function destroy($id)
     {
-        //
+        
     }
 }
