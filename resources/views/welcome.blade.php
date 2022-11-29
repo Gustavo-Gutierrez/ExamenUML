@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Scaffold Bootstrap Template - Index</title>
+    <title>C4SOFTWARE</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ asset('back/static/icon.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('back/static/icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -50,13 +50,13 @@
                 <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center"
                     data-aos="fade-up">
                     <div>
-                        <h1>Potenciamos tu relación como fotógrafo profesional con tus clientes</h1>
-                        <h2>Eficiencia en el desarrollo de la función de un fotógrafo profesional</h2>
+                        <h1>Estamos atentos a tus necesidades como desarrollador</h1>
+                        <h2>Eficiencia en el desarrollo de diagramas en base al modelo C4</h2>
                         <a href="#about" class="btn btn-success">Comenzar</a>
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">
-                    <img src="{{asset('back/static/components/homepage.png')}}" class="img-fluid" alt="">
+                    <img src="{{asset('back/static/components/home-page.svg')}}" class="img-fluid" alt="">
                 </div>
             </div>
         </div>

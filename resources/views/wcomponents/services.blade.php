@@ -12,9 +12,9 @@
             <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in">
                 <div class="icon-box icon-box-pink">
                     <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                    <h4 class="title"><a href="">Eventos</a></h4>
-                    <p class="description">Focus esta obtimizado para el desarrollo de sus funcionalidades dentro
-                        de cualquier evento, con tan solo un click.
+                    <h4 class="title"><a href="">Diagramas</a></h4>
+                    <p class="description">C4 Software esta obtimizado para el desarrollo de sus funcionalidades dentro
+                        de cualquier proyecto, con tan solo un click.
                     </p>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                 <div class="icon-box icon-box-cyan">
                     <div class="icon"><i class="bx bx-file"></i></div>
                     <h4 class="title"><a href="">Administracion</a></h4>
-                    <p class="description">Podras administrar de una mejor formas aquellos eventos sobre los cuales tengas responsabilidad</p>
+                    <p class="description">Podras administrar de una mejor formas aquellos proyectos sobre los cuales tengas responsabilidad</p>
                 </div>
             </div>
 
@@ -42,7 +42,7 @@
                 <div class="icon-box icon-box-blue">
                     <div class="icon"><i class="bx bx-world"></i></div>
                     <h4 class="title"><a href="">Disponibilidad</a></h4>
-                    <p class="description">Focus esta a tu alcance en cualquier parte del mundo, pudiendo ejercer las funcionalidades contratadas a cabalidad
+                    <p class="description">C4 Software esta a tu alcance en cualquier parte del mundo, pudiendo ejercer las funcionalidades contratadas a cabalidad
                         con tan solo conectarte a internet.
                     </p>
                 </div>

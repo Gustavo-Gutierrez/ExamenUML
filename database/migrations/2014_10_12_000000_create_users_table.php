@@ -27,13 +27,13 @@ class CreateUsersTable extends Migration
         });
 
         User::create([
-            'name'=>'Pedro',
-            'email'=>'pedro@gmail.com',
+            'name'=>'Pedro Ch',
+            'email'=>'pedro22enriqu@gmail.com',
             'password'=>Hash::make('123123123'),
         ]);
         User::create([
-            'name'=>'Juan',
-            'email'=>'juan@gmail.com',
+            'name'=>'Enrique Ch',
+            'email'=>'pedrito2enrique@gmail.com',
             'password'=>Hash::make('123123123'),
         ]);
     }

@@ -1,4 +1,4 @@
-@section('title', 'Home')
+@section('title', 'Diagramar')
 <x-app-layout>
     <div class="page-wrapper">
         <div class="container-xl">
@@ -12,31 +12,73 @@
                         <p style="font-size: 10px">Diagrama: {{ $diagrama->nombre }}</p>
                     </div>
                     <!-- Page title actions -->
-                    <div class="col-12 col-md-auto ms-auto d-print-none">
-                        <span class="d-none d-sm-inline">
-                            <a href="{{ route('diagramas.index', $diagrama->proyecto_id) }}" class="btn btn-secondary">
-                                Volver
-                            </a>
-                        </span>
-                        @if ($diagrama->proyecto->user_id == Auth::user()->id)
-                            
-                        <a href="#" class="btn btn-primary d-none d-sm-inline-block" title="Guardar copia de seguridad">
-                            <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <line x1="12" y1="5" x2="12" y2="19" />
-                            <line x1="5" y1="12" x2="19" y2="12" />
-                        </svg>
-                            Guardar
-                        </a>
-                        
-                        <a href="#" class="btn btn-blue d-none d-sm-inline-block" title="Exportar para architect">
-                            <img src="{{asset('/assets/img/enterprise-architect-logo.png')}}" width="75">
-                        </a>
-                        @endif
+                    <div class="col-13 col-md-auto ms-auto">
+                        <div class="row">
+                            <div class="col-auto mx-0 px-2">
+                                <div class="datagrid-title">Lista de Usuarios</div>
+                                <div class="datagrid-content">
+                                    @if (count($diagrama->usuarios) > 1)
+                                        <div class="avatar-list">
+                                            @foreach ($diagrama->usuarios as $usuario)
+                                                @if (auth()->user()->id != $usuario->id)
+                                                    @if ($usuario->url)
+                                                        <span class="avatar avatar-xs avatar-rounded cursor-help"
+                                                            style="background-image: url({{ asset('storage/' . $usuario->url) }}); box-shadow: 0 0 0 2px #597e8d;"
+                                                            data-bs-toggle="popover" data-bs-placement="top"
+                                                            data-bs-html="true"
+                                                            data-bs-content="<p class='mb-0'>{{ $usuario->name }} - Participante</p><p class='mb-0'><a href='#'>{{ $usuario->email }}</a></p>">
+                                                            <span id="user_{{ $usuario->id }}"
+                                                                class="badge bg-red"></span></span>
+                                                    @else
+                                                        <span class="avatar avatar-xs avatar-rounded cursor-help"
+                                                            data-bs-toggle="popover" data-bs-placement="top"
+                                                            data-bs-html="true"
+                                                            data-bs-content="<p class='mb-0'>{{ $usuario->name }} - Participante</p>
+                                                        <p class='mb-0'><a href='#'>{{ $usuario->email }}</a></p>
+                                                        ">{{ Str::substr($usuario->name, 0, 2) }}<span
+                                                                id="user_{{ $usuario->id }}"
+                                                                class="badge bg-red"></span></span>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <h6>Estas solit@</h6>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="col-auto mx-0 px-1 pt-2">
+                                <a href="{{ route('diagramas.index', $diagrama->proyecto_id) }}"
+                                    class="btn btn-secondary">
+                                    Volver
+                                </a>
+                            </div>
+
+                            @if ($diagrama->proyecto->user_id == Auth::user()->id)
+                                <div class="col-auto mx-0 px-1 pt-2">
+                                    <a href="{{route('diagramas.descargar', $diagrama->id)}}" class="btn btn-primary" title="Guardar copia de seguridad">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <line x1="12" y1="5" x2="12" y2="19" />
+                                            <line x1="5" y1="12" x2="19" y2="12" />
+                                        </svg>
+                                        Guardar
+                                    </a>
+                                </div>
+                                <div class="col-auto mx-0 px-1 pt-2">
+                                    <a href="#" class="btn btn-blue" title="Exportar para architect">
+                                        <img src="{{ asset('/assets/img/enterprise-architect-logo.png') }}"
+                                            width="75">
+                                    </a>
+                                </div>
+                            @endif
+                        </div>
                     </div>
+
 
                 </div>
             </div>
@@ -63,12 +105,14 @@
 
     <input name="persona" type="text" value="{{ asset('assets/image-person.svg') }}" hidden>
     <input name="persona2" type="text" value="{{ asset('assets/image-person-2.svg') }}" hidden>
-    <input name="cylinder_horizontal" type="text" value="{{ asset('assets/image-cylinder-horizontal.svg') }}" hidden>
+    <input name="cylinder_horizontal" type="text" value="{{ asset('assets/image-cylinder-horizontal.svg') }}"
+        hidden>
     <input name="data_container" type="text" value="{{ asset('assets/image-data-container.svg') }}" hidden>
     <input name="hexagon" type="text" value="{{ asset('assets/image-hexagon.svg') }}" hidden>
     <input name="web_browser" type="text" value="{{ asset('assets/image-web-browser.svg') }}" hidden>
     <input name="transparent_icon" type="text" value="{{ asset('assets/transparent-icon.svg') }}" hidden>
     <input name="no_color_icon" type="text" value="{{ asset('assets/no-color-icon.svg') }}" hidden>
+    <input name="auth_id" type="text" value="{{ Auth::user()->id }}" hidden>
     @push('scripts')
         <script>
             var diagrama_id = $("input[name=diagrama_id]").val();
@@ -83,28 +127,12 @@
             var transparent_icon = $("input[name=transparent_icon]").val();
             var no_color_icon = $("input[name=no_color_icon]").val();
 
+            var auth_id = $("input[name=auth_id]").val();
             // console.log(contenido)
 
             // console.log(window.location.pathname.substr(11));
 
-
-
             function guardar(paper) {
-                /* $.ajax({
-                    type: "POST",
-                    url: "{{ url('diagramas/guardar') }}",
-                    data: {
-                        id: diagrama_id,
-                        contenido: paper
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    dataType: 'JSON',
-                    success: function() {
-                        
-                    },
-                }); */
                 axios.post("/diagramas/guardar", {
                         id: diagrama_id,
                         contenido: paper
@@ -145,22 +173,37 @@
             });
             themePicker.render().$el.appendTo(document.body);
             window.addEventListener('load', function() {
-                console.log(contenido.length)
-                /* App.MainView.paper = JSON.parse(contenido); */
-                app.graph.fromJSON(JSON.parse(contenido));
+                /* console.log(contenido.length) */
+                if (contenido.length > 3) {
+                    app.graph.fromJSON(JSON.parse(contenido));
+                }
             });
 
             Echo.join(`diagramar.${diagrama_id}`).listen('DiagramaSent', (e) => {
-                app.graph.fromJSON(JSON.parse(e.diagrama.contenido));
-                // console.log(e.diagrama.contenido);
-                // app.MainView.paper = JSON.parse(e.diagrama.contenido);
-            })
+                    app.graph.fromJSON(JSON.parse(e.diagrama.contenido));
+                })
+                .here(users => {
+                    for (let index = 0; index < users.length; index++) {
+                        if (users[index].id != auth_id) {
+                            let id = `user_${users[index].id}`;
+                            let claseU = document.getElementById(`${id}`);
+                            claseU.className = 'badge bg-green';
+                        }
+                    }
+                })
+                .joining(user => {
+
+                    let id = `user_${user.id}`;
+                    let claseU = document.getElementById(id);
+                    claseU.className = 'badge bg-green';
+
+                })
+                .leaving(user => {
+                    let id = `user_${user.id}`;
+                    let claseU = document.getElementById(id);
+                    claseU.className = 'badge bg-red';
+                });
         </script>
-        {{-- <script>
-function imprimirxd(){
-console.log(App.MainView.paper)
-}
-</script> --}}
 
         <!-- Local file warning: -->
         <div id="message-fs" style="display: none;">

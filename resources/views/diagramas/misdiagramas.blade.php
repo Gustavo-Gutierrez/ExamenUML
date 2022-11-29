@@ -15,11 +15,14 @@
                         </div>
                         <!-- Page title actions -->
                         <div class="col-12 col-md-auto ms-auto d-print-none">
-                            {{-- <span class="d-none d-sm-inline">
-                                <a href="{{ route('proyectos.index') }}" class="btn btn-secondary">
-                                    Volver
-                                </a>
-                            </span> --}}
+                            <a href="{{route('dashboard')}}" class="btn btn-azure" title="Inicio">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home m-0" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <polyline points="5 12 3 12 12 3 21 12 19 12" />
+                                    <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                                    <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                                  </svg>
+                            </a>
                             <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
                                 data-bs-target="#modal-report">
                                 <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
@@ -121,7 +124,40 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                                    <div class="col-auto">
+                                                        <div class="datagrid-title">Lista de Usuarios</div>
+                                                        <div class="datagrid-content">
+                                                            @if (count($diagrama->usuarios) > 1)
+                                                                <div class="avatar-list avatar-list-stacked">
+                                                                    @foreach ($diagrama->usuarios as $usuario)
+                                                                        @if ($usuario->id != $diagrama->proyecto->user_id)
+                                                                            @if ($usuario->url)
+                                                                                <span
+                                                                                    class="avatar avatar-xs avatar-rounded cursor-help"
+                                                                                    style="background-image: url({{ asset('storage/' . $usuario->url) }})"
+                                                                                    data-bs-toggle="popover"
+                                                                                    data-bs-placement="top"
+                                                                                    data-bs-html="true"
+                                                                                    data-bs-content="<p class='mb-0'>{{ $usuario->name }} - Participante</p><p class='mb-0'><a href='#'>{{ $usuario->email }}</a></p>">
+                                                                                </span>
+                                                                            @else
+                                                                                <span
+                                                                                    class="avatar avatar-xs avatar-rounded cursor-help"
+                                                                                    data-bs-toggle="popover"
+                                                                                    data-bs-placement="top"
+                                                                                    data-bs-html="true"
+                                                                                    data-bs-content="<p class='mb-0'>{{ $usuario->name }} - Participante</p>
+                                                                                <p class='mb-0'><a href='#'>{{ $usuario->email }}</a></p>
+                                                                                ">{{ Str::substr($usuario->name, 0, 2) }}</span>
+                                                                            @endif
+                                                                        @endif
+                                                                    @endforeach
+                                                                </div>
+                                                            @else
+                                                                <span class="h6">Sin usuarios</span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
                                                     <div class="col-auto">
                                                         <div class="dropdown">
                                                             <a href="#" class="btn-action"

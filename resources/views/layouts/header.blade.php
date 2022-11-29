@@ -6,7 +6,7 @@
         <div class="d-sm-flex">
             <h1 class="navbar-brand navbar-brand-autodark pe-md-3">
                 <a href="{{ route('dashboard') }}">
-                    <img src="{{ asset('assets/img/logo.png') }}" height="45" alt="C4 Software"
+                    <img src="{{ asset('assets/img/favicon.png') }}" height="45" alt="C4 Software"
                         style="filter: opacity(0.6) drop-shadow(0 0 0 rgb(228, 243, 255)) saturate(100%) contrast(100%)">
                 </a>
             </h1>
@@ -26,14 +26,12 @@
                                     <div
                                         class="row align-items-center {{ request()->routeIs('dashboard') ? 'text-success' : '' }}">
                                         <div class="col-auto pe-0">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                class="icon icon-tabler icon-tabler-copyright" width="44"
-                                                height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#597e8d"
-                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                <circle cx="12" cy="12" r="9" />
-                                                <path d="M14.5 9a3.5 4 0 1 0 0 6" />
-                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#597e8d" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                <polyline points="5 12 3 12 12 3 21 12 19 12" />
+                                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                                                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                                              </svg>
                                         </div>
                                         <div class="col text-truncate">
                                             Inicio

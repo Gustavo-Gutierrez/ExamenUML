@@ -5,7 +5,7 @@
 
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-info">
-                        <h3>FOCUS</h3>
+                        <h3>C4 SOFTWARE</h3>
                         <p>
                             A108 Adam Street <br>
                             SC 9003, BOL<br><br>

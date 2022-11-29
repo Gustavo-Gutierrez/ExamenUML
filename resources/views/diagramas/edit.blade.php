@@ -6,10 +6,16 @@
                 <!-- Page title -->
                 <div class="page-header d-print-none">
                     <div class="row g-2 align-items-center">
-                        <div class="col">
+                        <div class="col-6">
                             <h2 class="page-title">
                                 Editando Informacion del Diagrama
                             </h2>
+                        </div>
+                        <!-- Page title actions -->
+                        <div class="col-auto">
+                            <a href="{{ route('diagramas.index', $diagrama->proyecto->id) }}" class="btn btn-secondary">
+                                Volver
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -30,19 +36,21 @@
                                                 <input name="nombre" type="text"
                                                     class="form-control {{-- @error('name')is-invalid @enderror --}}"
                                                     value="{{ $diagrama->nombre }}" required>
-                                                {{-- @error('name')
-                                            <small class="invalid-feedback">{{ $message }}</small>
-                                        @enderror --}}
+                                                @error('name')
+                                                    <small class="invalid-feedback">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                             <div class="mt-3">
                                                 <div class="row g-3">
                                                     <div class="col-md-10">
                                                         <div class="form-selectgroup-boxes row">
-                                                            <label class="form-label text-primary">Tipo de Diagrama</label>
+                                                            <label class="form-label text-primary">Tipo de
+                                                                Diagrama</label>
                                                             <div class="col-lg-6 mb-3">
                                                                 <label class="form-selectgroup-item">
                                                                     <input type="radio" name="tipo" value="1"
-                                                                        class="form-selectgroup-input" {{$diagrama->tipo == 1 ? 'checked' : ''}}>
+                                                                        class="form-selectgroup-input"
+                                                                        {{ $diagrama->tipo == 1 ? 'checked' : '' }}>
                                                                     <span
                                                                         class="form-selectgroup-label d-flex align-items-center p-3">
                                                                         <span class="me-3">
@@ -61,7 +69,8 @@
                                                             <div class="col-lg-6 mb-3">
                                                                 <label class="form-selectgroup-item">
                                                                     <input type="radio" name="tipo" value="2"
-                                                                        class="form-selectgroup-input" {{$diagrama->tipo == 2 ? 'checked' : ''}}>
+                                                                        class="form-selectgroup-input"
+                                                                        {{ $diagrama->tipo == 2 ? 'checked' : '' }}>
                                                                     <span
                                                                         class="form-selectgroup-label d-flex align-items-center p-3">
                                                                         <span class="me-3">
@@ -80,7 +89,8 @@
                                                             <div class="col-lg-6 mb-3">
                                                                 <label class="form-selectgroup-item">
                                                                     <input type="radio" name="tipo" value="3"
-                                                                        class="form-selectgroup-input" {{$diagrama->tipo == 3 ? 'checked' : ''}}>
+                                                                        class="form-selectgroup-input"
+                                                                        {{ $diagrama->tipo == 3 ? 'checked' : '' }}>
                                                                     <span
                                                                         class="form-selectgroup-label d-flex align-items-center p-3">
                                                                         <span class="me-3">
@@ -99,7 +109,8 @@
                                                             <div class="col-lg-6 mb-3">
                                                                 <label class="form-selectgroup-item">
                                                                     <input type="radio" name="tipo" value="4"
-                                                                        class="form-selectgroup-input" {{$diagrama->tipo == 4 ? 'checked' : ''}}>
+                                                                        class="form-selectgroup-input"
+                                                                        {{ $diagrama->tipo == 4 ? 'checked' : '' }}>
                                                                     <span
                                                                         class="form-selectgroup-label d-flex align-items-center p-3">
                                                                         <span class="me-3">
@@ -119,8 +130,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
-                                            
+
+
                                             <div class="mt-3">
                                                 <div class="row g-3">
                                                     <div class="col-md-10">
@@ -131,6 +142,11 @@
                                             @enderror --}}
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-label text-primary">Cargar Diagrama</div>
+                                                <input type="file" name="url" class="form-control"
+                                                    accept=".c4" />
                                             </div>
                                         </div>
 

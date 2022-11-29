@@ -11,6 +11,36 @@
                                 Configuraciones
                             </h2>
                         </div>
+                        <!-- Page title actions -->
+                    <div class="col-12 col-md-auto ms-auto d-print-none">
+                        <div class="btn-list">
+                            <a href="{{ route('proyectos.index') }}" class="btn btn-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-2"
+                                    width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="#597e8d" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <rect x="4" y="4" width="6" height="5" rx="2" />
+                                    <rect x="4" y="13" width="6" height="7" rx="2" />
+                                    <rect x="14" y="4" width="6" height="7" rx="2" />
+                                    <rect x="14" y="15" width="6" height="5" rx="2" />
+                                </svg>
+                                Proyectos
+                            </a>
+                            
+                            <a href="{{ route('dashboard') }}" class="btn btn-success" title="Inicio">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home m-0"
+                                    width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <polyline points="5 12 3 12 12 3 21 12 19 12" />
+                                    <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                                    <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                                </svg>
+                                Home
+                            </a>
+
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>

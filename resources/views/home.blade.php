@@ -9,42 +9,45 @@
                         <div class="col">
                             <!-- Page pre-title -->
                             <div class="page-pretitle">
-                                Overview
+                                Inicio
                             </div>
                             <h2 class="page-title">
-                                Dashboard
+                                C4 Software
                             </h2>
                         </div>
                         <!-- Page title actions -->
                         <div class="col-12 col-md-auto ms-auto d-print-none">
                             <div class="btn-list">
-                                <span class="d-none d-sm-inline">
-                                    <a href="#" class="btn btn-white">
-                                        New view
-                                    </a>
-                                </span>
-                                <a href="#" class="btn btn-primary d-none d-sm-inline-block"
-                                    data-bs-toggle="modal" data-bs-target="#modal-report">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+
+                                <a href="{{route('proyectos.index')}}" class="btn btn-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-layout-2" width="44" height="44"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="#597e8d" fill="none"
                                         stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <line x1="12" y1="5" x2="12" y2="19" />
-                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                        <rect x="4" y="4" width="6" height="5"
+                                            rx="2" />
+                                        <rect x="4" y="13" width="6" height="7"
+                                            rx="2" />
+                                        <rect x="14" y="4" width="6" height="7"
+                                            rx="2" />
+                                        <rect x="14" y="15" width="6" height="5"
+                                            rx="2" />
                                     </svg>
-                                    Create new report
+                                    Proyectos
                                 </a>
-                                <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
-                                    data-bs-target="#modal-report" aria-label="Create new report">
-                                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+
+                                <a href="{{route('profile.index')}}" class="btn btn-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-settings" width="44" height="44"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none"
                                         stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <line x1="12" y1="5" x2="12" y2="19" />
-                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                        <path
+                                            d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
+                                        <circle cx="12" cy="12" r="3" />
                                     </svg>
+                                    Mi cuenta
                                 </a>
                             </div>
                         </div>
@@ -53,54 +56,6 @@
             </div>
             <div class="page-body">
                 <div class="container-xl">
-                    {{-- @can('dashboardDatos')
-                    <div class="row row-deck row-cards mb-2">
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="subheader">Ingresos</div>
-                                    </div>
-                                    <div class="d-flex align-items-baseline">
-                                        <div class="h1 mb-0 me-2">${{ $ingresos }}</div>
-                                        <div class="me-auto">
-                                            <span class="text-warning d-inline-flex align-items-center lh-1">
-                                                <i class="fa-solid fa-sack-dollar"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        @foreach ($planes as $plan)
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center">
-                                            <div class="subheader">Usuarios {{ $plan->nombre }}</div>
-                                        </div>
-                                        <div class="d-flex align-items-baseline">
-
-                                            <div class="h1 mb-0 me-2">${{ $plan->total() }}</div>
-                                            <div class="me-auto">
-                                                @if ($plan->id == 1)
-                                                    <i class="fa-solid fa-user text-info"></i>
-                                                @endif
-                                                @if ($plan->id == 2)
-                                                    <i class="fa-solid fa-camera text-success"></i>
-                                                @endif
-                                                @if ($plan->id == 3)
-                                                    <i class="fa-solid fa-user-tie"></i>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                @endcan --}}
                     <div class="row row-cards mb-2">
 
                         <div class="col-lg-6">
@@ -111,24 +66,8 @@
                                     </div>
                                     <div class="card-body">
                                         <div id="carousel-captions" class="carousel slide" data-bs-ride="carousel">
-
                                             <div class="carousel-inner">
-                                                {{-- @foreach ($eventos as $evento) --}}
-
-                                                <!-- <div class="carousel-item {{-- {{ ++$i == 1 ? 'active' : '' }} --}}">
-                                                    <div class="drag-area" style="border: 0">
-                                                        <img class="d-block w-100" alt=""
-                                                            src="{{-- {{ asset('storage/' . $evento->url) }} --}}" style="">
-                                                    </div>
-                                                    <div class="carousel-caption-background d-none d-md-block"></div>
-                                                    <div class="carousel-caption d-none d-md-block">
-                                                        <h3>{{-- {{ $evento->nombre }} --}}</h3>
-                                                        <p>{{-- {{ $evento->ubicacion }} --}}
-                                                        </p>
-                                                    </div>
-                                                </div> -->
-
-                                                <div class="carousel-item active{{-- {{ ++$i == 1 ? 'active' : '' }} --}}">
+                                                <div class="carousel-item active">
                                                     <div class="" style="border: 0">
                                                         <img class="d-block h-auto" alt=""
                                                             src="{{ asset('/assets/img/image-level-1.png') }}">
@@ -140,7 +79,7 @@
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div class="carousel-item {{-- {{ ++$i == 1 ? 'active' : '' }} --}}">
+                                                <div class="carousel-item">
                                                     <div class="" style="border: 0">
                                                         <img class="d-block w-max" alt=""
                                                             src="{{ asset('/assets/img/image-level-2.png') }}">
@@ -198,61 +137,81 @@
                         <div class="col-md-4 col-lg-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Diagramas Favoritos</h3>
+                                    <h3 class="card-title">Proyectos Favoritos</h3>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row row-cards">
-
-                                        @foreach ($proyectos as $proyecto)
-                                            <div class="col-12">
-                                                <div class="card card-sm">
-                                                    <div class="card-body">
-                                                        <div class="row align-items-center">
-
-                                                            <div class="col-2">
-                                                                @if ($proyecto->url)
-                                                                    <img src="{{ asset('storage/' . $proyecto->url) }}"
-                                                                        alt="Food Deliver UI dashboards"
-                                                                        class="rounded">
-                                                                @else
-                                                                    <img src="{{ asset('/assets/img/image-default.jpg') }}"
-                                                                        alt="Food Deliver UI dashboards"
-                                                                        class="rounded height-min">
-                                                                @endif
-                                                            </div>
-
-                                                            <div class="col">
-                                                                <div class="font-weight-medium">
-                                                                    {{ $proyecto->nombre }}
+                                    @if (count($proyectos) > 0)
+                                        <div class="row row-cards">
+                                            @foreach ($proyectos as $proyecto)
+                                                <div class="col-12">
+                                                    <div class="card card-sm">
+                                                        <div class="card-body">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-2">
+                                                                    @if ($proyecto->url)
+                                                                        <img src="{{ asset('storage/' . $proyecto->url) }}"
+                                                                            alt="Food Deliver UI dashboards"
+                                                                            class="rounded">
+                                                                    @else
+                                                                        <img src="{{ asset('/assets/img/image-default.jpg') }}"
+                                                                            alt="Food Deliver UI dashboards"
+                                                                            class="rounded height-min">
+                                                                    @endif
                                                                 </div>
-                                                                <div class="text-muted">
-                                                                    {{ $proyecto->calificacion }}
-                                                                </div>
-                                                            </div>
 
-                                                            @if ($proyecto->favorito == 1)
+                                                                <div class="col">
+                                                                    <div class="font-weight-medium">
+                                                                        <a href="{{route('diagramas.index', $proyecto->id)}}" title="ver diagramas">
+                                                                            {{ $proyecto->nombre }}
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="text-muted">
+                                                                        {{ $proyecto->calificacion }}
+                                                                    </div>
+                                                                </div>
+
                                                                 <div class="col-auto">
-                                                                    <i class="fa-solid fa-heart text-pink"></i>
+                                                                    <div class="btn-action">
+                                                                        <button class="switch-icon switch-icon-fade"
+                                                                            data-bs-toggle="switch-icon" title="Favorito"
+                                                                            onclick="favorito({{ $proyecto->id }})">
+                                                                            @if ($proyecto->favorito == 1)
+                                                                                <span class="switch-icon-a text-red mt-1">
+                                                                                    <i class="fa-solid fa-heart text-pink"></i>
+                                                                                </span>
+                                                                                <span class="switch-icon-b text-muted mt-1">
+                                                                                    <i
+                                                                                        class="fa-regular fa-heart text-pink"></i>
+                                                                                </span>
+                                                                            @else
+                                                                                <span class="switch-icon-a text-red mt-1">
+                                                                                    <i
+                                                                                        class="fa-regular fa-heart text-pink"></i>
+                                                                                </span>
+                                                                                <span class="switch-icon-b text-muted mt-1">
+                                                                                    <i class="fa-solid fa-heart text-pink"></i>
+                                                                                </span>
+                                                                            @endif
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
-                                                            @else
-                                                                <div class="col-auto">
-                                                                    <i class="fa-regular fa-heart text-pink"></i>
-                                                                </div>
-                                                            @endif
 
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                    <div class="card mt-1">
-                                        <div class="card-body pb-0">
-                                            <div class="pagination">
-                                                {{ $proyectos->links() }}
+                                            @endforeach
+                                        </div>
+                                        <div class="card mt-1">
+                                            <div class="card-body pb-0">
+                                                <div class="pagination">
+                                                    {{ $proyectos->links() }}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @else
+                                        <h6>No tienes Proyectos Favoritos</h6>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -546,175 +505,24 @@
 
         </div>
 
-
-        <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">New report</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="example-text-input"
-                                placeholder="Your report name">
-                        </div>
-                        <label class="form-label">Report type</label>
-                        <div class="form-selectgroup-boxes row mb-3">
-                            <div class="col-lg-6">
-                                <label class="form-selectgroup-item">
-                                    <input type="radio" name="report-type" value="1"
-                                        class="form-selectgroup-input" checked>
-                                    <span class="form-selectgroup-label d-flex align-items-center p-3">
-                                        <span class="me-3">
-                                            <span class="form-selectgroup-check"></span>
-                                        </span>
-                                        <span class="form-selectgroup-label-content">
-                                            <span class="form-selectgroup-title strong mb-1">Simple</span>
-                                            <span class="d-block text-muted">Provide only basic data needed for the
-                                                report</span>
-                                        </span>
-                                    </span>
-                                </label>
-                            </div>
-                            <div class="col-lg-6">
-                                <label class="form-selectgroup-item">
-                                    <input type="radio" name="report-type" value="1"
-                                        class="form-selectgroup-input">
-                                    <span class="form-selectgroup-label d-flex align-items-center p-3">
-                                        <span class="me-3">
-                                            <span class="form-selectgroup-check"></span>
-                                        </span>
-                                        <span class="form-selectgroup-label-content">
-                                            <span class="form-selectgroup-title strong mb-1">Advanced</span>
-                                            <span class="d-block text-muted">Insert charts and additional advanced
-                                                analyses to be inserted in the report</span>
-                                        </span>
-                                    </span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <div class="mb-3">
-                                    <label class="form-label">Report url</label>
-                                    <div class="input-group input-group-flat">
-                                        <span class="input-group-text">
-                                            https://tabler.io/reports/
-                                        </span>
-                                        <input type="text" class="form-control ps-0" value="report-01"
-                                            autocomplete="off">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="mb-3">
-                                    <label class="form-label">Visibility</label>
-                                    <select class="form-select">
-                                        <option value="1" selected>Private</option>
-                                        <option value="2">Public</option>
-                                        <option value="3">Hidden</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Client name</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Reporting period</label>
-                                    <input type="date" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div>
-                                    <label class="form-label">Additional information</label>
-                                    <textarea class="form-control" rows="3"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
-                            Cancel
-                        </a>
-                        <a href="#" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
-                            <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <line x1="12" y1="5" x2="12" y2="19" />
-                                <line x1="5" y1="12" x2="19" y2="12" />
-                            </svg>
-                            Create new report
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
     </div>
-    {{-- @push('scripts')
-    <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/lodash.js') }}"></script>
-    <script src="{{ asset('js/backbone.js') }}"></script>
-    <script src="{{ asset('js/graphlib.core.js') }}"></script>
-    <script src="{{ asset('js/dagre.core.js') }}"></script>
-    <script src="{{ asset('js/rappid.js') }}"></script>
-
-    <script src="{{ asset('js/config/halo.js') }}"></script>
-    <script src="{{ asset('js/config/selection.js') }}"></script>
-    <script src="{{ asset('js/config/inspector.js') }}"></script>
-    <script src="{{ asset('js/config/stencil.js') }}"></script>
-    <script src="{{ asset('js/config/toolbar.js') }}"></script>
-    <script src="{{ asset('js/config/sample-graphs.js') }}"></script>
-    <script src="{{ asset('js/views/main.js') }}"></script>
-    <script src="{{ asset('js/views/theme-picker.js') }}"></script>
-    <script src="{{ asset('js/models/joint.shapes.app.js') }}"></script>
-    <script src="{{ asset('js/views/navigator.js') }}"></script>
+    @push('scripts')
     <script>
-        joint.setTheme('modern');
-        app = new App.MainView({
-            el: '#app'
-        });
-        themePicker = new App.ThemePicker({
-            mainView: app
-        });
-        themePicker.render().$el.appendTo(document.body);
-        window.addEventListener('load', function() {
-            app.graph.fromJSON(JSON.parse(App.config.sampleGraphs.emergencyProcedure));
-        });
+        function favorito(proyecto_id) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('proyectos/favorito') }}",
+                    data: {
+                        id: proyecto_id
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    dataType: 'JSON',
+                    success: function() {
+                    },
+                });
+            };
     </script>
-    <!-- Local file warning: -->
-    <div id="message-fs" style="display: none;">
-        <p>The application was open locally using the file protocol. It is recommended to access it trough a <b>Web
-                server</b>.</p>
-        <p>Please see <a href="README.md">instructions</a>.</p>
-    </div>
-    <script>
-        (function() {
-            var fs = (document.location.protocol === 'file:');
-            var ff = (navigator.userAgent.toLowerCase().indexOf('firefox') !== -1);
-            if (fs && !ff) {
-                (new joint.ui.Dialog({
-                    width: 300,
-                    type: 'alert',
-                    title: 'Local File',
-                    content: $('#message-fs').show()
-                })).open();
-            }
-        })();
-    </script>
-    @endpush --}}
+    @endpush
 </x-app-layout>

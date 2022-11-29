@@ -19,12 +19,14 @@ class DiagramaController extends Controller
         return view('diagramas.index', compact('diagramas', 'proyecto'));
     }
 
-    public function misDiagramas(){
+    public function misDiagramas()
+    {
         $diagramas = Auth::user()->misDiagramas()->paginate(3);
         return view('diagramas.misdiagramas', compact('diagramas'));
     }
 
-    public function diagramar(Diagrama $diagrama){
+    public function diagramar(Diagrama $diagrama)
+    {
         $proyecto = $diagrama->proyecto;
         return view('diagramas.diagramar', compact('diagrama', 'proyecto'));
     }
@@ -51,8 +53,8 @@ class DiagramaController extends Controller
             }
             $diagrama->save();
             DB::table('user_diagramas')->insert([
-                'user_id'=>$diagrama->user_id,
-                'diagrama_id'=>$diagrama->id
+                'user_id' => $diagrama->user_id,
+                'diagrama_id' => $diagrama->id
             ]);
             return redirect()->route('diagramas.index', $request->proyecto_id);
         } catch (\Exception $e) {
@@ -65,7 +67,7 @@ class DiagramaController extends Controller
         $diagrama = Diagrama::findOrFail($request->input('id'));
         $diagrama->favorito = $diagrama->favorito == 0 ? 1 : 0;
         $diagrama->update();
-        return response()->json(['mensaje' => 'Usuario desactivado...'],200);
+        return response()->json(['mensaje' => 'Usuario desactivado...'], 200);
         /* return  redirect()->back()->with('message', 'Se reitro de favoritos '); */
     }
 
@@ -74,11 +76,12 @@ class DiagramaController extends Controller
         $diagrama = Diagrama::findOrFail($request->input('id'));
         $diagrama->terminado = $diagrama->terminado == 0 ? 1 : 0;
         $diagrama->update();
-        return response()->json(['mensaje' => 'Usuario desactivado...'],200);
+        return response()->json(['mensaje' => 'Usuario desactivado...'], 200);
         /* return  redirect()->back()->with('message', 'Se reitro de favoritos '); */
     }
 
-    public function guardar(Request $request){
+    public function guardar(Request $request)
+    {
         $diagrama = Diagrama::findOrFail($request->input('id'));
         $diagrama->contenido = $request->input('contenido');
         $diagrama->update();
@@ -86,7 +89,8 @@ class DiagramaController extends Controller
         return response()->json(['msm' => 'msmsms'], 200);
     }
 
-    public function edit(Diagrama $diagrama){
+    public function edit(Diagrama $diagrama)
+    {
         return view('diagramas.edit', compact('diagrama'));
     }
 
@@ -96,45 +100,66 @@ class DiagramaController extends Controller
             $diagrama->nombre = $request->nombre;
             $diagrama->descripcion = $request->descripcion;
             $diagrama->tipo = $request->tipo;
-            
+            /* dd($request->url); */
+            /* dd($diagrama->contenido); */
+            $fp = fopen($request->url, "r");
+            $text = "";
+            $linea = "";
+            while (!feof($fp)) {
+                $diagrama->contenido = fgets($fp);
+            }
             $diagrama->update();
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Ha ocurrido un error'.$e->getMessage());
+            return redirect()->back()->with('error', 'Ha ocurrido un error' . $e->getMessage());
         }
-        return redirect()->route('diagramas.index', $diagrama->proyecto_id )->with('message', 'Se edito la inf del diagrama de manera correcta');
+        return redirect()->route('diagramas.index', $diagrama->proyecto_id)->with('message', 'Se edito la inf del diagrama de manera correcta');
     }
 
-    public function usuarios(Diagrama $diagrama){
+    public function usuarios(Diagrama $diagrama)
+    {
         $usuarios = $diagrama->proyecto->usuarios;
         return view('diagramas.usuarios', compact('diagrama', 'usuarios'));
     }
 
-    public function agregar(Request $request){
+    public function agregar(Request $request)
+    {
         try {
-            DB::transaction(function () use ($request){
+            DB::transaction(function () use ($request) {
                 DB::table('user_diagramas')->insert([
                     'user_id' => $request->user_id,
                     'diagrama_id' => $request->diagrama_id
                 ]);
             });
             DB::commit();
-            return redirect()->back()->with('message','Se agrego el usuario correctamente');
+            return redirect()->back()->with('message', 'Se agrego el usuario correctamente');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Ha ocurrido un error'.$e->getMessage());
+            return redirect()->back()->with('error', 'Ha ocurrido un error' . $e->getMessage());
         }
     }
 
-    public function banear(Request $request, Diagrama $diagrama){
+    public function banear(Request $request, Diagrama $diagrama)
+    {
         try {
             $user = User::find($request->user_id);
             $relacion = Auth::user()->user_diagramas()->where('diagrama_id', $diagrama->id)->first();
             $rel = User_diagrama::find($relacion->id);
             $rel->delete();
-            return redirect()->back()->with('message','Se removio al usuario del diagrama: '.$diagrama->nombre);
+            return redirect()->back()->with('message', 'Se removio al usuario del diagrama: ' . $diagrama->nombre);
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Ha ocurrido un error'.$e->getMessage());
+            return redirect()->back()->with('error', 'Ha ocurrido un error' . $e->getMessage());
         }
     }
 
+    public function descargar(Diagrama $diagrama)
+    {
+        $contenido = $diagrama->contenido;
+        $path = 'copia.c4';
+        $th = fopen("copia.c4", "w");
+        fclose($th);
+        $ar = fopen("copia.c4", "a") or die("Error al crear");
+        fwrite($ar, $contenido);
+        fclose($ar);
+        return response()->download($path);
+    }
 }

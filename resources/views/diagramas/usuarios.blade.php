@@ -1,4 +1,4 @@
-@section('title', 'Proyectos')
+@section('title', 'Usuarios de Diagrama')
 <x-app-layout>
     <div class="page">
         <div class="page-wrapper">
@@ -13,14 +13,10 @@
                             <p style="font-size: 10px">Diagrama: {{ $diagrama->nombre }}</p>
                         </div>
                         <!-- Page title actions -->
-                        <div class="col-12 col-md-auto ms-auto d-print-none">
-                            <span class="d-none d-sm-inline">
-                                <a href="{{ route('diagramas.index', $diagrama->proyecto->id) }}"
-                                    class="btn btn-secondary">
-                                    Volver
-                                </a>
-                            </span>
-
+                        <div class="col-12 col-md-auto ms-auto">
+                            <a href="{{ route('diagramas.index', $diagrama->proyecto->id) }}" class="btn btn-secondary">
+                                Volver
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -199,7 +195,8 @@
                                                     </div>
                                                 @endforeach
                                                 @if (count($usuarios) <= 1)
-                                                    <label class="form-label mt-2"><span class="h6">Agrega Usuarios al Proyecto</span></label>
+                                                    <label class="form-label mt-2"><span class="h6">Agrega
+                                                            Usuarios al Proyecto</span></label>
                                                 @endif
                                                 {{-- </select> --}}
                                             </div>

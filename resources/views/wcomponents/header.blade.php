@@ -3,7 +3,7 @@
     <div class="container d-flex">
 
       <div class="logo mr-auto">
-        <img src="{{asset('back/static/logo.png')}}" alt="">
+        <img src="{{asset('assets/img/logo.png')}}" alt="">
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -27,7 +27,7 @@
           <li><a href="{{ route('dashboard') }}" class="btn btn-primary text-white ml-2">Inicio</a></li>
           @else
           <li><a href="{{ route('login') }}" class="btn btn-primary text-white ml-2">Login</a></li>
-          <li><a href="#pricing" class="btn btn-warning text-white ml-2">Registrar</a></li>
+          <li><a href="{{ route('register') }}" class="btn btn-warning text-white ml-2">Registrar</a></li>
           @endauth
 
         </ul>

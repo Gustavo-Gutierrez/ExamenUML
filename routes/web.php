@@ -69,6 +69,7 @@ Route::middleware('auth')->group(function () {
     Route::put('Declinar-Proyecto/{proyecto}', [ProyectoController::class, 'declinar'])->name('proyectos.declinar');
     Route::put('Banear-Proyecto/{proyecto}', [ProyectoController::class, 'banear'])->name('proyectos.banear');
     /* Diagramas */
+    Route::get('diagramas/{diagrama}/descargar', [DiagramaController::class, 'descargar'])->name('diagramas.descargar');
     Route::put('Banear-Diagrama/{diagrama}', [DiagramaController::class, 'banear'])->name('diagramas.banear');
     Route::get('digramas/{diagrama}/usuarios', [DiagramaController::class, 'usuarios'])->name('diagramas.usuarios');
     Route::post('diagramas/agregar-usuario', [DiagramaController::class, 'agregar'])->name('diagramas.agregarUsuario');

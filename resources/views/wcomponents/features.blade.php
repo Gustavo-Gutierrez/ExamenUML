@@ -12,7 +12,7 @@
                     </li>
                     <li class="nav-item mt-2" data-aos="fade-up" data-aos-delay="50">
                         <a class="nav-link" data-toggle="tab" href="#tab-2">
-                            <h4>Notificaciones a bien hechas</h4>
+                            <h4>Notificaciones via email</h4>
                             <p>Procuramos que tus movimientos sean notificados a quienes concierna tu actividad.</p>
                         </a>
                     </li>

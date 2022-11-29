@@ -15,8 +15,8 @@
                     <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid"
                             alt=""></div>
                     <div class="member-info">
-                        <h4>Walter White</h4>
-                        <span>Chief Executive Officer</span>
+                        <h4>Pedro Characayo</h4>
+                        <span>Desarrollador Main</span>
                         <div class="social">
                             <a href=""><i class="icofont-twitter"></i></a>
                             <a href=""><i class="icofont-facebook"></i></a>
@@ -50,7 +50,7 @@
                             alt=""></div>
                     <div class="member-info">
                         <h4>William Anderson</h4>
-                        <span>CTO</span>
+                        <span>Product Owner</span>
                         <div class="social">
                             <a href=""><i class="icofont-twitter"></i></a>
                             <a href=""><i class="icofont-facebook"></i></a>
