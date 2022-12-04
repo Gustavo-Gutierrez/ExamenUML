@@ -10,5 +10,5 @@ class User_diagrama extends Model
     use HasFactory;
 
     protected $table = 'user_diagramas';
-    protected $fillable = ['user_id', 'diagrama_id'];
+    protected $fillable = ['user_id', 'diagrama_id','editar'];
 }

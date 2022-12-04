@@ -14,13 +14,15 @@
                         </div>
                         <!-- Page title actions -->
                         <div class="col-12 col-md-auto ms-auto">
-                            <a href="{{route('dashboard')}}" class="btn btn-azure" title="Inicio">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home m-0" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <a href="{{ route('dashboard') }}" class="btn btn-azure" title="Inicio">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home m-0"
+                                    width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <polyline points="5 12 3 12 12 3 21 12 19 12" />
                                     <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
                                     <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-                                  </svg>
+                                </svg>
                             </a>
                             <a href="#" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#modal-report">
@@ -65,7 +67,8 @@
                                                 </div>
                                                 <div class="col">
                                                     <h3 class="card-title mb-1">
-                                                        <a href="{{route('diagramas.index', $proyecto->id)}}" class="text-reset">{{ $proyecto->nombre }}</a>
+                                                        <a href="{{ route('diagramas.index', $proyecto->id) }}"
+                                                            class="text-reset">{{ $proyecto->nombre }}</a>
                                                     </h3>
                                                     <p class="mb-1" style="font-size: 10px">
                                                         @if ($proyecto->user_id == Auth::user()->id)
@@ -122,27 +125,25 @@
                                                         @if (count($proyecto->usuarios) > 1)
                                                             <div class="avatar-list avatar-list-stacked">
                                                                 @foreach ($proyecto->usuarios as $usuario)
-                                                                    
-                                                                        @if ($usuario->url)
-                                                                            <span
-                                                                                class="avatar avatar-xs avatar-rounded cursor-help"
-                                                                                style="background-image: url({{ asset('storage/' . $usuario->url) }})"
-                                                                                data-bs-toggle="popover"
-                                                                                data-bs-placement="top"
-                                                                                data-bs-html="true"
-                                                                                data-bs-content="<p class='mb-0'>{{ $usuario->name }} {{$usuario->id == $proyecto->id ? ' - Dueño': ' - Participante'}}</p><p class='mb-0'><a href='#'>{{ $usuario->email }}</a></p>">
-                                                                            </span>
-                                                                        @else
-                                                                            <span
-                                                                                class="avatar avatar-xs avatar-rounded cursor-help"
-                                                                                data-bs-toggle="popover"
-                                                                                data-bs-placement="top"
-                                                                                data-bs-html="true"
-                                                                                data-bs-content="<p class='mb-0'>{{ $usuario->name }} {{$usuario->id == $proyecto->id ? ' - Dueño': ' - Participante'}}</p>
+                                                                    @if ($usuario->url)
+                                                                        <span
+                                                                            class="avatar avatar-xs avatar-rounded cursor-help"
+                                                                            style="background-image: url({{ asset('storage/' . $usuario->url) }})"
+                                                                            data-bs-toggle="popover"
+                                                                            data-bs-placement="top"
+                                                                            data-bs-html="true"
+                                                                            data-bs-content="<p class='mb-0'>{{ $usuario->name }} {{ $usuario->id == $proyecto->id ? ' - Dueño' : ' - Participante' }}</p><p class='mb-0'><a href='#'>{{ $usuario->email }}</a></p>">
+                                                                        </span>
+                                                                    @else
+                                                                        <span
+                                                                            class="avatar avatar-xs avatar-rounded cursor-help"
+                                                                            data-bs-toggle="popover"
+                                                                            data-bs-placement="top"
+                                                                            data-bs-html="true"
+                                                                            data-bs-content="<p class='mb-0'>{{ $usuario->name }} {{ $usuario->id == $proyecto->id ? ' - Dueño' : ' - Participante' }}</p>
                                                                             <p class='mb-0'><a href='#'>{{ $usuario->email }}</a></p>
                                                                             ">{{ Str::substr($usuario->name, 0, 2) }}</span>
-                                                                        @endif
-                                                                   
+                                                                    @endif
                                                                 @endforeach
                                                             </div>
                                                         @else
@@ -152,15 +153,18 @@
                                                 </div>
                                                 <div class="col-auto row">
                                                     <div class="col-auto dropdown">
-                                                        <a href="#" class="btn-action" data-bs-toggle="dropdown"
-                                                            aria-expanded="false" title="Opciones">
+                                                        <a href="#" class="btn-action"
+                                                            data-bs-toggle="dropdown" aria-expanded="false"
+                                                            title="Opciones">
                                                             <!-- Download SVG icon from http://tabler-icons.io/i/dots-vertical -->
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon"
                                                                 width="24" height="24" viewBox="0 0 24 24"
                                                                 stroke-width="2" stroke="currentColor" fill="none"
                                                                 stroke-linecap="round" stroke-linejoin="round">
-                                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                                <circle cx="12" cy="12" r="1" />
+                                                                <path stroke="none" d="M0 0h24v24H0z"
+                                                                    fill="none" />
+                                                                <circle cx="12" cy="12"
+                                                                    r="1" />
                                                                 <circle cx="12" cy="19"
                                                                     r="1" />
                                                                 <circle cx="12" cy="5"
@@ -177,8 +181,8 @@
                                                                     method="POST">
                                                                     @csrf
                                                                     @method('put')
-                                                                    <button
-                                                                        class="dropdown-item text-red" type="submit">Declinar</button>
+                                                                    <button class="dropdown-item text-red"
+                                                                        type="submit">Declinar</button>
                                                                 </form>
                                                             @endif
                                                             {{-- @endcan --}}
@@ -274,8 +278,8 @@
                                             Comienza administrando un proyecto, creando uno.
                                         </p>
                                         <div class="empty-action">
-                                            <a href="{{-- {{ route('eventos.create') }} --}}" class="btn btn-primary">
-                                                <!-- Download SVG icon from http://tabler-icons.io/i/search -->
+                                            <a href="#" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modal-report">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
                                                     height="24" viewBox="0 0 24 24" stroke-width="2"
                                                     stroke="currentColor" fill="none" stroke-linecap="round"
@@ -451,8 +455,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     dataType: 'JSON',
-                    success: function() {
-                    },
+                    success: function() {},
                 });
             };
 

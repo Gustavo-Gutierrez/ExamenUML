@@ -7,7 +7,7 @@
                 <div class="row g-2 align-items-center">
                     <div class="col">
                         <h2 class="page-title">
-                            Proyecto: {{ $proyecto->nombre }}
+                            Proyecto: {{ $proyecto->nombre }} 
                         </h2>
                         <p style="font-size: 10px">Diagrama: {{ $diagrama->nombre }}</p>
                     </div>
@@ -101,7 +101,7 @@
 
     <textarea id="contenido" hidden cols="30" rows="10">{{ $diagrama->contenido }}</textarea>
     <input name="diagrama_id" type="text" value="{{ $diagrama->id }}" hidden>
-
+    <input name="permiso" type="text" value="{{ $permiso}}" hidden>
 
     <input name="persona" type="text" value="{{ asset('assets/image-person.svg') }}" hidden>
     <input name="persona2" type="text" value="{{ asset('assets/image-person-2.svg') }}" hidden>
@@ -117,7 +117,7 @@
         <script>
             var diagrama_id = $("input[name=diagrama_id]").val();
             var contenido = document.getElementById("contenido").value;
-
+            var permiso = $("input[name=permiso]").val()
             var person = $("input[name=persona]").val();
             var person2 = $("input[name=persona2]").val();
             var cylinder_horizontal = $("input[name=cylinder_horizontal]").val();

@@ -268,16 +268,20 @@ var App = window.App || {};
                 selection.destroySelectionBox(primaryCell);
                 this.selectPrimaryCell(primaryCellView);
                 /* console.log('cambio'); */
-                guardar(JSON.stringify(this.paper.model.toJSON()));
-
+                if (permiso == 0) {
+                    alert('No tienes permiso para editar');
+                }
             } else if (collection.length === 2) {
                 collection.each(function(cell) {
                     selection.createSelectionBox(cell);
                 });
-                /* console.log('otro'); */
+                if (permiso == 0) {
+                    alert('No tienes permiso para editar');
+                }
+            }
+            if (permiso == 1) {
                 guardar(JSON.stringify(this.paper.model.toJSON()));
             }
-
             /* console.log(this.paper.model.toJSON()); */ /* Guardar esto en DB */
         },
 

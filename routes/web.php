@@ -75,6 +75,7 @@ Route::middleware('auth')->group(function () {
     Route::post('diagramas/agregar-usuario', [DiagramaController::class, 'agregar'])->name('diagramas.agregarUsuario');
     Route::get('diagramar/{diagrama}',[DiagramaController::class, 'diagramar'])->name('diagramas.diagramar');
     Route::get('diagramas/',[DiagramaController::class, 'misDiagramas'])->name('diagramas.misDiagramas');
+    Route::post('diagramas/editor', [DiagramaController::class, 'editor']);
     Route::post('diagramas/guardar', [DiagramaController::class, 'guardar']);
     Route::post('diagramas/favorito', [DiagramaController::class, 'favorito']);
     Route::post('diagramas/terminado', [DiagramaController::class, 'terminado']);

@@ -15,6 +15,7 @@ class CreateUserDiagramasTable extends Migration
     {
         Schema::create('user_diagramas', function (Blueprint $table) {
             $table->id();
+            $table->smallInteger('editar')->default(1);
             $table->foreignId('diagrama_id')
             ->nullable()
             ->constrained('diagramas')

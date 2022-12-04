@@ -4,8 +4,8 @@
     <div class="page page-center bg-dark">
         <div class="container-tight py-4">
             <div class="text-center mb-4">
-                <a href="." class="navbar-brand navbar-brand-autodark"><img src="./back/static/logo.png"
-                        height="36" alt=""></a>
+                <a href="." class="navbar-brand navbar-brand-autodark"><img src="{{asset('assets/img/logo.png')}}"
+                        height="50" alt=""></a>
             </div>
             <form method="POST" action="{{ route('login') }}" class="card card-md" autocomplete="off">
                 @csrf

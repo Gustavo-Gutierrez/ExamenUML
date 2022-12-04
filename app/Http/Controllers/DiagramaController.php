@@ -28,7 +28,9 @@ class DiagramaController extends Controller
     public function diagramar(Diagrama $diagrama)
     {
         $proyecto = $diagrama->proyecto;
-        return view('diagramas.diagramar', compact('diagrama', 'proyecto'));
+        $permiso = Auth::user()->user_diagramas()->where('diagrama_id', $diagrama->id)->first();
+        $permiso = $permiso->editar;
+        return view('diagramas.diagramar', compact('diagrama', 'proyecto', 'permiso'));
     }
 
     public function store(Request $request)
@@ -60,6 +62,15 @@ class DiagramaController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Ha ocurrido un error' . $e->getMessage());
         }
+    }
+
+    public function editor(Request $request){
+        $user = User::find($request->input('id'));
+        $relacion = $user->user_diagramas()->where('diagrama_id', $request->input('diagrama'))->first();
+        $relacionv = User_diagrama::find($relacion->id);
+        $relacionv->editar = $relacionv->editar == 0? 1:0;
+        $relacionv->update();
+        return response()->json(['mensaje' => 'Usuario desactivado...'], 200);
     }
 
     public function favorito(Request $request)

@@ -64,6 +64,30 @@
 
                                                     @if ($usuario->id != $diagrama->proyecto->user_id)
                                                         <div class="col-auto">
+                                                            <div class="btn-action">
+                                                                <button class="switch-icon switch-icon-fade"
+                                                                    data-bs-toggle="switch-icon"
+                                                                    title="Cambiar favorito"
+                                                                    onclick="editor({{ $usuario->id }}, {{ $diagrama->id }})">
+                                                                    @if ($diagrama->permiso($usuario->id) == 1)
+                                                                        <span class="switch-icon-a text-success mt-1">
+                                                                            <i class="fa-solid fa-pen"></i>
+                                                                        </span>
+                                                                        <span class="switch-icon-b text-red mt-1">
+                                                                            <i class="fa-solid fa-eye"></i>
+                                                                        </span>
+                                                                    @else
+                                                                        <span class="switch-icon-a text-red mt-1">
+                                                                            <i class="fa-solid fa-eye"></i>
+                                                                        </span>
+                                                                        <span class="switch-icon-b text-success mt-1">
+                                                                            <i class="fa-solid fa-pen"></i>
+                                                                        </span>
+                                                                    @endif
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
                                                             <div class="row">
                                                                 <form
                                                                     action="{{ route('diagramas.banear', $diagrama->id) }}"
@@ -149,7 +173,8 @@
                                                                 <div class="col text-truncate">
                                                                     <a href="#"
                                                                         class="text-reset d-block">{{ $usuario->name }}</a>
-                                                                    <div class="d-block text-muted text-truncate mt-n1">
+                                                                    <div
+                                                                        class="d-block text-muted text-truncate mt-n1">
                                                                         {{ $usuario->email }}
                                                                     </div>
                                                                 </div>
@@ -217,13 +242,26 @@
     </div>
 
     @push('scripts')
-        {{-- <script>
-            function invitar() {
+        <script>
+            function editor(user_id, diagrama_id) {
                 $.ajax({
-
+                    type: "POST",
+                    url: "{{ url('diagramas/editor') }}",
+                    data: {
+                        id: user_id,
+                        diagrama: diagrama_id
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    dataType: 'JSON',
+                    success: function() {
+                        /* console.log('protasdas'); */
+                        /* window.location('/proyectos'); */
+                    },
                 });
-            }
-        </script> --}}
+            };
+        </script>
     @endpush
 
 </x-app-layout>
