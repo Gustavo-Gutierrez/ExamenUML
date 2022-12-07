@@ -270,6 +270,8 @@ var App = window.App || {};
                 /* console.log('cambio'); */
                 if (permiso == 0) {
                     alert('No tienes permiso para editar');
+                }else{
+                    guardar(JSON.stringify(this.paper.model.toJSON()));
                 }
             } else if (collection.length === 2) {
                 collection.each(function(cell) {
@@ -277,10 +279,9 @@ var App = window.App || {};
                 });
                 if (permiso == 0) {
                     alert('No tienes permiso para editar');
+                }else{
+                    guardar(JSON.stringify(this.paper.model.toJSON()));
                 }
-            }
-            if (permiso == 1) {
-                guardar(JSON.stringify(this.paper.model.toJSON()));
             }
             /* console.log(this.paper.model.toJSON()); */ /* Guardar esto en DB */
         },
