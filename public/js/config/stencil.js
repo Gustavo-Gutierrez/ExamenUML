@@ -21,7 +21,7 @@ App.config = App.config || {};
     App.config.stencil = {};
 
     App.config.stencil.groups = {
-        standard: { index: 1, label: 'Standard shapes' },
+        standard: { index: 1, label: 'Modelo C4' },
         /* fsa: { index: 2, label: 'State machine' },
         pn: { index: 3, label: 'Petri nets' },
         erd: { index: 4, label: 'Entity-relationship' },
@@ -38,7 +38,7 @@ App.config = App.config || {};
             size: { width: 53, height: 42 },
             attrs: {
                 root: {
-                    dataTooltip: 'Person',
+                    dataTooltip: 'Person 1-2',
                     dataTooltipPosition: 'left',
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
@@ -115,7 +115,7 @@ App.config = App.config || {};
             size: { width: 53, height: 42 },
             attrs: {
                 root: {
-                    dataTooltip: 'External Person',
+                    dataTooltip: 'External Person 1-2',
                     dataTooltipPosition: 'left',
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
@@ -192,7 +192,7 @@ App.config = App.config || {};
             size: { width: 5, height: 3 },
             attrs: {
                 root: {
-                    dataTooltip: 'Software System',
+                    dataTooltip: 'Software System 1',
                     dataTooltipPosition: 'left',
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
@@ -282,7 +282,7 @@ App.config = App.config || {};
             size: { width: 5, height: 3 },
             attrs: {
                 root: {
-                    dataTooltip: 'External Software System',
+                    dataTooltip: 'External Software System 1-2-3',
                     dataTooltipPosition: 'left',
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
@@ -372,7 +372,7 @@ App.config = App.config || {};
             size: { width: 5, height: 3 },
             attrs: {
                 root: {
-                    dataTooltip: 'Container',
+                    dataTooltip: 'Container 2',
                     dataTooltipPosition: 'left',
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
@@ -462,7 +462,7 @@ App.config = App.config || {};
             size: { width: 53, height: 42 },
             attrs: {
                 root: {
-                    dataTooltip: 'Data Container',
+                    dataTooltip: 'Data Container 2-3',
                     dataTooltipPosition: 'left',
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
@@ -539,7 +539,7 @@ App.config = App.config || {};
             size: { width: 53, height: 42 },
             attrs: {
                 root: {
-                    dataTooltip: 'Microservice Container',
+                    dataTooltip: 'Microservice Container 2-3',
                     dataTooltipPosition: 'left',
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
@@ -616,7 +616,7 @@ App.config = App.config || {};
             size: { width: 53, height: 42 },
             attrs: {
                 root: {
-                    dataTooltip: 'Message Bus Container',
+                    dataTooltip: 'Message Bus Container 2-3',
                     dataTooltipPosition: 'left',
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
@@ -693,7 +693,7 @@ App.config = App.config || {};
             size: { width: 53, height: 42 },
             attrs: {
                 root: {
-                    dataTooltip: 'Web Browser Container',
+                    dataTooltip: 'Web Browser Container 2-3',
                     dataTooltipPosition: 'left',
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
@@ -770,7 +770,7 @@ App.config = App.config || {};
             size: { width: 5, height: 3 },
             attrs: {
                 root: {
-                    dataTooltip: 'Component',
+                    dataTooltip: 'Component 3',
                     dataTooltipPosition: 'left',
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
@@ -860,7 +860,7 @@ App.config = App.config || {};
             size: { width: 40, height: 35 },
             attrs: {
                 root: {
-                    dataTooltip: 'System scope boundary',
+                    dataTooltip: 'System scope boundary 1-2-3',
                     dataTooltipPosition: 'left',
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
@@ -895,16 +895,6 @@ App.config = App.config || {};
                     strokeWidth: 1,
                     strokeDasharray: '5'
                 },
-                /* label: {
-                    text: 'rect',
-                    fill: '#c6c7e2',
-                    fontFamily: 'Roboto Condensed',
-                    fontWeight: 'Normal',
-                    fontSize: 11,
-                    strokeWidth: 0,
-                    // refY: -4,
-                    // refY2: 4,
-                }, */
                 headerText: {
                     text: 'Software System',
                     fill: '#000000',
@@ -959,7 +949,7 @@ App.config = App.config || {};
             size: { width: 40, height: 35 },
             attrs: {
                 root: {
-                    dataTooltip: 'Container scope boundary',
+                    dataTooltip: 'Container scope boundary 1-2-3',
                     dataTooltipPosition: 'left',
                     dataTooltipPositionSelector: '.joint-stencil'
                 },
@@ -994,7 +984,7 @@ App.config = App.config || {};
                     strokeWidth: 1,
                     strokeDasharray: '5'
                 },
-                label: {
+                /* label: {
                     text: 'rect',
                     fill: '#c6c7e2',
                     fontFamily: 'Roboto Condensed',
@@ -1003,7 +993,7 @@ App.config = App.config || {};
                     strokeWidth: 0,
                     // refY: -4,
                     // refY2: 4,
-                },
+                }, */
                 headerText: {
                     text: 'Container name',
                     fill: '#000000',
@@ -1050,6 +1040,172 @@ App.config = App.config || {};
                     refY2: 12,
                 }, */
                  
+            }
+        },
+        /* Main circle */
+        {
+            type: 'standard.InscribedImage',
+            size: { width: 30, height: 30 },
+            attrs: {
+                root: {
+                    dataTooltip: 'Main Code 4',
+                    dataTooltipPosition: 'left',
+                    dataTooltipPositionSelector: '.joint-stencil'
+                },
+                border: {
+                    stroke: '#000000',
+                    strokeWidth: 1,
+                    strokeDasharray: '0'
+                },
+                background: {
+                    fill: 'transparent'
+                },
+                image: {
+                    xlinkHref: ''
+                },
+                label: {
+                    text: 'Main',
+                    fill: '#000000',
+                    fontFamily: 'Roboto Condensed',
+                    fontWeight: 'Normal',
+                    fontSize: 11,
+                    strokeWidth: 0
+                }
+            }
+        },
+        /* Code content */
+        {
+            type: 'standard.Rectangle',
+            size: { width: 5, height: 3 },
+            attrs: {
+                root: {
+                    dataTooltip: 'Main Content Code 4',
+                    dataTooltipPosition: 'left',
+                    dataTooltipPositionSelector: '.joint-stencil'
+                },
+                header: {
+                    stroke: '#000000',
+                    fill: 'transparent',
+                    strokeWidth: 1,
+                    strokeDasharray: '0',
+                    height: 20,
+                    refY: "33.33%",
+                },
+                subHeader: {
+                    stroke: 'transparent',
+                    fill: 'transparent',
+                    strokeWidth: 0,
+                    strokeDasharray: '0',
+                    height: 0
+                },
+                content: {
+                    stroke: 'transparent',
+                    fill: 'transparent',
+                    strokeWidth: 0,
+                    strokeDasharray: '0',
+                    height: 0
+                },
+                body: {
+                    rx: 2,
+                    ry: 2,
+                    width: 50,
+                    height: 30,
+                    fill: 'transparent',
+                    stroke: '#000000',
+                    strokeWidth: 1,
+                    strokeDasharray: '0'
+                },
+                
+                headerText: {
+                    text: 'Main Code',
+                    fill: '#000000',
+                    fontFamily: 'Roboto Condensed',
+                    fontWeight: 'Normal',
+                    fontSize: 8,
+                    strokeWidth: 0,
+                    refY: "20%",
+                },
+                subHeaderText: {
+                    text: '[Code Container]',
+                    fill: '#000000',
+                    fontFamily: 'Roboto Condensed',
+                    fontWeight: 'Normal',
+                    fontSize: 4,
+                    strokeWidth: 0,
+                    refY: "50%",
+                },
+                contentText: {
+                    text: 'Contenido de codigo',
+                    fill: '#000000',
+                    fontFamily: 'Roboto Condensed',
+                    fontWeight: 'Normal',
+                    fontSize: 4,
+                    strokeWidth: 0,
+                    refY: "80%",
+                }, 
+            }
+        },
+        /* Package */
+        {
+            type: 'standard.EmbeddedImage',
+            size: { width: 53, height: 42 },
+            attrs: {
+                root: {
+                    dataTooltip: 'Package Code 4',
+                    dataTooltipPosition: 'left',
+                    dataTooltipPositionSelector: '.joint-stencil'
+                },
+                image: {
+                    xlinkHref: './../../assets/image-package.svg'
+                },
+                header: {
+                    stroke: '#31d0c6',
+                    fill: 'transparent',
+                    strokeWidth: 0,
+                    strokeDasharray: '0',
+                    height: 20
+                },
+                subHeader: {
+                    stroke: 'transparent',
+                    fill: 'transparent',
+                    strokeWidth: 0,
+                    strokeDasharray: '0',
+                    height: 0
+                },
+                content: {
+                    stroke: 'transparent',
+                    fill: 'transparent',
+                    strokeWidth: 0,
+                    strokeDasharray: '0',
+                    height: 0
+                },
+                headerText: {
+                    text: 'Package name',
+                    fill: '#000000',
+                    fontFamily: 'Roboto Condensed',
+                    fontWeight: 'Normal',
+                    fontSize: 8,
+                    strokeWidth: 0,
+                    refY: "15%"
+                },
+                subHeaderText: {
+                    text: '',
+                    fill: '#F9F9F9',
+                    fontFamily: 'Roboto Condensed',
+                    fontWeight: 'Normal',
+                    fontSize: 4,
+                    strokeWidth: 0,
+                    refY: "45%"
+                },
+                contentText: {
+                    text: '',
+                    fill: '#E7E7E7',
+                    fontFamily: 'Roboto Condensed',
+                    fontWeight: 'Normal',
+                    fontSize: 4,
+                    strokeWidth: 0,
+                    refY: "62%"
+                }
             }
         },
         /* {

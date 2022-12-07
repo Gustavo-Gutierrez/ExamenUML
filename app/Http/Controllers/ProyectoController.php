@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ProyectoController extends Controller
 {
-    
+
     public function index()
     {
 
@@ -22,9 +22,10 @@ class ProyectoController extends Controller
         return view('proyectos.index', compact('proyectos'));
     }
 
-    public function usuarios(Proyecto $proyecto){
+    public function usuarios(Proyecto $proyecto)
+    {
         $usuarios = $proyecto->usuarios;
-        $usuariosV = User::all();
+        $usuariosV = User::paginate(4);
         return view('proyectos.usuarios', compact('usuarios', 'proyecto', 'usuariosV'));
     }
 
@@ -33,7 +34,7 @@ class ProyectoController extends Controller
         return view('proyectos.create');
     }
 
-    
+
     public function store(Request $request)
     {
         $request->validate([
@@ -57,8 +58,8 @@ class ProyectoController extends Controller
             $proyecto->user_id = Auth::user()->id;
             $proyecto->save();
             DB::table('participas')->insert([
-                'user_id'=>$proyecto->user_id,
-                'proyecto_id'=>$proyecto->id
+                'user_id' => $proyecto->user_id,
+                'proyecto_id' => $proyecto->id
             ]);
             return redirect()->route('proyectos.index');
         } catch (\Exception $e) {
@@ -71,7 +72,7 @@ class ProyectoController extends Controller
         $proyecto = Proyecto::findOrFail($request->input('id'));
         $proyecto->favorito = $proyecto->favorito == 0 ? 1 : 0;
         $proyecto->update();
-        return response()->json(['mensaje' => 'Usuario desactivado...'],200);
+        return response()->json(['mensaje' => 'Usuario desactivado...'], 200);
         /* return  redirect()->back()->with('message', 'Se reitro de favoritos '); */
     }
 
@@ -80,23 +81,23 @@ class ProyectoController extends Controller
         $proyecto = Proyecto::findOrFail($request->input('id'));
         $proyecto->terminado = $proyecto->terminado == 0 ? 1 : 0;
         $proyecto->update();
-        return response()->json(['mensaje' => 'Usuario desactivado...'],200);
+        return response()->json(['mensaje' => 'Usuario desactivado...'], 200);
         /* return  redirect()->back()->with('message', 'Se reitro de favoritos '); */
     }
-    
+
     public function show($id)
     {
         //
     }
 
-    
+
     public function edit($id)
     {
         $proyecto = Proyecto::findOrFail($id);
         return view('proyectos.edit', compact('proyecto'));
     }
 
-    
+
     public function update(Request $request, Proyecto $proyecto)
     {
         try {
@@ -116,18 +117,19 @@ class ProyectoController extends Controller
             }
             $proyecto->update();
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Ha ocurrido un error'.$e->getMessage());
+            return redirect()->back()->with('error', 'Ha ocurrido un error' . $e->getMessage());
         }
         return redirect()->route('proyectos.index')->with('message', 'Se edito la inf del poryecto de manera correcta');
     }
 
-    public function declinar(Proyecto $proyecto){
+    public function declinar(Proyecto $proyecto)
+    {
         try {
-            
+
             $diagramas = $proyecto->diagramas;
             $user = Auth::user();
 
-            if($diagramas){
+            if ($diagramas) {
                 foreach ($diagramas as $diagrama) {
                     if ($user->misDiagramas->contains($diagrama->id)) {
                         $relacionDiagrama = $user->user_diagramas()->where('diagrama_id', $diagrama->id)->first();
@@ -136,23 +138,24 @@ class ProyectoController extends Controller
                     }
                 }
             }
-            
+
             $relacion = Auth::user()->participa()->where('proyecto_id', $proyecto->id)->first();
             $participa = Participa::find($relacion->id);
             $participa->delete();
             return redirect()->back()->with('message', 'Se edito la inf del poryecto de manera correcta');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Ha ocurrido un error'.$e->getMessage());
+            return redirect()->back()->with('error', 'Ha ocurrido un error' . $e->getMessage());
         }
     }
 
-    public function banear(Request $request, Proyecto $proyecto){
+    public function banear(Request $request, Proyecto $proyecto)
+    {
         try {
-            
+
             $diagramas = $proyecto->diagramas;
             $user = User::find($request->user_id);
 
-            if($diagramas){
+            if ($diagramas) {
                 foreach ($diagramas as $diagrama) {
                     if ($user->misDiagramas->contains($diagrama->id)) {
                         $relacionDiagrama = $user->user_diagramas()->where('diagrama_id', $diagrama->id)->first();
@@ -161,18 +164,17 @@ class ProyectoController extends Controller
                     }
                 }
             }
-            
+
             $relacion = $user->participa()->where('proyecto_id', $proyecto->id)->first();
             $participa = Participa::find($relacion->id);
             $participa->delete();
             return redirect()->back()->with('message', 'Se edito la inf del poryecto de manera correcta');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Ha ocurrido un error'.$e->getMessage());
+            return redirect()->back()->with('error', 'Ha ocurrido un error' . $e->getMessage());
         }
     }
 
     public function destroy($id)
     {
-        
     }
 }

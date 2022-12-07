@@ -69,6 +69,8 @@ Route::middleware('auth')->group(function () {
     Route::put('Declinar-Proyecto/{proyecto}', [ProyectoController::class, 'declinar'])->name('proyectos.declinar');
     Route::put('Banear-Proyecto/{proyecto}', [ProyectoController::class, 'banear'])->name('proyectos.banear');
     /* Diagramas */
+    Route::post('diagramas/exportar', [DiagramaController::class, 'exportar'])->name('exportar');
+    Route::post('diagramas/architec', [DiagramaController::class, 'architect'])->name('architect');
     Route::get('diagramas/{diagrama}/descargar', [DiagramaController::class, 'descargar'])->name('diagramas.descargar');
     Route::put('Banear-Diagrama/{diagrama}', [DiagramaController::class, 'banear'])->name('diagramas.banear');
     Route::get('digramas/{diagrama}/usuarios', [DiagramaController::class, 'usuarios'])->name('diagramas.usuarios');
@@ -85,6 +87,7 @@ Route::middleware('auth')->group(function () {
     Route::post('diagramas/', [DiagramaController::class, 'store'])->name('diagramas.store');
 
     /* Notificaciones */
+    Route::post('notificar', [NotificacionController::class, 'notificar'])->name('notificar');
     Route::resource('notificaciones', NotificacionController::class);
     
 });

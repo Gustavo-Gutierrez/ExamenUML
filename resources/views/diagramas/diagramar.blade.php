@@ -7,7 +7,7 @@
                 <div class="row g-2 align-items-center">
                     <div class="col">
                         <h2 class="page-title">
-                            Proyecto: {{ $proyecto->nombre }} 
+                            Proyecto: {{ $proyecto->nombre }}
                         </h2>
                         <p style="font-size: 10px">Diagrama: {{ $diagrama->nombre }}</p>
                     </div>
@@ -57,7 +57,8 @@
 
                             @if ($diagrama->proyecto->user_id == Auth::user()->id)
                                 <div class="col-auto mx-0 px-1 pt-2">
-                                    <a href="{{route('diagramas.descargar', $diagrama->id)}}" class="btn btn-primary" title="Guardar copia de seguridad">
+                                    <a href="{{ route('diagramas.descargar', $diagrama->id) }}" class="btn btn-primary"
+                                        title="Guardar copia de seguridad">
                                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
                                             height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -70,9 +71,20 @@
                                     </a>
                                 </div>
                                 <div class="col-auto mx-0 px-1 pt-2">
-                                    <a href="#" class="btn btn-blue" title="Exportar para architect">
-                                        <img src="{{ asset('/assets/img/enterprise-architect-logo.png') }}"
-                                            width="75">
+                                    <form action="{{ route('architect') }}" method="POST">
+                                        @csrf
+                                        <input type="text" name="diagrama_id" hidden value="{{ $diagrama->id }}">
+                                        <button class="btn btn-blue" type="submit" title="Exportar para architect">
+                                            <img src="{{ asset('/assets/img/enterprise-architect-logo.png') }}"
+                                                width="75">
+                                        </button>
+                                    </form>
+
+                                </div>
+                                <div class="col-auto mx-0 px-1 pt-2">
+                                    <a href="#" class="btn btn-orange d-none d-sm-inline-block"
+                                        data-bs-toggle="modal" data-bs-target="#modal-report">
+                                        Importar
                                     </a>
                                 </div>
                             @endif
@@ -99,9 +111,54 @@
         </div>
     </div>
 
+    <div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Importar desde Architect</h5><img src="{{ asset('/assets/img/enterprise-architect-logo.png') }}"
+                    width="75">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('exportar') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="mb-1">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Archivo</label>
+                                        <input name="url" type="file" accept=".xml" class="form-control">
+                                    </div>
+                                    <input type="integer" hidden value="{{ $diagrama->id }}" name="diagrama_id">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-link link-secondary bg-danger text-white"
+                            data-bs-dismiss="modal">
+                            Cancelar
+                        </a>
+                        <button class="btn btn-primary ms-auto" type="submit" data-bs-dismiss="modal">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg>
+                            Exportar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <textarea id="contenido" hidden cols="30" rows="10">{{ $diagrama->contenido }}</textarea>
     <input name="diagrama_id" type="text" value="{{ $diagrama->id }}" hidden>
-    <input name="permiso" type="text" value="{{ $permiso}}" hidden>
+    <input name="permiso" type="text" value="{{ $permiso }}" hidden>
 
     <input name="persona" type="text" value="{{ asset('assets/image-person.svg') }}" hidden>
     <input name="persona2" type="text" value="{{ asset('assets/image-person-2.svg') }}" hidden>
