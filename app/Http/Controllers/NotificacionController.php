@@ -51,7 +51,7 @@ class NotificacionController extends Controller
                 'user_id' => $notificacion->user_id
             ]);
 
-            $url = asset('/diagramas/') . $request->proyecto_id;
+            $url = asset('/diagramas').'/'. $request->proyecto_id;
 
             $email = [
                 'subject' => 'Inivitacion Proyecto: ' . $proyecto->nombre,
@@ -118,7 +118,7 @@ class NotificacionController extends Controller
 
             $user = User::find($request->user_id);
 
-            $url = asset('/diagramas/') . $request->proyecto_id;
+            $url = asset('/diagramas').'/'. $request->proyecto_id;
 
             $email = [
                 'subject' => 'Inivitacion Proyecto: ' . $proyecto->nombre,
