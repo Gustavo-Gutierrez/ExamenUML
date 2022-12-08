@@ -49,7 +49,7 @@ class DiagramaController extends Controller
             $diagrama->proyecto_id = $request->proyecto_id;
             if ($request->diagrama_id != 'nuevo') {
                 $newDiagram = Diagrama::find($request->diagrama_id);
-                $diagrama->contenido = $newDiagram;
+                $diagrama->contenido = $newDiagram->contenido;
             } else {
                 $diagrama->contenido = '';
             }
