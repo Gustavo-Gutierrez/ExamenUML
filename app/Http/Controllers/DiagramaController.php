@@ -217,13 +217,13 @@ class DiagramaController extends Controller
                 $objetosText .= Diagrama::boundary($objetos[$i]["Column"], $posiciones[$i-1]["Column"]);
             }
         }
-
+        
         $enlacesText = "";
-        if(count($enlaces) > 1){
+        if(!array_key_exists("Column", $enlaces)){
             for ($i=0; $i < count($enlaces) ; $i++) { 
                 $enlacesText .= Diagrama::enlace($enlaces[$i]);
             }
-        }elseif( count($enlaces) == 1){
+        }elseif(array_key_exists("Column", $enlaces)){
             $enlacesText .= Diagrama::enlace($enlaces);
         }
         // dd($enlacesText);
