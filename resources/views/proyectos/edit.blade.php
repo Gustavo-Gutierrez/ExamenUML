@@ -1,8 +1,9 @@
+@extends('adminlte::page')
+
 @section('title', 'Editar Proyecto')
-<x-app-layout>
-    <div class="page">
-        <div class="page-wrapper">
-            <div class="container-xl">
+
+@section('content_header')
+<div class="container-xl">
                 <!-- Page title -->
                 <div class="page-header d-print-none">
                     <div class="row g-2 align-items-center">
@@ -23,6 +24,12 @@
                     </div>
                 </div>
             </div>
+@stop
+
+@section('content')
+<div class="page">
+        <div class="page-wrapper">
+            
             <div class="page-body">
                 <form action="{{ route('proyectos.update', $proyecto->id) }}" method="POST"
                     enctype="multipart/form-data">
@@ -191,4 +198,16 @@
             });
         </script>
     @endpush
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop
+@section('title', 'Editar Proyecto')
+<x-app-layout>
+    
 </x-app-layout>

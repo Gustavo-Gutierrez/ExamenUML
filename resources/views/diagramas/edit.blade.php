@@ -1,8 +1,8 @@
+@extends('adminlte::page')
 @section('title', 'Editar Diagrama')
-<x-app-layout>
-    <div class="page">
-        <div class="page-wrapper">
-            <div class="container-xl">
+
+@section('content_header')
+<div class="container-xl">
                 <!-- Page title -->
                 <div class="page-header d-print-none">
                     <div class="row g-2 align-items-center">
@@ -20,6 +20,11 @@
                     </div>
                 </div>
             </div>
+@stop
+
+@section('content')
+<div class="page">
+        
             <div class="page-body">
                 <form action="{{ route('diagramas.update', $diagrama->id) }}" method="POST"
                     enctype="multipart/form-data">
@@ -58,74 +63,12 @@
                                                                         </span>
                                                                         <span class="form-selectgroup-label-content">
                                                                             <span
-                                                                                class="form-selectgroup-title strong mb-1">Nivel
-                                                                                1</span>
-                                                                            <span class="d-block text-muted">Diagrama de
-                                                                                Contexto</span>
+                                                                                class="form-selectgroup-title strong mb-1">UML</span>
+                                                                            <span class="d-block text-muted">Diagrama de Clases</span>
                                                                         </span>
                                                                     </span>
                                                                 </label>
-                                                            </div>
-                                                            <div class="col-lg-6 mb-3">
-                                                                <label class="form-selectgroup-item">
-                                                                    <input type="radio" name="tipo" value="2"
-                                                                        class="form-selectgroup-input"
-                                                                        {{ $diagrama->tipo == 2 ? 'checked' : '' }}>
-                                                                    <span
-                                                                        class="form-selectgroup-label d-flex align-items-center p-3">
-                                                                        <span class="me-3">
-                                                                            <span class="form-selectgroup-check"></span>
-                                                                        </span>
-                                                                        <span class="form-selectgroup-label-content">
-                                                                            <span
-                                                                                class="form-selectgroup-title strong mb-1">Nivel
-                                                                                2</span>
-                                                                            <span class="d-block text-muted">Diagrama de
-                                                                                Contenedores</span>
-                                                                        </span>
-                                                                    </span>
-                                                                </label>
-                                                            </div>
-                                                            <div class="col-lg-6 mb-3">
-                                                                <label class="form-selectgroup-item">
-                                                                    <input type="radio" name="tipo" value="3"
-                                                                        class="form-selectgroup-input"
-                                                                        {{ $diagrama->tipo == 3 ? 'checked' : '' }}>
-                                                                    <span
-                                                                        class="form-selectgroup-label d-flex align-items-center p-3">
-                                                                        <span class="me-3">
-                                                                            <span class="form-selectgroup-check"></span>
-                                                                        </span>
-                                                                        <span class="form-selectgroup-label-content">
-                                                                            <span
-                                                                                class="form-selectgroup-title strong mb-1">Nivel
-                                                                                3</span>
-                                                                            <span class="d-block text-muted">Diagrama de
-                                                                                Componentes</span>
-                                                                        </span>
-                                                                    </span>
-                                                                </label>
-                                                            </div>
-                                                            <div class="col-lg-6 mb-3">
-                                                                <label class="form-selectgroup-item">
-                                                                    <input type="radio" name="tipo" value="4"
-                                                                        class="form-selectgroup-input"
-                                                                        {{ $diagrama->tipo == 4 ? 'checked' : '' }}>
-                                                                    <span
-                                                                        class="form-selectgroup-label d-flex align-items-center p-3">
-                                                                        <span class="me-3">
-                                                                            <span class="form-selectgroup-check"></span>
-                                                                        </span>
-                                                                        <span class="form-selectgroup-label-content">
-                                                                            <span
-                                                                                class="form-selectgroup-title strong mb-1">Nivel
-                                                                                4</span>
-                                                                            <span class="d-block text-muted">Diagrama de
-                                                                                Codigo</span>
-                                                                        </span>
-                                                                    </span>
-                                                                </label>
-                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -165,7 +108,7 @@
                     </div>
             </div>
             </form>
-        </div>
+        
     </div>
     </div>
     @push('scripts')
@@ -233,4 +176,16 @@
             });
         </script>
     @endpush
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop
+
+<x-app-layout>
+   
 </x-app-layout>

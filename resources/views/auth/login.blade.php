@@ -1,10 +1,10 @@
 <x-guest-layout>
     @section('title', isset($title) ? $title : 'Login')
 
-    <div class="page page-center bg-dark">
+    <div class="page page-center bg-secondary">
         <div class="container-tight py-4">
             <div class="text-center mb-4">
-                <a href="." class="navbar-brand navbar-brand-autodark"><img src="{{asset('assets/img/logo.png')}}"
+                <a href="." class="navbar-brand navbar-brand-autodark"><img src="{{asset('assets/img/uml.png')}}"
                         height="50" alt=""></a>
             </div>
             <form method="POST" action="{{ route('login') }}" class="card card-md" autocomplete="off">
@@ -28,15 +28,14 @@
                                 placeholder="Contraseña" autocomplete="off">
                         </div>
                     </div>
-                    <div class="mb-2">
-                        <label class="form-check">
-                            <input id="remember_me" name="remember" type="checkbox" class="form-check-input" />
-                            <span class="form-check-label">Recuerdame en este dispositivo</span>
-                        </label>
-                    </div>
+
                     <div class="form-footer">
                         <button type="submit" class="btn btn-primary w-100">Ingresar</button>
                     </div>
+                    <div class="text-center text-mute mt-3 ">
+                Aun no tienes una cuenta? <a href="{{ route('register') }}" tabindex="-1">Sign up</a>
+                
+            </div>
                 </div>
                 {{-- <div class="hr-text">or</div>
             <div class="card-body">
@@ -66,13 +65,7 @@
                 </div>
             </div> --}}
             </form>
-            <div class="text-center text-muted mt-3">
-                Aun no tienes una cuenta? <a href="./sign-up.html" tabindex="-1">Sign up</a>
-                @if (Route::has('password.request'))
-                    <br><br>
-                    <a href="{{ route('password.request') }}">Olvidaste tu contraseña?</a>
-                @endif
-            </div>
+            
         </div>
     </div>
 

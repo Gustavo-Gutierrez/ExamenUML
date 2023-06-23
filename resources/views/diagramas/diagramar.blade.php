@@ -1,6 +1,10 @@
+
+
+
+
 @section('title', 'Diagramar')
 <x-app-layout>
-    <div class="page-wrapper">
+<div class="page-wrapper">
         <div class="container-xl">
             <!-- Page title -->
             <div class="page-header d-print-none">
@@ -14,7 +18,30 @@
                     <!-- Page title actions -->
                     <div class="col-13 col-md-auto ms-auto">
                         <div class="row">
-                            <div class="col-auto mx-0 px-2">
+                            
+                            <div class="col-auto mx-0 px-1 pt-2">
+                                <a href="{{ route('diagramas.index', $diagrama->proyecto_id) }}"
+                                    class="btn btn-secondary">
+                                    Volver
+                                </a>
+                            </div>
+
+                            @if ($diagrama->proyecto->user_id == Auth::user()->id)
+                                <div class="col-auto mx-0 px-1 pt-2">
+                                    <a href="{{ route('diagramas.descargar', $diagrama->id) }}" class="btn btn-primary"
+                                        title="Guardar copia de seguridad">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <line x1="12" y1="5" x2="12" y2="19" />
+                                            <line x1="5" y1="12" x2="19" y2="12" />
+                                        </svg>
+                                        Guardar
+                                    </a>
+                                </div>
+                                <div class="col-auto mx-0 px-2">
                                 <div class="datagrid-title">Lista de Usuarios</div>
                                 <div class="datagrid-content">
                                     @if (count($diagrama->usuarios) > 1)
@@ -43,50 +70,11 @@
                                             @endforeach
                                         </div>
                                     @else
-                                        <h6>Estas solit@</h6>
+                                        <h6>Estas solo</h6>
                                     @endif
                                 </div>
                             </div>
-
-                            <div class="col-auto mx-0 px-1 pt-2">
-                                <a href="{{ route('diagramas.index', $diagrama->proyecto_id) }}"
-                                    class="btn btn-secondary">
-                                    Volver
-                                </a>
-                            </div>
-
-                            @if ($diagrama->proyecto->user_id == Auth::user()->id)
-                                <div class="col-auto mx-0 px-1 pt-2">
-                                    <a href="{{ route('diagramas.descargar', $diagrama->id) }}" class="btn btn-primary"
-                                        title="Guardar copia de seguridad">
-                                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <line x1="12" y1="5" x2="12" y2="19" />
-                                            <line x1="5" y1="12" x2="19" y2="12" />
-                                        </svg>
-                                        Guardar
-                                    </a>
-                                </div>
-                                <div class="col-auto mx-0 px-1 pt-2">
-                                    <form action="{{ route('architect') }}" method="POST">
-                                        @csrf
-                                        <input type="text" name="diagrama_id" hidden value="{{ $diagrama->id }}">
-                                        <button class="btn btn-blue" type="submit" title="Exportar para architect">
-                                            <img src="{{ asset('/assets/img/enterprise-architect-logo.png') }}"
-                                                width="75">
-                                        </button>
-                                    </form>
-
-                                </div>
-                                <div class="col-auto mx-0 px-1 pt-2">
-                                    <a href="#" class="btn btn-orange d-none d-sm-inline-block"
-                                        data-bs-toggle="modal" data-bs-target="#modal-report">
-                                        Importar
-                                    </a>
-                                </div>
+                               
                             @endif
                         </div>
                     </div>
@@ -99,7 +87,7 @@
     <div id="app">
         <div class="app-header">
             <div class="app-title" style="background-color: rgb(235, 235, 235)">
-                <img src="{{ asset('assets/img/logo.png') }}" height="70px" alt="">
+                <img src="{{ asset('assets/img/UML.png') }}" height="70px" alt="">
             </div>
             <div class="toolbar-container"></div>
         </div>
@@ -115,7 +103,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Importar desde Architect</h5><img src="{{ asset('/assets/img/enterprise-architect-logo.png') }}"
+                    <h5 class="modal-title">Importar desde Architect</h5><img src="{{ asset('/assets/img/enterprise-architect-uml.png') }}"
                     width="75">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>

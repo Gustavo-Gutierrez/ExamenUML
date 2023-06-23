@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>C4SOFTWARE</title>
+    <title>UMLSOFTWARE</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('back/static/icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('assets/img/ICOUML.png') }}" rel="icon">
+    <link href="{{ asset('back/static/icon.png') }}" rel="apple-touch-icon"> 
 
     <!-- Google Fonts -->
     <link
@@ -51,12 +51,12 @@
                     data-aos="fade-up">
                     <div>
                         <h1>Estamos atentos a tus necesidades como desarrollador</h1>
-                        <h2>Eficiencia en el desarrollo de diagramas en base al modelo C4</h2>
-                        <a href="#about" class="btn btn-success">Comenzar</a>
+                        <h2>Eficiencia en el desarrollo de diagramas de clases en UML</h2>
+                        <a href="#pricing" class="btn btn-success">Comenzar</a>
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">
-                    <img src="{{asset('back/static/components/home-page.svg')}}" class="img-fluid" alt="">
+                    <img src="{{asset('back/static/components/diaclases.png')}}" class="img-fluid" alt="">
                 </div>
             </div>
         </div>
@@ -65,45 +65,13 @@
 
     <main id="main">
 
-        <!-- ======= About Section ======= -->
-        @include('wcomponents.about')
-        <!-- End About Section -->
-        <!-- ======= Features Section ======= -->
-        @include('wcomponents.features')
-        <!-- End Features Section -->
-        <!-- ======= Services Section ======= -->
-        @include('wcomponents.services')
-        <!-- End Services Section -->
-        <!-- ======= Portfolio Section ======= -->
-        @include('wcomponents.portofolio')
-        <!-- End Portfolio Section -->
-        <!-- ======= Cta Section ======= -->
-        @include('wcomponents.ctasection')
-        <!-- End Cta Section -->
-        <!-- ======= Testimonials Section ======= -->
-        @include('wcomponents.testimonials')
-        <!-- End Testimonials Section -->
-        <!-- ======= Team Section ======= -->
-        @include('wcomponents.team')
-        <!-- End Team Section -->
-        <!-- ======= Clients Section ======= -->
-        @include('wcomponents.clients')
-        <!-- End Clients Section -->
-        <!-- ======= Pricing Section ======= -->
+       
         @include('wcomponents.pricing')
         <!-- End Pricing Section -->
         <!-- ======= F.A.Q Section ======= -->
-        @include('wcomponents.faq')
-        <!-- End Frequently Asked Questions Section -->
-        <!-- ======= Contact Section ======= -->
-        @include('wcomponents.contact')
-        <!-- End Contact Section -->
+       
     </main>
-    <!-- End #main -->
-
-    <!-- ======= Footer ======= -->
-    @include('wcomponents.footer')
-    <!-- End Footer -->
+    
 
     <a href="#" class="back-to-top"><i class="bx bxs-up-arrow-alt"></i></a>
 

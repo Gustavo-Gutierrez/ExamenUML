@@ -1,10 +1,10 @@
+
+@extends('adminlte::page')
+
 @section('title', 'Diagramas')
-<x-app-layout>
-    <div class="page">
-        <div class="page-wrapper">
-            <div class="container-xl">
-                <!-- Page title -->
-                <div class="page-header d-print-none">
+
+@section('content_header')
+<div class="page-header d-print-none">
                     <div class="row g-2 align-items-center">
                         <div class="col">
                             <h2 class="page-title">
@@ -38,6 +38,14 @@
 
                     </div>
                 </div>
+@stop
+
+@section('content')
+<div class="page">
+        <div class="page-wrapper">
+            <div class="container-xl">
+                <!-- Page title -->
+                
 
                 <div class="page-body">
                     <div class="container-xl">
@@ -90,7 +98,7 @@
                                             <div class="card-body">
                                                 <div class="row align-items-center">
                                                     <div class="col-2">
-                                                        <img src="{{ asset('assets/img/image-preview.svg') }}"
+                                                        <img src="{{ asset('assets/img/diaclases.png') }}"
                                                             alt="Food Deliver UI dashboards" class="rounded">
                                                     </div>
                                                     <div class="col">
@@ -113,19 +121,9 @@
                                                         <div class="text-muted">
                                                             @switch($diagrama->tipo)
                                                                 @case(1)
-                                                                    Nivel 1: Diagrama de Contexto
+                                                                    UML: Diagrama de Clase
                                                                 @break
 
-                                                                @case(2)
-                                                                    Nivel 2: Diagrama de Contenedores
-                                                                @break
-
-                                                                @case(3)
-                                                                    Nivel 3: Diagrama de Componentes
-                                                                @break
-
-                                                                @default
-                                                                    Nivel 4: Diagrama de Codigo
                                                             @endswitch
                                                         </div>
                                                         <div class="mt-3">
@@ -375,57 +373,14 @@
                                                 <span class="form-selectgroup-check"></span>
                                             </span>
                                             <span class="form-selectgroup-label-content">
-                                                <span class="form-selectgroup-title strong mb-1">Nivel 1</span>
-                                                <span class="d-block text-muted">Diagrama de Contexto</span>
+                                                <span class="form-selectgroup-title strong mb-1">UML</span>
+                                                <span class="d-block text-muted">Diagrama de Clases</span>
+                                                
                                             </span>
                                         </span>
                                     </label>
                                 </div>
-                                <div class="col-lg-6 mb-3">
-                                    <label class="form-selectgroup-item">
-                                        <input type="radio" name="tipo" value="2"
-                                            class="form-selectgroup-input">
-                                        <span class="form-selectgroup-label d-flex align-items-center p-3">
-                                            <span class="me-3">
-                                                <span class="form-selectgroup-check"></span>
-                                            </span>
-                                            <span class="form-selectgroup-label-content">
-                                                <span class="form-selectgroup-title strong mb-1">Nivel 2</span>
-                                                <span class="d-block text-muted">Diagrama de Contenedores</span>
-                                            </span>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-6 mb-3">
-                                    <label class="form-selectgroup-item">
-                                        <input type="radio" name="tipo" value="3"
-                                            class="form-selectgroup-input">
-                                        <span class="form-selectgroup-label d-flex align-items-center p-3">
-                                            <span class="me-3">
-                                                <span class="form-selectgroup-check"></span>
-                                            </span>
-                                            <span class="form-selectgroup-label-content">
-                                                <span class="form-selectgroup-title strong mb-1">Nivel 3</span>
-                                                <span class="d-block text-muted">Diagrama de Componentes</span>
-                                            </span>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-6 mb-3">
-                                    <label class="form-selectgroup-item">
-                                        <input type="radio" name="tipo" value="4"
-                                            class="form-selectgroup-input">
-                                        <span class="form-selectgroup-label d-flex align-items-center p-3">
-                                            <span class="me-3">
-                                                <span class="form-selectgroup-check"></span>
-                                            </span>
-                                            <span class="form-selectgroup-label-content">
-                                                <span class="form-selectgroup-title strong mb-1">Nivel 4</span>
-                                                <span class="d-block text-muted">Diagrama de Codigo</span>
-                                            </span>
-                                        </span>
-                                    </label>
-                                </div>
+                                
                             </div>
                         </div>
 
@@ -502,4 +457,16 @@
             };
         </script>
     @endpush
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop
+
+<x-app-layout>
+  
 </x-app-layout>

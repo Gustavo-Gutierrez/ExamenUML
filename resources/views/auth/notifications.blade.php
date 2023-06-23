@@ -1,6 +1,9 @@
+@extends('adminlte::page')
+
 @section('title', 'Perfil')
-<x-app-layout>
-    <div class="page">
+
+@section('content_header')
+<div class="page">
         <div class="page-wrapper">
             <!-- Page header -->
             <div class="page-header d-print-none">
@@ -145,4 +148,20 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('content')
+    
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop
+@section('title', 'Perfil')
+<x-app-layout>
+    
 </x-app-layout>

@@ -1,6 +1,9 @@
+@extends('adminlte::page')
+
 @section('title', 'Perfil')
-<x-app-layout>
-    <div class="page-wrapper">
+
+@section('content_header')
+<div class="page-wrapper">
         <!-- Page header -->
         <div class="page-header d-print-none">
             <div class="container-xl">
@@ -83,7 +86,7 @@
                                                 <input type="file" name="url" class="form-control"
                                                     onchange="verImagen(event)" accept=".svg,.jpge,.jpg,.png" />
                                                 <img class="avatar avatar-xl mt-3 mb-1"
-                                                    src="{{ $user->url ? asset('storage/' . $user->url) : './back/static/avatars/000.png' }}"
+                                                    src="{{ $user->url ? asset('storage/' . $user->url) : './back/static/avatars/iconuser.jpg' }}"
                                                     id="perfil">
                                             </div>
                                         </div>
@@ -188,4 +191,20 @@
             }
         </script>
     @endpush
+@stop
+
+@section('content')
+   
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop
+@section('title', 'Perfil')
+<x-app-layout>
+   
 </x-app-layout>

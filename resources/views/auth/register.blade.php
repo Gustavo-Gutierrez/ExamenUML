@@ -1,9 +1,9 @@
 <x-guest-layout>
     @section('title', isset($title) ? $title : 'Login')
-    <div class="page page-center bg-dark">
+    <div class="page page-center bg-secondary">
         <div class="container-tight py-4">
             <div class="text-center mb-4">
-                <a href="." class="navbar-brand navbar-brand-autodark"><img src="{{ asset('assets/img/logo.png') }}"
+                <a href="." class="navbar-brand navbar-brand-autodark"><img src="{{ asset('assets/img/uml.png') }}"
                         height="50" alt=""></a>
             </div>
             <form class="card card-md" action="{{ route('register') }}" method="POST">
@@ -37,13 +37,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-check">
-                            <input type="checkbox" class="form-check-input" />
-                            <span class="form-check-label">Agree the <a href="./terms-of-service.html" tabindex="-1">terms
-                                    and policy</a>.</span>
-                        </label>
-                    </div>
+                   
                     <div class="form-footer">
                         <button type="submit" class="btn btn-primary w-100" {{-- data-bs-toggle="modal"
                             data-bs-target="#exampleModalSignUp" title="Rellenar datos de tarjeta" --}}>

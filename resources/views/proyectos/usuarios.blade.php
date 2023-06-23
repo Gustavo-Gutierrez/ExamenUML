@@ -1,8 +1,9 @@
+@extends('adminlte::page')
+
 @section('title', 'Usuarios del Proyecto')
-<x-app-layout>
-    <div class="page">
-        <div class="page-wrapper">
-            <div class="container-xl">
+
+@section('content_header')
+<div class="container-xl">
                 <!-- Page title -->
                 <div class="page-header d-print-none">
                     <div class="row g-2 align-items-center">
@@ -35,6 +36,12 @@
                     </div>
                 </div>
             </div>
+@stop
+
+@section('content')
+<div class="page">
+        <div class="page-wrapper">
+            
 
             <div class="page-body">
                 <div class="container-xl">
@@ -281,5 +288,17 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop
+@section('title', 'Usuarios del Proyecto')
+<x-app-layout>
+    
 
 </x-app-layout>

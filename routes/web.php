@@ -27,6 +27,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/usuarios', function () {
+    $users = User::all();
+    return response(User::all(), 200);
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/home', function(){
         $usuario = User::find(Auth::user()->id);

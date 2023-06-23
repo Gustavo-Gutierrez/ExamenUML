@@ -1,8 +1,9 @@
+@extends('adminlte::page')
+
 @section('title', 'Proyectos')
-<x-app-layout>
-    <div class="page">
-        <div class="page-wrapper">
-            <div class="container-xl">
+
+@section('content_header')
+<div class="container-xl">
                 <!-- Page title -->
                 <div class="page-header d-print-none">
                     <div class="row g-2 align-items-center">
@@ -14,7 +15,7 @@
                         </div>
                         <!-- Page title actions -->
                         <div class="col-12 col-md-auto ms-auto">
-                            <a href="{{ route('dashboard') }}" class="btn btn-azure" title="Inicio">
+                            <a href="{{ route('dashboard') }}" class="btn btn-primary" title="Inicio">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home m-0"
                                     width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5"
                                     stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -41,6 +42,12 @@
                 </div>
             </div>
 
+@stop
+
+@section('content')
+<div class="page">
+        <div class="page-wrapper">
+            
             <div class="page-body">
                 <div class="container-xl">
                     <ul class="nav nav-bordered mb-4">
@@ -60,7 +67,7 @@
                                                         <img src="{{ asset('storage/' . $proyecto->url) }}"
                                                             alt="Food Deliver UI dashboards" class="rounded">
                                                     @else
-                                                        <img src="{{ asset('/assets/img/image-default.jpg') }}"
+                                                        <img src="{{ asset('/assets/img/ICOUML.png') }}"
                                                             alt="Food Deliver UI dashboards" class="rounded height-min">
                                                     @endif
 
@@ -478,4 +485,16 @@
             };
         </script>
     @endpush
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop
+@section('title', 'Proyectos')
+<x-app-layout>
+   
 </x-app-layout>

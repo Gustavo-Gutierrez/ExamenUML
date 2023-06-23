@@ -9,46 +9,21 @@
 
         <div class="row">
             {{-- @foreach ($planes as $plan) --}}
-                <div class="col-lg-3 col-md-6">
-                    <div class="box" data-aos="zoom-in">
-                        {{-- <h3>{{ $plan->precio > 0 ? 'PLAN MENSUAL' : 'GRATIS' }}</h3>
-                        <h4><sup>$</sup>{{ $plan->precio }}<span> / mes</span></h4>
-                        <h3>{{ $plan->nombre }}</h3> --}}
-                        <ul>
-                            <li>
-                                <i class="fa-solid fa-check text-success"></i>
-                                Comprar imagenes
-                            </li>
-                            <li>
-                                <i class="fa-solid fa-check text-success"></i>
-                                Gestionar imagenes
-                            </li>
-                           {{--  <li class="{{ $plan->n_imagenes > 0 ? '' : 'na' }}">
-                                Cantidad de imagenes: {{ $plan->n_imagenes }}
-                            </li>
-                            <li class="{{ $plan->n_eventos > 0 ? '' : 'na' }}">Gestionar Eventos</li>
-                            <li class="{{ $plan->n_eventos > 0 ? '' : 'na' }}">
-                                Cantidad de Eventos: {{ $plan->n_eventos }}
-                            </li> --}}
-                        </ul>
-                        <div class="btn-wrap">
-                            <a href="{{-- {{route('registrar',$plan->id)}} --}}" class="btn-buy">Comprar ahora</a>
-                        </div>
-                    </div>
-                </div>
+                
             {{-- @endforeach --}}
-            <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+            <div class="col-lg-3 col-md-6 mt-4 mt-lg-0 mx-auto">
                 <div class="box" data-aos="zoom-in" data-aos-delay="300">
                     <span class="advanced">Advanced</span>
                     <h3>PLAN EMPRESARIAL</h3>
-                    <h4><sup>>$</sup>45<span> / mes</span></h4>
+                    <h4><sup>>$</sup>55<span> / mes</span></h4>
                     <h3>Empresarial</h3>
                     <ul>
-                        <li>Compra de imagenes</li>
-                        <li>Gestion completa de imagenes</li>
+                        <li>Graficador de bases completa</li>
+                        <li>Gestion completa de mapeo</li>
+                        <li>Gestion de Normalizacion</li>
+                        <li>Generador de Script</li>
                         <li>Gestion completa de eventos</li>
-                        <li>Gestion de software</li>
-                        <li>Gestion de informacion</li>
+                        
                     </ul>
                     <div class="btn-wrap">
                         <a href="#contact" class="btn-buy">Contactanos</a>

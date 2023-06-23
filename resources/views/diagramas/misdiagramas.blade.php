@@ -1,6 +1,9 @@
+@extends('adminlte::page')
+
 @section('title', 'Mis Diagramas')
-<x-app-layout>
-    <div class="page">
+
+@section('content_header')
+<div class="page">
         <div class="page-wrapper">
             <div class="container-xl">
                 <!-- Page title -->
@@ -15,7 +18,7 @@
                         </div>
                         <!-- Page title actions -->
                         <div class="col-12 col-md-auto ms-auto d-print-none">
-                            <a href="{{route('dashboard')}}" class="btn btn-azure" title="Inicio">
+                            <a href="{{route('dashboard')}}" class="btn btn-primary" title="Inicio">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home m-0" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                     <polyline points="5 12 3 12 12 3 21 12 19 12" />
@@ -23,24 +26,20 @@
                                     <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
                                   </svg>
                             </a>
-                            <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
-                                data-bs-target="#modal-report">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <line x1="12" y1="5" x2="12" y2="19" />
-                                    <line x1="5" y1="12" x2="19" y2="12" />
-                                </svg>
-                                Agregar Diagrama
-                            </a>
+                            
                         </div>
 
                     </div>
                 </div>
 
-                <div class="page-body">
+            </div>
+        </div>
+    </div>
+        
+@stop
+
+@section('content')
+<div class="page-body">
                     <div class="container-xl">
                         <ul class="nav nav-bordered mb-4">
                             <li class="nav-item">
@@ -92,19 +91,10 @@
                                                         <div class="text-muted">
                                                             @switch($diagrama->tipo)
                                                                 @case(1)
-                                                                    Nivel 1: Diagrama de Contexto
+                                                                UML: Diagrama de Clase
                                                                 @break
 
-                                                                @case(2)
-                                                                    Nivel 2: Diagrama de Contenedores
-                                                                @break
-
-                                                                @case(3)
-                                                                    Nivel 3: Diagrama de Componentes
-                                                                @break
-
-                                                                @default
-                                                                    Nivel 4: Diagrama de Codigo
+                                                               
                                                             @endswitch
                                                         </div>
                                                         <div class="mt-3">
@@ -347,57 +337,13 @@
                                                 <span class="form-selectgroup-check"></span>
                                             </span>
                                             <span class="form-selectgroup-label-content">
-                                                <span class="form-selectgroup-title strong mb-1">Nivel 1</span>
-                                                <span class="d-block text-muted">Diagrama de Contexto</span>
+                                                <span class="form-selectgroup-title strong mb-1">UML</span>
+                                                <span class="d-block text-muted">Diagrama de Clase</span>
                                             </span>
                                         </span>
                                     </label>
                                 </div>
-                                <div class="col-lg-6 mb-3">
-                                    <label class="form-selectgroup-item">
-                                        <input type="radio" name="tipo" value="2"
-                                            class="form-selectgroup-input">
-                                        <span class="form-selectgroup-label d-flex align-items-center p-3">
-                                            <span class="me-3">
-                                                <span class="form-selectgroup-check"></span>
-                                            </span>
-                                            <span class="form-selectgroup-label-content">
-                                                <span class="form-selectgroup-title strong mb-1">Nivel 2</span>
-                                                <span class="d-block text-muted">Diagrama de Contenedores</span>
-                                            </span>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-6 mb-3">
-                                    <label class="form-selectgroup-item">
-                                        <input type="radio" name="tipo" value="3"
-                                            class="form-selectgroup-input">
-                                        <span class="form-selectgroup-label d-flex align-items-center p-3">
-                                            <span class="me-3">
-                                                <span class="form-selectgroup-check"></span>
-                                            </span>
-                                            <span class="form-selectgroup-label-content">
-                                                <span class="form-selectgroup-title strong mb-1">Nivel 3</span>
-                                                <span class="d-block text-muted">Diagrama de Componentes</span>
-                                            </span>
-                                        </span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-6 mb-3">
-                                    <label class="form-selectgroup-item">
-                                        <input type="radio" name="tipo" value="4"
-                                            class="form-selectgroup-input">
-                                        <span class="form-selectgroup-label d-flex align-items-center p-3">
-                                            <span class="me-3">
-                                                <span class="form-selectgroup-check"></span>
-                                            </span>
-                                            <span class="form-selectgroup-label-content">
-                                                <span class="form-selectgroup-title strong mb-1">Nivel 4</span>
-                                                <span class="d-block text-muted">Diagrama de Codigo</span>
-                                            </span>
-                                        </span>
-                                    </label>
-                                </div>
+                                
                             </div>
                         </div>
 
@@ -435,43 +381,17 @@
             </div>
         </div>
     </div>
-    @push('scripts')
-        <script>
-            function favorito(proyecto_id) {
-                $.ajax({
-                    type: "POST",
-                    url: "{{ url('diagramas/favorito') }}",
-                    data: {
-                        id: proyecto_id
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    dataType: 'JSON',
-                    success: function() {
-                        /* console.log('protasdas'); */
-                        /* window.location('/proyectos'); */
-                    },
-                });
-            };
 
-            function terminado(proyecto_id) {
-                $.ajax({
-                    type: "POST",
-                    url: "{{ url('diagramas/terminado') }}",
-                    data: {
-                        id: proyecto_id
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    dataType: 'JSON',
-                    success: function() {
-                        /* console.log('protasdas'); */
-                        /* window.location('/proyectos'); */
-                    },
-                });
-            };
-        </script>
-    @endpush
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop
+
+<x-app-layout>
+   
 </x-app-layout>
